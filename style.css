@@ -1,0 +1,47 @@
+/* Style the body element */
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+}
+
+/* Style the header element */
+.header {
+  padding: 20px;
+  text-align: center;
+  background-color: #1abc9c;
+  color: white;
+}
+
+/* Style the navigation bar */
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  background-color: #333;
+}
+
+/* Style the navigation bar links */
+.navbar a {
+  color: white;
+  text-decoration: none;
+  padding: 10px;
+}
+
+/* Change the color of the navigation bar links on hover */
+.navbar a:hover {
+  background-color: #84e4e2;
+  color: black;
+}
+
+/* Style the main content */
+.main {
+  padding: 20px;
+}
+
+/* Style the footer element */
+.footer {
+  padding: 10px;
+  text-align: center;
+  background-color: #2e3550;
+  color: white;
+}
