@@ -2,7 +2,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   font-color: black;
-  line-height: 115%;
+  line-height: 120%;
 }
 
 /* Style the header element */
@@ -42,7 +42,7 @@ body {
 .main {
   font-family: 'Roboto', sans-serif;
   font-color: white;
-  padding: 12px;
+  padding: 13px;
 }
 
 h1 {
@@ -56,7 +56,7 @@ h1 {
 h2 {
   font-family: 'Roboto', sans-serif;
   font-color: black;
-  font-size: 24px;
+  font-size: 25px;
   font-weight: bold;
   color: #333;
   margin-bottom: 9px;
