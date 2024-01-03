@@ -8,6 +8,7 @@ body {
 /* Style the header element */
 .header {
   font-family: 'Roboto', sans-serif;
+  font-color: white;
   padding: 12px;
   text-align: center;
   background-color: #1abc9c;
@@ -40,6 +41,7 @@ body {
 /* Style the main content */
 .main {
   font-family: 'Roboto', sans-serif;
+  font-color: white;
   padding: 12px;
 }
 
@@ -53,6 +55,7 @@ h1 {
 
 h2 {
   font-family: 'Roboto', sans-serif;
+  font-color: black;
   font-size: 24px;
   font-weight: bold;
   color: #333;
@@ -61,6 +64,7 @@ h2 {
 
 h3 {
   font-family: 'Roboto', sans-serif;
+  font-color: black;
   font-size: 18px;
   font-weight: bold;
   color: #333;
