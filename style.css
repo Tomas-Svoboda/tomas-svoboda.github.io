@@ -4,6 +4,12 @@ body {
   line-height: 135%;
 }
 
+/* Container for page content */
+.container {
+  max-width: 1100px;
+  margin: 0 auto; /* Center the container horizontally */
+}
+
 /* Style the header element */
 .header {
   font-family: 'Roboto', sans-serif;
