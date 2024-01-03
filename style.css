@@ -1,7 +1,6 @@
 /* Style the body element */
 body {
   font-family: 'Roboto', sans-serif;
-  line-height: 135%;
   overflow-y: scroll;
 /*  color: #111; */
 }
@@ -61,6 +60,7 @@ body {
 .main {
   font-family: 'Roboto', sans-serif;
   color: black;
+  line-height: 120%;
   padding: 13px;
 }
 
