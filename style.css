@@ -1,7 +1,7 @@
 /* Style the body element */
 body {
   font-family: 'Roboto', sans-serif;
-  line-height: 130%;
+  line-height: 135%;
 }
 
 /* Style the header element */
@@ -16,6 +16,7 @@ body {
 /* Style the navigation bar */
 .navbar {
   font-family: 'Roboto', sans-serif;
+  font-weight: bold;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -38,6 +39,7 @@ body {
 /* Style the main content */
 .main {
   font-family: 'Roboto', sans-serif;
+  color: #222;
   padding: 13px;
 }
 
