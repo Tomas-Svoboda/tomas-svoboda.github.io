@@ -29,7 +29,7 @@ body {
   display: flex;
   justify-content: space-around;
   align-items: center;
-  background-color: #222;
+  background-color: #111;
 }
 
 /* Style the navigation bar links */
@@ -59,7 +59,7 @@ body {
 /* Style the main content */
 .main {
   font-family: 'Roboto', sans-serif;
-  color: #222;
+  color: #111;
   padding: 13px;
 }
 
@@ -76,7 +76,7 @@ h2 {
   font-family: 'Roboto', sans-serif;
   font-size: 25px;
   font-weight: bold;
-  color: #222;
+  color: #111;
   margin-bottom: 9px;
 }
 
@@ -84,7 +84,7 @@ h3 {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: bold;
-  color: #222;
+  color: #111;
   margin-bottom: 6px;
 }
 
