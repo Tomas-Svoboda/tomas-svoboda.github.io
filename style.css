@@ -6,7 +6,7 @@ body {
 
 /* Style the header element */
 .header {
-  padding: 15px;
+  padding: 12px;
   text-align: center;
   background-color: #1abc9c;
   color: white;
@@ -24,7 +24,7 @@ body {
 .navbar a {
   color: white;
   text-decoration: none;
-  padding: 10px;
+  padding: 9px;
 }
 
 /* Change the color of the navigation bar links on hover */
@@ -35,28 +35,28 @@ body {
 
 /* Style the main content */
 .main {
-  padding: 15px;
+  padding: 12px;
 }
 
 h1 {
   font-size: 36px;
   font-weight: bold;
   color: #1abc9c;
-  margin-bottom: 16px;
+  margin-bottom: 12px;
 }
 
 h2 {
   font-size: 24px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 12px;
+  margin-bottom: 9px;
 }
 
 h3 {
   font-size: 18px;
   font-weight: bold;
   color: #333;
-  margin-bottom: 8px;
+  margin-bottom: 6px;
 }
 
 /* Style the footer element */
