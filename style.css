@@ -3,6 +3,7 @@ body {
   font-family: 'Roboto', sans-serif;
   line-height: 135%;
   overflow-y: scroll;
+  color: #111;
 }
 
 /* Container for page content */
