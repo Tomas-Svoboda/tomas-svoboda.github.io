@@ -2,6 +2,7 @@
 body {
   font-family: 'Roboto', sans-serif;
   line-height: 135%;
+  overflow-y: scroll;
 }
 
 /* Container for page content */
