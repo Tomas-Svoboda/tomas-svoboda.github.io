@@ -64,6 +64,10 @@ body {
   padding: 13px;
 }
 
+.main a[target="_blank"] {
+  text-decoration: none;
+}
+
 h1 {
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
