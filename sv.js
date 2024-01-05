@@ -13,7 +13,7 @@ function updateLinkText() {
     links[0].textContent = "Om mig";
     links[1].textContent = "Kompetens";
     links[2].textContent = "IT-karriär";
-    links[3].textContent = "Uppdrag";
+    links[3].textContent = "Konsultuppdrag";
     links[4].textContent = "Certifieringar";
     links[5].textContent = "Kontakt";
   }
