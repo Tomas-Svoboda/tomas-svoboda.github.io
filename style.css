@@ -69,14 +69,25 @@ h2 {
   color: #111;
   margin-bottom: 9px;
 }
-
+/*
 h3 {
   font-family: 'Roboto', sans-serif;
   font-size: 18px;
   font-weight: bold;
   color: #111;
   margin-bottom: 6px;
+}  */
+
+h3 {
+  font-family: 'Roboto', sans-serif;
+/*  font-size: 18px;  */
+  font-weight: bold;
+  color: #D50032;;
+/*  margin-bottom: 6px;   */
 }
+
+font-weight: bold;
+  
 
 .footer {
   font-size: 18px;
