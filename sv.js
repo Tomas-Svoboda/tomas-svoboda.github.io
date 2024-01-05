@@ -1,4 +1,4 @@
-window.addEventListener("resize", function() {
+function updateLinkText() {
   var navbar = document.querySelector(".navbar");
   var links = navbar.querySelectorAll("a");
   var screenWidth = window.innerWidth;
@@ -18,3 +18,6 @@ window.addEventListener("resize", function() {
     links[5].textContent = "Kontakt";
   }
 });
+
+window.addEventListener("load", updateLinkText);
+window.addEventListener("resize", updateLinkText);
