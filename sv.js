@@ -17,7 +17,7 @@ function updateLinkText() {
     links[4].textContent = "Certifieringar";
     links[5].textContent = "Kontakt";
   }
-});
+}
 
 window.addEventListener("load", updateLinkText);
 window.addEventListener("resize", updateLinkText);
