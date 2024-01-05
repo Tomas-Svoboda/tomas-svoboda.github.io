@@ -49,7 +49,7 @@ body {
   padding: 10px;
 }
 
-.main a[target="_blank"] {
+.main a {
   text-decoration: none;
 }
 
