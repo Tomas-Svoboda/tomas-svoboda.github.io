@@ -45,8 +45,8 @@ body {
 .main {
   font-family: 'Roboto', sans-serif;
   color: black;
-  line-height: 130%;
-  padding: 13px;
+  line-height: 1.4;
+  padding: 10px;
 }
 
 .main a[target="_blank"] {
