@@ -1,8 +1,8 @@
-/* window.addEventListener("resize", function() { */
+function updateLinkText() {
   var navbar = document.querySelector(".navbar");
   var links = navbar.querySelectorAll("a");
   var screenWidth = window.innerWidth;
-  if (screenWidth < 600) {
+  if (screenWidth < 580) {
     links[0].textContent = "About";
     links[1].textContent = "Skills";
     links[2].textContent = "Career";
@@ -17,4 +17,7 @@
     links[4].textContent = "Certifications";
     links[5].textContent = "Contact";
   }
-/* }); */
+}
+
+window.addEventListener("load", updateLinkText);
+window.addEventListener("resize", updateLinkText);
