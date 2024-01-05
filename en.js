@@ -2,7 +2,7 @@ function updateLinkText() {
   var navbar = document.querySelector(".navbar");
   var links = navbar.querySelectorAll("a");
   var screenWidth = window.innerWidth;
-  if (screenWidth < 525) {
+  if (screenWidth < 524) {
     links[0].textContent = "About";
     links[1].textContent = "Skills";
     links[2].textContent = "Career";
