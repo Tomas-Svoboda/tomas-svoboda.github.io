@@ -51,12 +51,17 @@ body {
 
 .main a {
   target: _blank;
+  font-weight: bold;
   text-decoration: none;
 }
 
 .main a.github {
   target: _self;
   text-decoration: none;
+}
+
+.main a:hover {
+  color: #D50032;
 }
 
 h1 {
