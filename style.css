@@ -70,6 +70,10 @@ body {
   color: #111;
 }
 
+.link {
+  font-weight: bold;
+}
+
 h1 {
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
@@ -86,14 +90,6 @@ h2 {
   color: #111;
   margin-bottom: 9px;
 }
-/*
-h3 {
-  font-family: 'Roboto', sans-serif;
-  font-size: 18px;
-  font-weight: bold;
-  color: #111;
-  margin-bottom: 6px;
-}  */
 
 h3 {
   font-family: 'Roboto', sans-serif;
