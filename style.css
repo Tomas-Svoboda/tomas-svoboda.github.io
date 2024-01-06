@@ -51,13 +51,13 @@ body {
 
 .main a {
   target: _blank;
-  color: black;
+  color: #111111;
   text-decoration: none;
 }
 
 .main a.github {
   target: _self;
-  color: black;
+  color: #111111;
   text-decoration: none;
 }
 
@@ -66,11 +66,11 @@ body {
 }
 
 .main a:visited {
-  color: black;
+  color: #111111;
 }
 
 .link {
-  color: black;
+  color: #111111;
 }
 
 h1 {
