@@ -33,7 +33,7 @@ body {
 }
 
 .navbar a:hover {
-  background-color: #84e4e2;
+  background-color: #D50032; /* #84e4e2; */
   color: black;
 }
 
