@@ -33,8 +33,7 @@ body {
 }
 
 .navbar a:hover {
-  background-color: #D50032; /* #84e4e2; 
-  color: black; */
+  background-color: #D50032;
 }
 
 .top {
@@ -55,7 +54,7 @@ body {
 
 .main a.github {
   font-weight: bold;
-  color: #0a0a0a;
+  color: #D50032;
   text-decoration: none;
 }
 
