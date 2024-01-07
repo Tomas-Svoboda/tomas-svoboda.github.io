@@ -34,6 +34,8 @@ body {
 
 .navbar a:hover {
   background-color: #D50032;
+  border-top: 2px solid black;
+  border-bottom: 2px solid black;
 }
 
 .top {
@@ -57,16 +59,15 @@ body {
   color: #D50032;
   text-decoration: none;
 }
-
+/*
 .main a:hover {
   color: #D50032;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
 }
 
 .main a:visited {
   color: #0a0a0a;
 }
+*/
 
 h1 {
   font-family: 'Roboto', sans-serif;
