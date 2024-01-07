@@ -9,16 +9,14 @@ function updateLinkText() {
     links[3].textContent = "Skills";
     links[4].textContent = "Certs";
     links[5].textContent = "Contact";
-  }
-  else if (screenWidth < 594) {
+  } else if (screenWidth < 594) {
     links[0].textContent = "About Me";
     links[1].textContent = "IT Career";
     links[2].textContent = "Assignments";
     links[3].textContent = "Skills";
     links[4].textContent = "Certifications";
     links[5].textContent = "Contact";
-  } 
-  else {
+  } else {
     links[0].textContent = "About Me";
     links[1].textContent = "IT Career";
     links[2].textContent = "Assignments";
