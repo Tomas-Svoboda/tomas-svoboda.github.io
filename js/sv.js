@@ -9,7 +9,7 @@ function updateLinkText() {
     links[3].textContent = "Skills";
     links[4].textContent = "Certifikat";
     links[5].textContent = "Kontakt";
-  } else if (screenWidth < 643) {
+  } else if (screenWidth < 647) {
     links[0].textContent = "Om mig";
     links[1].textContent = "IT-karriär";
     links[2].textContent = "Konsultuppdrag";
