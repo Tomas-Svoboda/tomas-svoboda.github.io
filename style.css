@@ -44,7 +44,7 @@ body {
 .main {
   font-family: 'Roboto', sans-serif;
   line-height: 1.52;
-  padding: 9px;
+  padding: 8px;
 }
 
 .main a:not(.github) {
