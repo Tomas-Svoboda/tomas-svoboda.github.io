@@ -34,8 +34,6 @@ body {
 
 .navbar a:hover {
   background-color: #D50032;
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
 }
 
 .top {
