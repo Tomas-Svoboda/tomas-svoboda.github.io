@@ -59,11 +59,12 @@ body {
   color: #D50032;
   text-decoration: none;
 }
-/*
-.main a:hover {
-  color: #D50032;
-}
 
+.main a.hovered-link {
+  border-top: 1px solid #D50032;
+  border-bottom: 1px solid #D50032;
+}
+/*
 .main a:visited {
   color: #0a0a0a;
 }
