@@ -21,7 +21,7 @@ function updateLinkText() {
   else {
     links[0].textContent = "About Me";
     links[1].textContent = "IT Career";
-    links[2].textContent = "AssSignments";
+    links[2].textContent = "Assignments";
     links[3].textContent = "Skills and Tools";
     links[4].textContent = "Certifications";
     links[5].textContent = "Contact";
