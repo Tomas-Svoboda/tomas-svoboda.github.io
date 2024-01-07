@@ -10,7 +10,7 @@ function updateLinkText() {
     links[4].textContent = "Certs";
     links[5].textContent = "Contact";
   }
-  else if (screenWidth < 592) {
+  else if (screenWidth < 594) {
     links[0].textContent = "About Me";
     links[1].textContent = "IT Career";
     links[2].textContent = "Assignments";
