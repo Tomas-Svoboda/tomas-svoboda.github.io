@@ -20,7 +20,7 @@ function updateLinkText() {
   } 
   else {
     links[0].textContent = "About Me";
-    links[1].textContent = "Skills & Tools";
+    links[1].textContent = "Skills and Tools";
     links[2].textContent = "IT Career";
     links[3].textContent = "Assignments";
     links[4].textContent = "Certifications";
