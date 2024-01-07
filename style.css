@@ -48,7 +48,7 @@ body {
   padding: 10px;
 }
 
-.main a {
+.main a:not(.github) {
   target: _blank;
   color: #0a0a0a;
   text-decoration: none;
