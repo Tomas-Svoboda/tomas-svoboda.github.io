@@ -60,7 +60,7 @@ body {
   text-decoration: none;
 }
 
-.main a.hovered-link {
+.main a:hover {
   border-top: 1px solid #D50032;
   border-bottom: 1px solid #D50032;
 }
