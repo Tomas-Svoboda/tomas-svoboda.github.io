@@ -63,7 +63,7 @@ body {
 }
 
 img.harvard {
-  max-width: 420px;
+  max-width: 425px;
   height: auto;
   float: right;
 }
@@ -72,7 +72,7 @@ img.harvard {
   img {
     width: 100%;
     float: none;
-    margin-left: 0;
+    margin-bottom: 10;
   }
 }
 
