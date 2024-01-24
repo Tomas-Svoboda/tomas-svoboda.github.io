@@ -62,6 +62,21 @@ body {
   border-bottom: 1px dotted #D50032;
 }
 
+img.harvard {
+  max-width: 420px;
+  height: auto;
+  float: right;
+  margin-left: 10px;
+}
+
+@media (max-width: 600px) {
+  img {
+    width: 100%;
+    float: none;
+    margin-left: 0;
+  }
+}
+
 h1 {
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
