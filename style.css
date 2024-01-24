@@ -66,7 +66,6 @@ img.harvard {
   max-width: 420px;
   height: auto;
   float: right;
-  margin-left: 10px;
 }
 
 @media (max-width: 600px) {
