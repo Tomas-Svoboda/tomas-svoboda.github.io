@@ -10,6 +10,6 @@ document.write(`
     <a href="./kompetens">Skills</a>
     <a href="./certifieringar">Certifikat</a>
     <a href="./kontakt">Kontakt</a>
-    <a href="./career"><img src="icons/english.png" alt="English" width="20" height="20"></a>
+    <a href="./about"><img src="icons/english.png" alt="English" width="20" height="20"></a>
   </div>
 `);
