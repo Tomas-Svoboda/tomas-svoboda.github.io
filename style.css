@@ -20,13 +20,13 @@ body {
 }
 
 .header h1 {
-  margin: 2;
-  padding: 2;
+  margin: 3px;
+  padding: 3px;
 }
 
 .header p {
-  margin: 2;
-  padding: 2;
+  margin: 3px;
+  padding: 3px;
 }
 
 .navbar {
@@ -122,6 +122,6 @@ h3 {
 }
 
 .footer p {
-  margin: 2;
-  padding: 2;
+  margin: 3px;
+  padding: 3px;
 }
