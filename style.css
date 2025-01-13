@@ -71,7 +71,7 @@ img.harvard {
 
 @media (max-width: 600px) {
   img {
-    width: 100%;
+    width: auto;
     float: none;
   }
 }
