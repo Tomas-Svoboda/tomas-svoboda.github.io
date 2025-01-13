@@ -2,7 +2,7 @@ document.write(`
   <div class="header">
     <h1>Tomas Svoboda</h1>
     <p>Teknisk testare och Testautomatiserare på Consid Stockholm</p>
-    </div>
+  </div>
   <div class="navbar">
     <a href="./">Profil</a>
     <a href="./karriar">Karriär</a>
