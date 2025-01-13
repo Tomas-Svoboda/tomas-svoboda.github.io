@@ -1,3 +1,4 @@
+document.write(`
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
   <title>Tomas Svoboda, IT Consultant at Consid Stockholm</title>
@@ -9,3 +10,4 @@
   <script src="js/openLinksInNewTab.js"></script>
   <script src="js/react.js"></script>
   <script src="js/en.js"></script>
+`);
