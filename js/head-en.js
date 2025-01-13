@@ -7,7 +7,7 @@ document.write(`
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap" rel="stylesheet">
-  <script src="openLinksInNewTab.js"></script>
-  <script src="react.js"></script>
-  <script src="en.js"></script>
+  <script src="js/openLinksInNewTab.js"></script>
+  <script src="js/react.js"></script>
+  <script src="js/en.js"></script>
 `);
