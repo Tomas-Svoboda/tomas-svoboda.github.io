@@ -1,7 +1,7 @@
 document.write(`
-  <footer>
+  <div class="footer">
     <p>Tomas Svoboda &copy; <span id="current-year"></span></p>
-  </footer>
+  </div>
   <script>
     document.getElementById('current-year').textContent = new Date().getFullYear();
   </script>
