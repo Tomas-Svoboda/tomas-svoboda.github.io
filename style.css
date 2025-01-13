@@ -14,7 +14,7 @@ body {
   font-weight: bold;
   padding: 11px;
   text-align: center;
-  background-color: #D50032;
+  background-color: #DD0333;
   color: white;
 }
 
@@ -33,7 +33,7 @@ body {
 }
 
 .navbar a:hover {
-  background-color: #D50032;
+  background-color: #DD0333;
 }
 
 .top {
@@ -54,12 +54,12 @@ body {
 
 .main a.github {
   font-weight: bold;
-  color: #D50032;
+  color: #DD0333;
   text-decoration: none;
 }
 
 .main a:hover {
-  border-bottom: 1px dotted #D50032;
+  border-bottom: 1px dotted #DD0333;
 }
 
 img.harvard {
@@ -106,6 +106,6 @@ h3 {
   font-weight: bold;
   padding: 5px;
   text-align: center;
-  background-color: #D50032;
+  background-color: #DD0333;
   color: white;
 }
