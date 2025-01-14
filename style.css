@@ -37,12 +37,14 @@ body {
   justify-content: space-around;
   align-items: center;
   background-color: #222;
+  flex-wrap: wrap;
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
   padding: 5px;
+  max-width: 100%;
 }
 
 .navbar a:hover {
