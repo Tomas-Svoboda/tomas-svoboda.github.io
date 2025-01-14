@@ -4,7 +4,7 @@ document.write(`
     <p>Technical Tester at Consid Stockholm</p>
   </div>
   <div class="navbar">
-    <a href="./about">About</a>
+    <a href="./about">Profile</a>
     <a href="./career">Career</a>
     <a href="./projects">Projects</a>
     <a href="./skills">Skills</a>
