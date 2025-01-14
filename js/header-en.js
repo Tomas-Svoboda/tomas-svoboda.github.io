@@ -14,6 +14,19 @@ document.write(`
   </div>
 
   <script>
+    window.onload = function() {
+      var navbar = document.querySelector('.navbar');
+      var skillsLink = document.querySelector('a[href="./skills"]');
+      var certLink = document.querySelector('a[href="./certifications"]');
+  
+      if (navbar.scrollWidth > window.innerWidth) {
+        var br = document.createElement('br');
+        navbar.insertBefore(br, certLink);
+      }
+    };
+  </script>
+
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
         const svLink = document.getElementById('sv-link');
         const currentPath = window.location.pathname;
