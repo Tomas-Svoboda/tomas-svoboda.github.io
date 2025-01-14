@@ -4,37 +4,18 @@ document.write(`
     <p>Technical Tester at Consid Stockholm</p>
   </div>
   <div class="navbar">
-    <a href="./about">About</a>
-    <a href="./career">Career</a>
-    <a href="./projects">Projects</a>
-    <a href="./skills">Skills</a>
-    <a href="./certifications">Certs</a>
-    <a href="./contact">Contact</a>
-    <a id="sv-link" href="#"><img src="icons/swedish.png" alt="Svenska" width="20" height="20"></a>
+    <div class="row">
+      <a href="./about">About</a>
+      <a href="./career">Career</a>
+      <a href="./projects">Projects</a>
+      <a href="./skills">Skills</a>
+    </div>
+    <div class="row">
+      <a href="./certifications">Certs</a>
+      <a href="./contact">Contact</a>
+      <a id="sv-link" href="#"><img src="icons/swedish.png" alt="Svenska" width="20" height="20"></a>
+    </div>
   </div>
-
-  <script>
-    function adjustNavbar() {
-      var navbar = document.querySelector('.navbar');
-      var skillsLink = document.querySelector('a[href="./skills"]');
-      var certLink = document.querySelector('a[href="./certifications"]');
-      var br = document.querySelector('.navbar br');
-  
-      if (navbar.scrollWidth > window.innerWidth) {
-        if (!br) {
-          br = document.createElement('br');
-          navbar.insertBefore(br, certLink);
-        }
-      } else {
-        if (br) {
-          navbar.removeChild(br);
-        }
-      }
-    }
-  
-    window.onload = adjustNavbar;
-    window.onresize = adjustNavbar;
-  </script>
 
   <script>
     document.addEventListener('DOMContentLoaded', function() {
