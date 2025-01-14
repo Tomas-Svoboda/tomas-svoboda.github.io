@@ -1,7 +1,7 @@
 document.write(`
   <div class="header">
     <h1>Tomas Svoboda</h1>
-    <p>Technical Tester and Test Automation Developer at Consid Stockholm</p>
+    <p>Technical Tester and Test Automation Engineer at Consid Stockholm</p>
   </div>
   <div class="navbar">
     <a href="./about">About</a>
