@@ -33,17 +33,18 @@ body {
 .navbar {
   font-family: 'Roboto', sans-serif;
   font-size: 1.0375rem;
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
   background-color: #222;
-  gap: 10px;
+  flex-wrap: wrap;
 }
 
 .navbar a {
   color: white;
   text-decoration: none;
   padding: 5px;
-  text-align: center;
+  max-width: 100%;
 }
 
 .navbar a:hover {
@@ -86,9 +87,6 @@ img.harvard {
 }
 
 @media (max-width: 600px) {
-  .navbar {
-    grid-template-columns: repeat(3, 1fr);
-  }
   img {
     width: auto;
     float: none;
