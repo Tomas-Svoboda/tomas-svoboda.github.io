@@ -51,6 +51,12 @@ body {
   background-color: #DD0333;
 }
 
+.row {
+  display: flex; 
+  width: 100%;
+  justify-content: space-around;
+}
+
 .top {
   font-weight: bold;
   color: #D50032;
