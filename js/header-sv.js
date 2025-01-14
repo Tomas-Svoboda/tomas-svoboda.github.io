@@ -14,6 +14,19 @@ document.write(`
   </div>
 
   <script>
+    window.onload = function() {
+      var navbar = document.querySelector('.navbar');
+      var skillsLink = document.querySelector('a[href="./kompetens"]');
+      var certLink = document.querySelector('a[href="./certifieringar"]');
+  
+      if (navbar.scrollWidth > window.innerWidth) {
+        var br = document.createElement('br');
+        navbar.insertBefore(br, certLink);
+      }
+    };
+  </script>
+
+  <script>
     document.addEventListener('DOMContentLoaded', function() {
         const enLink = document.getElementById('en-link');
         const currentPath = window.location.pathname;
