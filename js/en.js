@@ -2,14 +2,14 @@ function updateLinkText() {
   var navbar = document.querySelector(".navbar");
   var links = navbar.querySelectorAll("a");
   var screenWidth = window.innerWidth;
-  if (screenWidth < 524) {
+  if (screenWidth < 540) {
     links[0].textContent = "About";
     links[1].textContent = "Career";
     links[2].textContent = "Projects";
     links[3].textContent = "Skills";
     links[4].textContent = "Certs";
     links[5].textContent = "Contact";
-  } else if (screenWidth < 600) {
+  } else if (screenWidth < 610) {
     links[0].textContent = "About Me";
     links[1].textContent = "IT Career";
     links[2].textContent = "Assignments";
