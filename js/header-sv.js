@@ -14,29 +14,6 @@ document.write(`
   </div>
 
   <script>
-    function adjustNavbar() {
-      var navbar = document.querySelector('.navbar');
-      var skillsLink = document.querySelector('a[href="./kompetens"]');
-      var certLink = document.querySelector('a[href="./certifieringar"]');
-      var br = document.querySelector('.navbar br');
-  
-      if (navbar.scrollWidth > window.innerWidth) {
-        if (!br) {
-          br = document.createElement('br');
-          navbar.insertBefore(br, certLink);
-        }
-      } else {
-        if (br) {
-          navbar.removeChild(br);
-        }
-      }
-    }
-
-    window.onload = adjustNavbar;
-    window.onresize = adjustNavbar;
-  </script>
-
-  <script>
     document.addEventListener('DOMContentLoaded', function() {
         const enLink = document.getElementById('en-link');
         const currentPath = window.location.pathname;
