@@ -87,6 +87,9 @@ img.harvard {
 }
 
 @media (max-width: 600px) {
+  .navbar a:nth-child(5) {
+    flex-basis: 100%;
+  }
   img {
     width: auto;
     float: none;
