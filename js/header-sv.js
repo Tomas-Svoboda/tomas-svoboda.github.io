@@ -41,5 +41,4 @@ document.write(`
         enLink.href = newPath;
     });
   </script>
-  </div>
 `);
