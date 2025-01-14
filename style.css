@@ -2,6 +2,7 @@ body {
   font-family: 'Roboto', sans-serif;
   overflow-x: hidden;
   overflow-y: scroll;
+  font-size: 1rem;
 }
 
 .container {
@@ -11,7 +12,7 @@ body {
 
 .header {
   font-family: 'Roboto', sans-serif;
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   padding: 4px;
   text-align: center;
@@ -31,6 +32,7 @@ body {
 
 .navbar {
   font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
   display: flex;
   justify-content: space-around;
   align-items: center;
@@ -54,6 +56,7 @@ body {
 
 .main {
   font-family: 'Roboto', sans-serif;
+  font-size: 1rem;
   line-height: 1.52;
   padding: 8px;
 }
@@ -95,7 +98,7 @@ img.harvard {
 h1 {
   font-family: 'Roboto', sans-serif;
   text-transform: uppercase;
-  font-size: 32px;
+  font-size: 2rem;
   font-weight: bold;
   color: white;
   margin-bottom: 4px;
@@ -103,7 +106,7 @@ h1 {
 
 h2 {
   font-family: 'Roboto', sans-serif;
-  font-size: 25px;
+  font-size: 1.5rem;
   font-weight: bold;
   color: #111;
   margin-bottom: 9px;
@@ -111,14 +114,14 @@ h2 {
 
 h3 {
   font-family: 'Roboto', sans-serif;
-  font-size: 17px;
+  font-size: 1.125rem;
   font-weight: bold;
   color: #D50032;
   margin-bottom: 1px;
 }
 
 .footer {
-  font-size: 18px;
+  font-size: 1.125rem;
   font-weight: bold;
   padding: 4px;
   text-align: center;
