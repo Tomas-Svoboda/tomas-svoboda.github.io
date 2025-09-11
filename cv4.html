@@ -1,0 +1,447 @@
+<!DOCTYPE html>
+<html lang="sv" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV - Tomas Svoboda - Teknisk Testare</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+    <!-- Chosen Palette: Calm Harmony Neutrals -->
+    <!-- Application Structure Plan: The SPA is designed as an interactive dashboard to provide a dynamic alternative to a static CV. The structure includes: 1) A prominent header with contact info and a profile photo for immediate access. 2) A clear navigation bar for quick jumps to key sections. 3) An "Översikt" (Overview) section that pairs the professional summary with a donut chart visualizing industry experience, offering a quick, data-driven insight. 4) An interactive "Tidslinje & Projekt" section where users can click to expand and read details about each assignment, turning a passive list into an engaging exploration. 5) A new "Utbildning" (Education) section with a similar interactive timeline style. 6) A "Kompetenser" (Skills) section with bar charts to visually compare skill levels, making technical proficiency easy to grasp. This structure was chosen to allow non-linear exploration, enabling recruiters to quickly find the information most relevant to them, enhancing usability and engagement. -->
+    <!-- Visualization & Content Choices: 1) Industry Experience: CV Info -> Breakdown of time in different sectors. Goal -> Inform/Compare. Viz -> Donut Chart. Interaction -> Hover to see details. Justification -> Excellent for showing parts of a whole, providing a quick summary of career focus. Library -> Chart.js. 2) Career History: CV Info -> Chronological list of assignments. Goal -> Organize/Change. Viz -> Interactive vertical timeline. Interaction -> Click to expand details for each project. Justification -> More engaging than a static list, allows users to focus on specific roles. Method -> Custom HTML/CSS/JS. 3) Education: CV Info -> List of academic degrees. Goal -> Organize/Change. Viz -> Interactive vertical timeline. Interaction -> Click to expand details. Justification -> Consistent with the career timeline, providing a unified visual language for chronological information. 4) Technical Skills: CV Info -> Skills mentioned in profile and projects. Goal -> Compare. Viz -> Grouped Horizontal Bar Charts. Interaction -> Hover for tooltips. Justification -> Bar charts are ideal for comparing proficiency/experience across multiple technologies in a clear, scannable format. Library -> Chart.js. -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f7f4;
+            color: #3d3d3d;
+        }
+        .flag-icon {
+            display: inline-block;
+            width: 1.2em;
+            height: 0.9em;
+            vertical-align: middle;
+            background-size: cover;
+            border-radius: 2px;
+        }
+        .se-flag {
+             background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 16 10"><rect width="16" height="10" fill="%23006aa7"/><path fill="%23fecc00" d="M0 4h16v2H0z"/><path fill="%23fecc00" d="M5 0h2v10H5z"/></svg>');
+        }
+        .cz-flag {
+            background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="3" height="2"><path fill="%23fff" d="M0 0h3v2H0z"/><path fill="%23d7141a" d="M0 1h3v1H0z"/><path fill="%2311457e" d="m0 0l1.5 1L0 2z"/></svg>');
+        }
+        .timeline-item-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease-in-out;
+        }
+        .timeline-item-content.open {
+            max-height: 500px;
+        }
+    </style>
+</head>
+<body>
+    <header class="bg-white/80 backdrop-blur-lg sticky top-0 z-50 shadow-sm">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="icons/profile.png" alt="Profile Photo of Tomas Svoboda" class="w-12 h-12 rounded-full object-cover">
+                <div class="text-2xl font-bold text-gray-800" data-lang-key="name">
+                    Tomas Svoboda
+                </div>
+            </div>
+            <div class="hidden md:flex space-x-8">
+                <a href="#overview" class="text-gray-600 hover:text-blue-600 transition" data-lang-key="navOverview">Översikt</a>
+                <a href="#timeline" class="text-gray-600 hover:text-blue-600 transition" data-lang-key="navTimeline">Tidslinje</a>
+                <a href="#education" class="text-gray-600 hover:text-blue-600 transition" data-lang-key="navEducation">Utbildning</a>
+                <a href="#skills" class="text-gray-600 hover:text-blue-600 transition" data-lang-key="navSkills">Kompetenser</a>
+            </div>
+            <div class="flex items-center space-x-4">
+                <a href="mailto:seniortestare@gmail.com" class="hidden md:inline-block bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition" data-lang-key="contactMe">Kontakta Mig</a>
+                <div class="flex space-x-2">
+                    <button id="lang-sv" class="text-gray-600 font-bold hover:text-blue-600">SV</button>
+                    <button id="lang-en" class="text-gray-400 font-bold hover:text-blue-600">EN</button>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container mx-auto px-4 sm:px-6 py-8">
+        <section id="hero" class="text-center mb-16 md:mb-20">
+            <h1 class="text-4xl md:text-6xl font-extrabold text-gray-800 mb-2" data-lang-key="name">Tomas Svoboda</h1>
+            <p class="text-xl md:text-2xl text-blue-600 font-medium" data-lang-key="title">Teknisk Testare & Automationsspecialist</p>
+             <div class="mt-6 flex flex-col items-center justify-center space-y-2 md:flex-row md:space-x-4 md:space-y-0 text-gray-500">
+                <a href="mailto:seniortestare@gmail.com" class="hover:text-blue-600 transition">seniortestare@gmail.com</a>
+                <span class="hidden md:block">&bull;</span>
+                <a href="tel:0704200189" class="hover:text-blue-600 transition">0704 200 189</a>
+                <span class="hidden md:block">&bull;</span>
+                <a href="https://linkedin.com/in/seniortestare" target="_blank" class="hover:text-blue-600 transition">LinkedIn</a>
+            </div>
+        </section>
+
+        <section id="overview" class="mb-20 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800" data-lang-key="headingOverview">Professionell Översikt</h2>
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-md">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4" data-lang-key="profileHeading">Profil</h3>
+                    <p class="text-gray-600 leading-relaxed text-sm md:text-base" data-lang-key="profilePara1">
+                        Tomas är en erfaren teknisk testare med över 20 års IT-erfarenhet, varav 16 år som konsult specialiserad på teknisk testning och testautomation. Han har djup expertis inom försäkringsbranschen, samt erfarenhet från offentliga myndigheter och telekom. Tomas är certifierad **ISTQB CTFL** och **ISTQB CTAL Technical Test Analyst**.
+                    </p>
+                    <p class="mt-4 text-gray-600 leading-relaxed text-sm md:text-base" data-lang-key="profilePara2">
+                        Han är mycket skicklig inom testautomation med primär expertis i **Java** (Oracle-certifierad). Hans kompetens omfattar verktyg som **IntelliJ, Eclipse, Selenium, TestNG** och **Playwright**, samt API-testning med **SoapUI, Postman** och **JMeter**. I flera roller har Tomas haft huvudansvar för testmiljöer, agerat som testmiljöansvarig och säkerställt att miljöer och databaser är korrekt konfigurerade.
+                    </p>
+                </div>
+                <div>
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center" data-lang-key="chartHeadingIndustry">Erfarenhet per Bransch</h3>
+                    <p class="text-gray-600 text-center mb-4 text-sm md:text-base" data-lang-key="chartDescriptionIndustry">Denna graf visar en uppskattning av Tomas erfarenhet fördelad över olika branscher, baserat på hans uppdragshistorik. Interagera med grafen för att se detaljer.</p>
+                    <div class="w-full max-w-sm sm:max-w-md mx-auto h-64 sm:h-80 md:h-96">
+                        <canvas id="industryChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="timeline" class="mb-20 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800" data-lang-key="headingTimeline">Tidslinje & Projekt</h2>
+            <p class="text-center max-w-3xl mx-auto text-gray-600 mb-8 text-sm md:text-base" data-lang-key="timelineDescription">Här är en interaktiv tidslinje över Tomas karriär. Klicka på ett uppdrag för att expandera och läsa mer om hans roll, ansvar och de teknologier han använde. Detta ger en detaljerad inblick i hans praktiska erfarenheter och bidrag i varje projekt.</p>
+            <div id="timeline-container" class="relative border-l-2 border-blue-200 ml-6">
+            </div>
+        </section>
+
+        <section id="education" class="mb-20 scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800" data-lang-key="headingEducation">Utbildning</h2>
+            <p class="text-center max-w-3xl mx-auto text-gray-600 mb-8 text-sm md:text-base" data-lang-key="educationDescription">Här är en översikt över Tomas akademiska bakgrund. Klicka på varje post för att se mer information.</p>
+            <div id="education-container" class="relative border-l-2 border-blue-200 ml-6">
+            </div>
+        </section>
+
+        <section id="skills" class="scroll-mt-20">
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-gray-800" data-lang-key="headingSkills">Tekniska Kompetenser</h2>
+            <p class="text-center max-w-3xl mx-auto text-gray-600 mb-8 text-sm md:text-base" data-lang-key="skillsDescription">Nedan visas en visuell sammanställning av Tomas tekniska kompetenser, grupperade efter område. Graferna illustrerar hans expertisnivå inom olika verktyg och teknologier som är centrala för modern testning och kvalitetssäkring. Detta ger en snabb överblick över hans tekniska profil.</p>
+            <div class="grid md:grid-cols-2 gap-8 md:gap-12">
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-md flex flex-col">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center" data-lang-key="chartHeadingAutomation">Testautomation & Ramverk</h3>
+                    <div class="w-full max-w-sm sm:max-w-md mx-auto h-64 sm:h-80 md:h-96">
+                        <canvas id="automationSkillsChart"></canvas>
+                    </div>
+                </div>
+                <div class="bg-white p-6 md:p-8 rounded-xl shadow-md flex flex-col">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center" data-lang-key="chartHeadingApi">API-testning & Databas</h3>
+                     <div class="w-full max-w-sm sm:max-w-md mx-auto h-64 sm:h-80 md:h-96">
+                        <canvas id="apiSkillsChart"></canvas>
+                    </div>
+                </div>
+                 <div class="bg-white p-6 md:p-8 rounded-xl shadow-md md:col-span-2 flex flex-col">
+                    <h3 class="text-xl md:text-2xl font-bold mb-4 text-center" data-lang-key="chartHeadingTools">Verktyg, Metoder & Miljöer</h3>
+                     <div class="w-full max-w-sm sm:max-w-md mx-auto h-64 sm:h-80 md:h-96">
+                        <canvas id="toolsSkillsChart"></canvas>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="bg-gray-800 text-white mt-20 md:mt-24">
+        <div class="container mx-auto px-6 py-8 text-center">
+            <h3 class="text-xl md:text-2xl font-bold" data-lang-key="name">Tomas Svoboda</h3>
+            <p class="mt-2 text-sm md:text-base" data-lang-key="title">Teknisk Testare & Automationsspecialist</p>
+            <div class="mt-4 flex flex-col md:flex-row justify-center space-y-2 md:space-x-4 md:space-y-0">
+                <a href="mailto:seniortestare@gmail.com" class="hover:text-blue-400 transition" data-lang-key="email">E-post</a>
+                <span class="hidden md:block">|</span>
+                <a href="https://linkedin.com/in/seniortestare" target="_blank" class="hover:text-blue-400 transition" data-lang-key="linkedin">LinkedIn</a>
+                <span class="hidden md:block">|</span>
+                <a href="tel:0704200189" class="hover:text-blue-400 transition" data-lang-key="phone">Telefon</a>
+            </div>
+            <p class="mt-6 text-xs text-gray-400" data-lang-key="footerText">&copy; 2025 Tomas Svoboda. Alla rättigheter förbehållna.</p>
+        </div>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const content = {
+                sv: {
+                    navOverview: 'Översikt',
+                    navTimeline: 'Tidslinje',
+                    navEducation: 'Utbildning',
+                    navSkills: 'Kompetenser',
+                    contactMe: 'Kontakta Mig',
+                    name: 'Tomas Svoboda',
+                    title: 'Teknisk Testare & Automationsspecialist',
+                    headingOverview: 'Professionell Översikt',
+                    profileHeading: 'Profil',
+                    profilePara1: 'Tomas är en erfaren teknisk testare med över 20 års IT-erfarenhet, varav 16 år som konsult specialiserad på teknisk testning och testautomation. Han har djup expertis inom försäkringsbranschen, samt erfarenhet från offentliga myndigheter och telekom. Tomas är certifierad **ISTQB CTFL** och **ISTQB CTAL Technical Test Analyst**.',
+                    profilePara2: 'Han är mycket skicklig inom testautomation med primär expertis i **Java** (Oracle-certifierad). Hans kompetens omfattar verktyg som **IntelliJ, Eclipse, Selenium, TestNG** och **Playwright**, samt API-testning med **SoapUI, Postman** och **JMeter**. I flera roller har Tomas haft huvudansvar för testmiljöer, agerat som testmiljöansvarig och säkerställt att miljöer och databaser är korrekt konfigurerade.',
+                    chartHeadingIndustry: 'Erfarenhet per Bransch',
+                    chartDescriptionIndustry: 'Denna graf visar en uppskattning av Tomas erfarenhet fördelad över olika branscher, baserat på hans uppdragshistorik. Interagera med grafen för att se detaljer.',
+                    industryLabels: ['Försäkring', 'Offentlig Förvaltning', 'Telekommunikation', 'Övrigt'],
+                    headingTimeline: 'Tidslinje & Projekt',
+                    timelineDescription: 'Här är en interaktiv tidslinje över Tomas karriär. Klicka på ett uppdrag för att expandera och läsa mer om hans roll, ansvar och de teknologier han använde. Detta ger en detaljerad inblick i hans praktiska erfarenheter och bidrag i varje projekt.',
+                    headingEducation: 'Utbildning',
+                    educationDescription: 'Här är en översikt över Tomas akademiska bakgrund. Klicka på varje post för att se mer information.',
+                    headingSkills: 'Tekniska Kompetenser',
+                    skillsDescription: 'Nedan visas en visuell sammanställning av Tomas tekniska kompetenser, grupperade efter område. Graferna illustrerar hans expertisnivå inom olika verktyg och teknologier som är centrala för modern testning och kvalitetssäkring. Detta ger en snabb överblick över hans tekniska profil.',
+                    chartHeadingAutomation: 'Testautomation & Ramverk',
+                    chartHeadingApi: 'API-testning & Databas',
+                    chartHeadingTools: 'Verktyg, Metoder & Miljöer',
+                    email: 'E-post',
+                    linkedin: 'LinkedIn',
+                    phone: 'Telefon',
+                    footerText: '&copy; 2025 Tomas Svoboda. Alla rättigheter förbehållna.',
+                    projects: [
+                        { company: 'Bliwa Livförsäkring', period: 'Mar 2025 - Nuvarande', location: 'Stockholm, Sverige', flag: 'se', description: 'Som ensam testare och kvalitetssäkringskonsult för det egenutvecklade försäkringssystemet Oliv, ansvarade Tomas för teststrategi, planering och genomförande av system- och integrationstester. Han drev och samordnade acceptanstester tillsammans med verksamheten, utförde avancerad tidstestning (time-travel testing) för att verifiera datumberoende logik och ansvarade för körning och testning av batchjobb. En viktig del var också att verifiera printdata som skickades till externa leverantörer.' },
+                        { company: 'SPP', period: 'Jun 2024 - Mar 2025', location: 'Stockholm, Sverige', flag: 'se', description: 'I ett omfattande migrationsprojekt där applikationer flyttades till en ny domän och implementerades som mikrotjänster i Azure, agerade Tomas som teknisk testare i ett DevOps-team. Han använde Jira Cloud för buggar, Zephyr Scale för testfall och Miro för samarbete. Tomas ansvarade för API-testning med Swagger och Postman, skapade och hanterade collections och environments för att säkerställa att alla aspekter av molnsystemet blev grundligt testade. Han arbetade även med integrationstester mot Lumera.' },
+                        { company: 'Blekinge Tekniska Högskola', period: 'Dec 2023 - Maj 2024', location: 'Stockholm, Sverige', flag: 'se', description: 'Tomas samarbetade i forskningsprojektet T.A.R.G.E.T. för att utveckla ett innovativt AI-drivet testautomatiseringsverktyg. Han arbetade nära forskare och utvecklare, gav värdefull feedback från både ett testanalytiskt och ett användarperspektiv. Ansvarsområden inkluderade analys av användbarhet, buggrapportering och utvärdering av verktygets installation, skalbarhet, elementhantering och rapportering.' },
+                        { company: 'Netigate', period: 'Maj 2023 - Jun 2023', location: 'Stockholm, Sverige', flag: 'se', description: 'Under ett tidsbegränsat testuppdrag testade och verifierade Tomas användbarheten och kvaliteten på en WebApp för automatisering av feedbackprocesser i en domänorienterad mikrotjänstarkitektur. Han säkerställde att applikationens funktionalitet uppfyllde kraven för både administratörs- och användarroller och genomförde tester på olika plattformar (mobil, surfplatta, dator).' },
+                        { company: 'Folksam', period: 'Maj 2021 - Apr 2023', location: 'Stockholm, Sverige', flag: 'se', description: 'Primärt som Java-utvecklare i ett agilt automationsteam fokuserade Tomas på utveckling av automatiserade tester med Selenium WebDriver, TestNG, SQL och API. Han utvecklade, exekverade och underhöll tester, säkerställde testmiljöer och testdata. Tomas initierade och introducerade en ny standard för utveckling av automatiserade tester baserad på återanvändbara kodmoduler, vilket ledde till snabbare utveckling och enklare underhåll.' },
+                        { company: 'Kronofogdemyndigheten', period: 'Sep 2018 - Sep 2020', location: 'Stockholm, Sverige', flag: 'se', description: 'Som teknisk testare i IST-projektet fokuserade Tomas på InfoService (data) och Distribution (kommunikation). Han arbetade huvudsakligen med automatiserade tester i IntelliJ och ett Java-baserat testramverk (JUnit). Ansvaret inkluderade tester i Oracle SQL-databaser, integrations- och systemtester, skapande av testfall, framtagning av testdata, verifiering av batchkörningar samt felsökning och logganalys i Linux. Arbetet involverade även SQL, XML och XSD.' },
+                        { company: 'Skatteverket', period: 'Feb 2017 - Sep 2018', location: 'Stockholm, Sverige', flag: 'se', description: 'I ÄRA-projektet arbetade Tomas som teknisk testare enligt SAFe och ansvarade för att verifiera migreringen från en Unix-miljö till en Linux-miljö. Han arbetade primärt på integrations- och systemtestnivå med SoapUI, Groovy och Eclipse IDE. Han utförde tekniskt krävande testaktiviteter, körde automatiserade tester (JBehave, JUnit, Jenkins), skapade testdata, anpassade testmiljöer samt felsökte och analyserade loggar i både Unix och Linux.' },
+                        { company: 'Ericsson', period: 'Jan 2016 - Feb 2017', location: 'Stockholm, Sverige', flag: 'se', description: 'I ett tvärfunktionellt team på Ericsson Cloud & IP, ansvarade Tomas för att integrera Ericssons molnbaserade SDN-produkter och utföra funktionell och icke-funktionell testning. Han arbetade med testanalys, testdesign, testexekvering och felsökning. Han samarbetade med organisationer i Spanien och Indien för att säkerställa att deras end-to-end testmiljöer utvecklades och hölls uppdaterade. Arbetet inkluderade även REST API-integrationer och skapande av schematiska diagram i Visio.' },
+                        { company: 'Generali Ceska pojistovna', period: 'Mar 2005 - Sep 2015', location: 'Prag, Tjeckien', flag: 'cz', description: 'Som seniorkonsult hade Tomas en central roll i integrationsprojekt mellan försäkringsbolagen Generali och Ceska pojistovna. Han ansvarade för alla nya kodleveranser och utveckling av återanvändbara automatiserade testskript med HP QuickTest Professional/UFT och VBScript. Han hade helhetsansvar för funktionella kopplingar mellan applikationer, releaseplanering och uppsättning av testmiljöer. Han hanterade hela bugg-livscykeln i HP QC, gav databassupport och genomförde system-, integrations- och databastester av finansiella transaktioner.' }
+                    ],
+                    education: [
+                        { university: 'Masaryk University', period: '2005 - 2006', location: 'Brno, Czech Republic', flag: 'cz', description: 'Theory and History of Film and Audio-Visual Culture Studies' },
+                        { university: 'Prague University of Economics and Business', period: '1996 - 2002', location: 'Prague, Czech Republic', flag: 'cz', description: 'Informatics and Statistics & Corporate Economics and Management' }
+                    ]
+                },
+                en: {
+                    navOverview: 'Overview',
+                    navTimeline: 'Timeline',
+                    navEducation: 'Education',
+                    navSkills: 'Skills',
+                    contactMe: 'Contact Me',
+                    name: 'Tomas Svoboda',
+                    title: 'Technical Tester & Automation Specialist',
+                    headingOverview: 'Professional Overview',
+                    profileHeading: 'Profile',
+                    profilePara1: 'Tomas is a seasoned technical tester with over 20 years of IT experience, including 16 years as a consultant specializing in technical testing and test automation. He possesses deep expertise in the insurance industry, with additional experience in public authorities and telecommunications. Tomas holds **ISTQB CTFL** and **ISTQB CTAL Technical Test Analyst** certifications.',
+                    profilePara2: 'He is highly skilled in test automation, with primary expertise in **Java** (Oracle-certified). His proficiency extends to tools like **IntelliJ, Eclipse, Selenium, TestNG**, and **Playwright**, as well as API testing with **SoapUI, Postman**, and **JMeter**. In many of his roles, Tomas has taken significant responsibility for test environments, often serving as a test environment manager and ensuring environments and databases are properly configured.',
+                    chartHeadingIndustry: 'Experience by Industry',
+                    chartDescriptionIndustry: 'This chart provides an estimation of Tomas\'s experience across different industries, based on his project history. Interact with the chart to see details.',
+                    industryLabels: ['Insurance', 'Public Administration', 'Telecommunications', 'Other'],
+                    headingTimeline: 'Timeline & Projects',
+                    timelineDescription: 'Here is an interactive timeline of Tomas\'s career. Click on an assignment to expand and read more about his role, responsibilities, and the technologies he used. This provides a detailed insight into his practical experience and contributions in each project.',
+                    headingEducation: 'Education',
+                    educationDescription: 'Here is an overview of Tomas\'s academic background. Click on each entry to see more information.',
+                    headingSkills: 'Technical Skills',
+                    skillsDescription: 'Below is a visual summary of Tomas\'s technical skills, grouped by area. The charts illustrate his level of expertise in various tools and technologies central to modern testing and quality assurance. This provides a quick overview of his technical profile.',
+                    chartHeadingAutomation: 'Test Automation & Frameworks',
+                    chartHeadingApi: 'API Testing & Database',
+                    chartHeadingTools: 'Tools, Methods & Environments',
+                    email: 'Email',
+                    linkedin: 'LinkedIn',
+                    phone: 'Phone',
+                    footerText: '&copy; 2025 Tomas Svoboda. All rights reserved.',
+                    projects: [
+                        { company: 'Bliwa Livförsäkring', period: 'Mar 2025 - Present', location: 'Stockholm, Sweden', flag: 'se', description: 'As the sole tester and quality assurance consultant for the in-house developed insurance system Oliv, Tomas was responsible for the test strategy, planning, and execution of system and integration tests. He drove and coordinated acceptance tests with the business, performed advanced time-travel testing to verify date-dependent logic, and was responsible for running and testing batch jobs. An important part of the role was also verifying print data sent to external suppliers.' },
+                        { company: 'SPP', period: 'Jun 2024 - Mar 2025', location: 'Stockholm, Sweden', flag: 'se', description: 'In a large migration project where applications were moved to a new domain and implemented as microservices in Azure, Tomas acted as a technical tester in a DevOps team. He used Jira Cloud for bugs, Zephyr Scale for test cases, and Miro for collaboration. Tomas was responsible for API testing with Swagger and Postman, creating and managing collections and environments to ensure all aspects of the cloud system were thoroughly tested. He also worked with integration tests against Lumera.' },
+                        { company: 'Blekinge Institute of Technology', period: 'Dec 2023 - May 2024', location: 'Stockholm, Sweden', flag: 'se', description: 'Tomas collaborated on the T.A.R.G.E.T. research project to develop an innovative AI-driven test automation tool. He worked closely with researchers and developers, providing valuable feedback from both a test analytical and a user perspective. Responsibilities included usability analysis, bug reporting, and evaluation of the tool\'s installation, scalability, element handling, and reporting.' },
+                        { company: 'Netigate', period: 'May 2023 - Jun 2023', location: 'Stockholm, Sweden', flag: 'se', description: 'During a short-term testing assignment, Tomas tested and verified the usability and quality of a WebApp for automating feedback processes in a domain-oriented microservice architecture. He ensured that the application\'s functionality met the requirements for both administrator and user roles and conducted tests on various platforms (mobile, tablet, computer).' },
+                        { company: 'Folksam', period: 'May 2021 - Apr 2023', location: 'Stockholm, Sweden', flag: 'se', description: 'Primarily as a Java developer in an agile automation team, Tomas focused on developing automated tests with Selenium WebDriver, TestNG, SQL, and API. He developed, executed, and maintained tests, ensured test environments and test data. Tomas initiated and introduced a new standard for the development of automated tests based on reusable code modules, which led to faster development and easier maintenance.' },
+                        { company: 'Swedish Enforcement Authority', period: 'Sep 2018 - Sep 2020', location: 'Stockholm, Sweden', flag: 'se', description: 'As a technical tester in the IST project, Tomas focused on InfoService (data) and Distribution (communication). He worked mainly with automated tests in IntelliJ and a Java-based test framework (JUnit). Responsibilities included testing in Oracle SQL databases, integration and system tests, creating test cases, generating test data, verifying batch runs, and troubleshooting and log analysis in Linux. The work also involved SQL, XML, and XSD.' },
+                        { company: 'Swedish Tax Agency', period: 'Feb 2017 - Sep 2018', location: 'Stockholm, Sweden', flag: 'se', description: 'In the ÄRA project, Tomas worked as a technical tester according to SAFe and was responsible for verifying the migration from a Unix environment to a Linux environment. He worked primarily at the integration and system test level with SoapUI, Groovy, and Eclipse IDE. He performed technically demanding test activities, ran automated tests (JBehave, JUnit, Jenkins), created test data, adapted test environments, and debugged and analyzed logs in both Unix and Linux.' },
+                        { company: 'Ericsson', period: 'Jan 2016 - Feb 2017', location: 'Stockholm, Sweden', flag: 'se', description: 'In a cross-functional team at Ericsson Cloud & IP, Tomas was responsible for integrating Ericsson\'s cloud-based SDN products and performing functional and non-functional testing. He worked with test analysis, test design, test execution, and troubleshooting. He collaborated with organizations in Spain and India to ensure their end-to-end test environments were developed and kept up to date. The work also included REST API integrations and creating schematic diagrams in Visio.' },
+                        { company: 'Generali Ceska pojistovna', period: 'Mar 2005 - Sep 2015', location: 'Prague, Czech Republic', flag: 'cz', description: 'As a senior consultant, Tomas had a central role in integration projects between the insurance companies Generali and Ceska pojistovna. He was responsible for all new code deliveries and the development of reusable automated test scripts with HP QuickTest Professional/UFT and VBScript. He had overall responsibility for functional connections between applications, release planning, and setting up test environments. He managed the entire bug lifecycle in HP QC, provided database support, and performed system, integration, and database tests of financial transactions.' }
+                    ],
+                    education: [
+                        { university: 'Masaryk University', period: '2005 - 2006', location: 'Brno, Czech Republic', flag: 'cz', description: 'Theory and History of Film and Audio-Visual Culture Studies' },
+                        { university: 'Prague University of Economics and Business', period: '1996 - 2002', location: 'Prague, Czech Republic', flag: 'cz', description: 'Informatics and Statistics & Corporate Economics and Management' }
+                    ]
+                }
+            };
+            
+            let charts = {};
+
+            const updateTimeline = (projects) => {
+                const timelineContainer = document.getElementById('timeline-container');
+                timelineContainer.innerHTML = '';
+                projects.forEach(project => {
+                    const item = document.createElement('div');
+                    item.className = 'mb-8 pl-12 timeline-item cursor-pointer';
+                    item.innerHTML = `
+                        <div class="absolute -left-3.5 mt-1.5 w-6 h-6 bg-blue-500 rounded-full border-4 border-white"></div>
+                        <time class="mb-1 text-sm font-normal leading-none text-gray-500">${project.period}</time>
+                        <h3 class="text-xl font-semibold text-gray-800 flex items-center gap-2">${project.company} <span class="flag-icon ${project.flag}-flag"></span></h3>
+                        <p class="text-md font-normal text-gray-500">${project.location}</p>
+                        <div class="timeline-item-content">
+                            <p class="mt-4 text-base font-normal text-gray-600 leading-relaxed">${project.description}</p>
+                        </div>
+                    `;
+                    timelineContainer.appendChild(item);
+                });
+
+                document.querySelectorAll('.timeline-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        item.querySelector('.timeline-item-content').classList.toggle('open');
+                    });
+                });
+            };
+
+            const updateEducation = (education) => {
+                const educationContainer = document.getElementById('education-container');
+                educationContainer.innerHTML = '';
+                education.forEach(edu => {
+                    const item = document.createElement('div');
+                    item.className = 'mb-8 pl-12 timeline-item cursor-pointer';
+                    item.innerHTML = `
+                        <div class="absolute -left-3.5 mt-1.5 w-6 h-6 bg-blue-500 rounded-full border-4 border-white"></div>
+                        <time class="mb-1 text-sm font-normal leading-none text-gray-500">${edu.period}</time>
+                        <h3 class="text-xl font-semibold text-gray-800 flex items-center gap-2">${edu.university} <span class="flag-icon ${edu.flag}-flag"></span></h3>
+                        <p class="text-md font-normal text-gray-500">${edu.location}</p>
+                        <div class="timeline-item-content">
+                            <p class="mt-4 text-base font-normal text-gray-600 leading-relaxed">${edu.description}</p>
+                        </div>
+                    `;
+                    educationContainer.appendChild(item);
+                });
+
+                document.querySelectorAll('#education-container .timeline-item').forEach(item => {
+                    item.addEventListener('click', () => {
+                        item.querySelector('.timeline-item-content').classList.toggle('open');
+                    });
+                });
+            };
+
+            const updateCharts = (langContent) => {
+                // Destroy old charts to prevent memory leaks and conflicts
+                for (const chartName in charts) {
+                    if (charts[chartName]) {
+                        charts[chartName].destroy();
+                    }
+                }
+
+                const commonChartOptions = {
+                    indexAxis: 'y',
+                    responsive: true,
+                    maintainAspectRatio: false,
+                     scales: {
+                        x: {
+                            beginAtZero: true,
+                            max: 10,
+                            grid: {
+                               color: 'rgba(200, 200, 200, 0.2)'
+                            }
+                        },
+                        y: {
+                            grid: {
+                               display: false
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: false
+                        }
+                    }
+                };
+                
+                // Recreate the charts with new labels
+                charts.industryChart = new Chart(document.getElementById('industryChart').getContext('2d'), {
+                    type: 'doughnut',
+                    data: {
+                        labels: langContent.industryLabels,
+                        datasets: [{
+                            label: 'Experience by Industry',
+                            data: [55, 25, 5, 15],
+                            backgroundColor: ['rgba(59, 130, 246, 0.8)', 'rgba(16, 185, 129, 0.8)', 'rgba(239, 68, 68, 0.8)', 'rgba(245, 158, 11, 0.8)'],
+                            borderColor: '#f8f7f4',
+                            borderWidth: 4
+                        }]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        plugins: {
+                            legend: {
+                                position: 'bottom',
+                            },
+                            tooltip: {
+                                callbacks: {
+                                    title: (context) => context[0].label,
+                                    label: (context) => context.parsed + '%'
+                                }
+                            }
+                        }
+                    }
+                });
+
+                charts.automationSkillsChart = new Chart(document.getElementById('automationSkillsChart').getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Java', 'Selenium WebDriver', 'TestNG', 'Playwright', 'JUnit', 'HP QTP/UFT', 'VBScript'],
+                        datasets: [{
+                            label: 'Nivå',
+                            data: [9, 9, 8, 7, 8, 8, 7],
+                            backgroundColor: 'rgba(59, 130, 246, 0.7)',
+                            borderColor: 'rgba(59, 130, 246, 1)',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+
+                charts.apiSkillsChart = new Chart(document.getElementById('apiSkillsChart').getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['API Testing', 'Postman', 'SoapUI', 'JMeter', 'REST', 'SQL', 'Oracle', 'XML/XSD'],
+                        datasets: [{
+                            label: 'Nivå',
+                            data: [9, 9, 8, 7, 9, 9, 8, 8],
+                            backgroundColor: 'rgba(16, 185, 129, 0.7)',
+                            borderColor: 'rgba(16, 185, 129, 1)',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+                
+                charts.toolsSkillsChart = new Chart(document.getElementById('toolsSkillsChart').getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Jira', 'HP QC/ALM', 'IntelliJ/Eclipse', 'Jenkins', 'SAFe', 'DevOps', 'Linux/Unix', 'Git'],
+                        datasets: [{
+                            label: 'Nivå',
+                            data: [9, 9, 9, 8, 8, 7, 8, 8],
+                            backgroundColor: 'rgba(245, 158, 11, 0.7)',
+                            borderColor: 'rgba(245, 158, 11, 1)',
+                            borderWidth: 1,
+                            borderRadius: 4
+                        }]
+                    },
+                    options: commonChartOptions
+                });
+            };
+
+            const switchLanguage = (lang) => {
+                const langContent = content[lang];
+                document.documentElement.lang = lang;
+                
+                document.querySelectorAll('[data-lang-key]').forEach(element => {
+                    const key = element.getAttribute('data-lang-key');
+                    if (langContent[key]) {
+                        element.innerHTML = langContent[key];
+                    }
+                });
+                
+                document.getElementById('lang-sv').classList.toggle('text-gray-600', lang === 'sv');
+                document.getElementById('lang-sv').classList.toggle('text-gray-400', lang !== 'sv');
+                document.getElementById('lang-en').classList.toggle('text-gray-600', lang === 'en');
+                document.getElementById('lang-en').classList.toggle('text-gray-400', lang !== 'en');
+
+                updateTimeline(langContent.projects);
+                updateEducation(langContent.education);
+                updateCharts(langContent);
+            };
+
+            document.getElementById('lang-sv').addEventListener('click', () => switchLanguage('sv'));
+            document.getElementById('lang-en').addEventListener('click', () => switchLanguage('en'));
+
+            // Set initial language to Swedish
+            switchLanguage('sv');
+        });
+    </script>
+</body>
+</html>
