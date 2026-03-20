@@ -1,0 +1,1678 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tomas Svoboda — Senior Teknisk Testare & Testautomatiserare</title>
+<meta name="description" content="Tomas Svoboda – 20+ års erfarenhet av teknisk test och testautomatisering. Konsult i Stockholm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #071828;
+    --navy2: #0d2238;
+    --blue: #103355;
+    --steel: #1a4a7a;
+    --cyan: #00b4d8;
+    --cyan2: #48cae4;
+    --gold: #f4c542;
+    --white: #f0f6fc;
+    --muted: #8aa8c4;
+    --glass: rgba(10, 30, 55, 0.72);
+    --glass2: rgba(16, 51, 85, 0.55);
+    --border: rgba(0, 180, 216, 0.18);
+    --se-blue: #006AA7;
+    --se-yellow: #FECC02;
+    --cz-red: #D7141A;
+    --cz-blue: #11457E;
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  html { scroll-behavior: smooth; font-size: 16px; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  /* ── SCROLLBAR ── */
+  ::-webkit-scrollbar { width: 6px; }
+  ::-webkit-scrollbar-track { background: var(--navy); }
+  ::-webkit-scrollbar-thumb { background: var(--steel); border-radius: 3px; }
+
+  /* ── NAV ── */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0 clamp(1rem, 4vw, 3rem);
+    height: 64px;
+    background: rgba(7, 24, 40, 0.85);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    transition: all 0.3s;
+  }
+  nav.scrolled { height: 56px; background: rgba(7, 24, 40, 0.96); }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.15rem;
+    color: var(--white);
+    letter-spacing: -0.02em;
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--cyan); }
+
+  .nav-links {
+    display: flex; gap: 0.25rem; align-items: center;
+    list-style: none;
+  }
+  .nav-links a {
+    color: var(--muted); text-decoration: none;
+    font-size: 0.875rem; font-weight: 500;
+    padding: 0.4rem 0.75rem;
+    border-radius: 6px;
+    transition: all 0.2s;
+  }
+  .nav-links a:hover { color: var(--white); background: rgba(0,180,216,0.1); }
+
+  .lang-switcher {
+    display: flex; gap: 0.25rem; align-items: center;
+  }
+  .lang-btn {
+    background: none; border: 1px solid transparent;
+    color: var(--muted); font-size: 0.8rem; font-weight: 600;
+    padding: 0.3rem 0.55rem; border-radius: 5px;
+    cursor: pointer; transition: all 0.2s;
+    font-family: 'DM Sans', sans-serif;
+    letter-spacing: 0.02em;
+  }
+  .lang-btn:hover { color: var(--white); border-color: var(--border); }
+  .lang-btn.active { color: var(--cyan); border-color: var(--cyan); background: rgba(0,180,216,0.08); }
+
+  .nav-hamburger {
+    display: none; flex-direction: column; gap: 5px;
+    background: none; border: none; cursor: pointer; padding: 4px;
+  }
+  .nav-hamburger span {
+    display: block; width: 22px; height: 2px;
+    background: var(--muted); border-radius: 2px;
+    transition: all 0.3s;
+  }
+
+  /* ── HERO ── */
+  .hero {
+    position: relative;
+    min-height: 100vh;
+    display: flex; align-items: center;
+    overflow: hidden;
+  }
+  .hero-bg {
+    position: absolute; inset: 0;
+    background:
+      linear-gradient(to bottom, rgba(7,24,40,0.3) 0%, rgba(7,24,40,0.65) 60%, var(--navy) 100%),
+      url('https://images.unsplash.com/photo-1509356843151-3e7d96241e11?w=1920&q=85&auto=format&fit=crop') center center / cover no-repeat;
+  }
+  .hero-bg::after {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse at 70% 40%, rgba(0,180,216,0.08) 0%, transparent 60%);
+  }
+
+  .hero-content {
+    position: relative; z-index: 1;
+    max-width: 1200px; margin: 0 auto;
+    padding: clamp(6rem, 12vw, 10rem) clamp(1.5rem, 5vw, 4rem) clamp(4rem, 8vw, 6rem);
+    width: 100%;
+  }
+
+  .hero-eyebrow {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em;
+    text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 1.25rem;
+    opacity: 0; animation: fadeUp 0.7s 0.2s forwards;
+  }
+  .hero-eyebrow::before {
+    content: ''; display: block;
+    width: 28px; height: 1px; background: var(--cyan);
+  }
+
+  .hero h1 {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(2.8rem, 7vw, 5.5rem);
+    line-height: 1.0;
+    letter-spacing: -0.03em;
+    margin-bottom: 0.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.35s forwards;
+  }
+  .hero h1 em { font-style: normal; color: var(--cyan); }
+
+  .hero-subtitle {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+    font-weight: 600;
+    color: var(--muted);
+    margin-bottom: 1.75rem;
+    opacity: 0; animation: fadeUp 0.7s 0.5s forwards;
+  }
+
+  .hero-desc {
+    max-width: 520px;
+    font-size: clamp(0.95rem, 1.8vw, 1.05rem);
+    color: rgba(240,246,252,0.8);
+    line-height: 1.7;
+    margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.7s 0.65s forwards;
+  }
+
+  .hero-cta {
+    display: flex; flex-wrap: wrap; gap: 1rem;
+    opacity: 0; animation: fadeUp 0.7s 0.8s forwards;
+  }
+  .btn-primary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 1.75rem;
+    background: var(--cyan); color: var(--navy);
+    font-weight: 700; font-size: 0.9rem;
+    border-radius: 8px; text-decoration: none;
+    transition: all 0.25s;
+    border: none; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-primary:hover { background: var(--cyan2); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(0,180,216,0.3); }
+
+  .btn-secondary {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    padding: 0.8rem 1.75rem;
+    background: transparent; color: var(--white);
+    font-weight: 600; font-size: 0.9rem;
+    border-radius: 8px; text-decoration: none;
+    border: 1px solid rgba(240,246,252,0.25);
+    transition: all 0.25s; cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+  }
+  .btn-secondary:hover { border-color: var(--cyan); color: var(--cyan); transform: translateY(-2px); }
+
+  .hero-stats {
+    display: flex; flex-wrap: wrap; gap: 2rem;
+    margin-top: 4rem;
+    opacity: 0; animation: fadeUp 0.7s 1s forwards;
+  }
+  .stat {
+    display: flex; flex-direction: column;
+  }
+  .stat-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 2.25rem;
+    color: var(--white); line-height: 1;
+  }
+  .stat-num span { color: var(--cyan); }
+  .stat-label { font-size: 0.8rem; color: var(--muted); margin-top: 0.3rem; letter-spacing: 0.04em; }
+
+  .hero-scroll {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    color: var(--muted); font-size: 0.75rem; letter-spacing: 0.1em;
+    text-transform: uppercase; animation: bounce 2s infinite;
+    z-index: 1; cursor: pointer; background: none; border: none;
+  }
+  .hero-scroll-line {
+    width: 1px; height: 40px; background: linear-gradient(to bottom, var(--muted), transparent);
+  }
+
+  /* ── SECTIONS ── */
+  section { padding: clamp(4rem, 8vw, 7rem) clamp(1.5rem, 5vw, 4rem); max-width: 1200px; margin: 0 auto; }
+
+  .section-tag {
+    display: inline-flex; align-items: center; gap: 0.5rem;
+    font-size: 0.75rem; font-weight: 700; letter-spacing: 0.15em;
+    text-transform: uppercase; color: var(--cyan);
+    margin-bottom: 1rem;
+  }
+  .section-tag::before { content: ''; display: block; width: 20px; height: 1px; background: var(--cyan); }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: clamp(1.8rem, 4vw, 2.8rem);
+    line-height: 1.15;
+    letter-spacing: -0.02em;
+    margin-bottom: 1rem;
+  }
+
+  .section-lead {
+    font-size: 1.05rem; color: var(--muted);
+    max-width: 580px; line-height: 1.7;
+    margin-bottom: 3rem;
+  }
+
+  /* ── ABOUT ── */
+  #about { padding-top: clamp(3rem, 6vw, 5rem); }
+  .about-grid {
+    display: grid;
+    grid-template-columns: 1fr 1.3fr;
+    gap: 4rem;
+    align-items: start;
+  }
+  .about-left {}
+  .about-right {}
+  .about-body {
+    font-size: 1rem; line-height: 1.75; color: rgba(240,246,252,0.85);
+    margin-bottom: 1.5rem;
+  }
+
+  .cert-badges {
+    display: flex; flex-wrap: wrap; gap: 0.6rem;
+    margin-top: 1.5rem;
+  }
+  .cert-badge {
+    display: inline-flex; align-items: center; gap: 0.4rem;
+    padding: 0.4rem 0.9rem;
+    background: rgba(0,180,216,0.1);
+    border: 1px solid rgba(0,180,216,0.25);
+    border-radius: 100px;
+    font-size: 0.78rem; font-weight: 600;
+    color: var(--cyan2);
+    letter-spacing: 0.02em;
+  }
+
+  .contact-links {
+    display: flex; flex-wrap: wrap; gap: 0.75rem; margin-top: 2rem;
+  }
+  .contact-link {
+    display: inline-flex; align-items: center; gap: 0.45rem;
+    color: var(--muted); font-size: 0.875rem; text-decoration: none;
+    padding: 0.45rem 0.9rem;
+    border: 1px solid var(--border);
+    border-radius: 7px;
+    transition: all 0.2s;
+  }
+  .contact-link:hover { color: var(--cyan); border-color: rgba(0,180,216,0.4); }
+
+  /* ── SKILLS ── */
+  #skills { background: var(--navy2); }
+  .skills-wrap { max-width: 1200px; margin: 0 auto; }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 1.25rem;
+  }
+  .skill-card {
+    background: var(--glass2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    transition: all 0.3s;
+  }
+  .skill-card:hover {
+    border-color: rgba(0,180,216,0.35);
+    transform: translateY(-3px);
+    box-shadow: 0 12px 32px rgba(0,0,0,0.3);
+  }
+  .skill-card-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 0.95rem;
+    color: var(--cyan); margin-bottom: 1rem;
+    display: flex; align-items: center; gap: 0.6rem;
+  }
+  .skill-card-icon {
+    width: 32px; height: 32px;
+    background: rgba(0,180,216,0.12);
+    border-radius: 7px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 1rem;
+  }
+  .skill-tags {
+    display: flex; flex-wrap: wrap; gap: 0.4rem;
+  }
+  .skill-tag {
+    font-size: 0.78rem; font-weight: 500;
+    padding: 0.28rem 0.65rem;
+    background: rgba(240,246,252,0.06);
+    border-radius: 5px; color: rgba(240,246,252,0.75);
+    transition: all 0.2s;
+  }
+  .skill-tag:hover { background: rgba(0,180,216,0.12); color: var(--cyan2); }
+  .skill-tag.highlight {
+    background: rgba(0,180,216,0.12);
+    color: var(--cyan2);
+  }
+
+  /* ── TIMELINE / ASSIGNMENTS ── */
+  #assignments { padding-top: clamp(4rem, 8vw, 6rem); }
+  .timeline {
+    position: relative;
+    padding-left: 2rem;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute; left: 0; top: 8px; bottom: 0;
+    width: 1px; background: linear-gradient(to bottom, var(--cyan), transparent);
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-bottom: 3rem;
+    padding-left: 1.75rem;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s;
+  }
+  .timeline-item.visible { opacity: 1; transform: translateY(0); }
+
+  .timeline-dot {
+    position: absolute; left: -2rem;
+    top: 6px;
+    width: 10px; height: 10px;
+    border-radius: 50%;
+    background: var(--cyan);
+    box-shadow: 0 0 0 3px rgba(0,180,216,0.2);
+    margin-left: 0.35rem;
+  }
+  .timeline-dot.cz {
+    background: var(--cz-red);
+    box-shadow: 0 0 0 3px rgba(215,20,26,0.2);
+  }
+
+  .assignment-card {
+    background: var(--glass2);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow: hidden;
+    transition: all 0.3s;
+  }
+  .assignment-card:hover { border-color: rgba(0,180,216,0.3); box-shadow: 0 12px 36px rgba(0,0,0,0.25); }
+
+  .assignment-header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 1rem;
+    padding: 1.5rem 1.75rem 1rem;
+    cursor: pointer;
+  }
+  .assignment-header-left { flex: 1; }
+
+  .assignment-company {
+    display: flex; align-items: center; gap: 0.6rem;
+    margin-bottom: 0.3rem;
+  }
+  .flag-icon {
+    width: 22px; height: 16px;
+    border-radius: 3px;
+    overflow: hidden;
+    flex-shrink: 0;
+    display: inline-flex;
+    box-shadow: 0 1px 4px rgba(0,0,0,0.3);
+  }
+  /* Swedish flag SVG */
+  .flag-se {
+    background: var(--se-blue);
+    position: relative;
+  }
+  .flag-se::before, .flag-se::after {
+    content: '';
+    position: absolute;
+    background: var(--se-yellow);
+  }
+  .flag-se::before { left: 30%; top: 0; bottom: 0; width: 20%; }
+  .flag-se::after { top: 37%; left: 0; right: 0; height: 25%; }
+
+  /* Czech flag */
+  .flag-cz {
+    position: relative; overflow: hidden;
+    background: white;
+  }
+  .flag-cz::before {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0; right: 0; height: 50%;
+    background: var(--cz-red);
+  }
+  .flag-cz::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 0; height: 0;
+    border-style: solid;
+    border-width: 8px 0 8px 11px;
+    border-color: transparent transparent transparent var(--cz-blue);
+  }
+
+  .assignment-company-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1.05rem;
+  }
+
+  .assignment-role {
+    font-size: 0.875rem; color: var(--muted);
+    line-height: 1.4;
+  }
+
+  .assignment-meta {
+    display: flex; flex-wrap: wrap; gap: 0.5rem;
+    margin-top: 0.6rem;
+  }
+  .meta-chip {
+    font-size: 0.75rem; font-weight: 500;
+    padding: 0.2rem 0.6rem;
+    border-radius: 4px;
+    display: flex; align-items: center; gap: 0.3rem;
+  }
+  .meta-chip.date { background: rgba(0,180,216,0.1); color: var(--cyan2); }
+  .meta-chip.loc { background: rgba(240,246,252,0.06); color: var(--muted); }
+
+  .assignment-toggle {
+    background: rgba(0,180,216,0.08);
+    border: none; color: var(--cyan); cursor: pointer;
+    width: 32px; height: 32px; border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; margin-top: 4px;
+    transition: all 0.3s;
+    font-size: 1rem;
+  }
+  .assignment-toggle.open { transform: rotate(45deg); }
+
+  .assignment-body {
+    max-height: 0; overflow: hidden;
+    transition: max-height 0.4s ease;
+    padding: 0 1.75rem;
+  }
+  .assignment-body.open {
+    max-height: 2000px;
+    padding-bottom: 1.5rem;
+  }
+
+  .assignment-desc {
+    font-size: 0.9rem; line-height: 1.75;
+    color: rgba(240,246,252,0.8);
+    margin-bottom: 1rem;
+    border-top: 1px solid var(--border);
+    padding-top: 1rem;
+  }
+  .tech-stack {
+    display: flex; flex-wrap: wrap; gap: 0.35rem;
+  }
+  .tech-chip {
+    font-size: 0.73rem; font-weight: 500;
+    padding: 0.22rem 0.55rem;
+    background: rgba(0,180,216,0.08);
+    border: 1px solid rgba(0,180,216,0.15);
+    color: var(--cyan2); border-radius: 4px;
+  }
+
+  /* ── CONSULTING COMPANIES ── */
+  #companies {
+    background: var(--navy2);
+  }
+  .companies-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+    gap: 1rem;
+  }
+  .company-card {
+    background: var(--glass2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .company-card-top {
+    display: flex; align-items: center; gap: 0.7rem;
+  }
+  .company-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1rem;
+  }
+  .company-period {
+    font-size: 0.8rem; color: var(--cyan); font-weight: 500;
+  }
+  .company-loc { font-size: 0.8rem; color: var(--muted); }
+
+  /* ── CERTIFICATIONS ── */
+  #certs {}
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
+  }
+  .cert-card {
+    background: var(--glass2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem 1.5rem;
+    display: flex; align-items: flex-start; gap: 1rem;
+    transition: all 0.25s;
+  }
+  .cert-card:hover {
+    border-color: rgba(0,180,216,0.3);
+    transform: translateX(4px);
+  }
+  .cert-year {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.1rem;
+    color: var(--cyan); flex-shrink: 0;
+    min-width: 44px;
+  }
+  .cert-info {}
+  .cert-name {
+    font-weight: 600; font-size: 0.9rem;
+    line-height: 1.35; margin-bottom: 0.25rem;
+  }
+  .cert-issuer {
+    font-size: 0.78rem; color: var(--muted);
+  }
+  .cert-highlight {
+    border-color: rgba(244,197,66,0.3);
+    background: rgba(244,197,66,0.04);
+  }
+  .cert-highlight .cert-year { color: var(--gold); }
+
+  /* ── EDUCATION & LANGUAGES ── */
+  .edu-lang-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+  }
+  .edu-card {
+    background: var(--glass2);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.75rem;
+  }
+  .edu-degree {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700; font-size: 1rem;
+    margin-bottom: 0.3rem;
+  }
+  .edu-school { color: var(--cyan2); font-size: 0.9rem; margin-bottom: 0.25rem; }
+  .edu-period { font-size: 0.8rem; color: var(--muted); }
+
+  .lang-list {
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .lang-item {
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .lang-name { font-weight: 600; font-size: 0.9rem; min-width: 90px; }
+  .lang-bar-wrap { flex: 1; height: 4px; background: rgba(255,255,255,0.1); border-radius: 2px; overflow: hidden; }
+  .lang-bar { height: 100%; background: linear-gradient(to right, var(--cyan), var(--cyan2)); border-radius: 2px; transition: width 1s ease; }
+  .lang-level { font-size: 0.75rem; color: var(--muted); min-width: 80px; text-align: right; }
+
+  /* ── FOOTER ── */
+  footer {
+    background: var(--navy2);
+    border-top: 1px solid var(--border);
+    padding: 3rem clamp(1.5rem, 5vw, 4rem);
+    text-align: center;
+  }
+  .footer-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800; font-size: 1.5rem;
+    margin-bottom: 0.5rem;
+  }
+  .footer-name span { color: var(--cyan); }
+  .footer-tagline { color: var(--muted); font-size: 0.875rem; margin-bottom: 1.5rem; }
+  .footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; }
+  .footer-link {
+    color: var(--muted); text-decoration: none; font-size: 0.85rem;
+    transition: color 0.2s;
+  }
+  .footer-link:hover { color: var(--cyan); }
+  .footer-copy { color: rgba(138,168,196,0.5); font-size: 0.75rem; margin-top: 2rem; }
+
+  /* ── DIVIDER ── */
+  .section-divider {
+    width: 100%; height: 1px;
+    background: linear-gradient(to right, transparent, var(--border), transparent);
+    margin: 0;
+  }
+
+  /* ── ANIMATIONS ── */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(24px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+  @keyframes bounce {
+    0%, 100% { transform: translateX(-50%) translateY(0); }
+    50% { transform: translateX(-50%) translateY(-8px); }
+  }
+
+  /* ── MOBILE ── */
+  @media (max-width: 900px) {
+    .about-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+    .edu-lang-grid { grid-template-columns: 1fr; gap: 2rem; }
+  }
+  @media (max-width: 700px) {
+    .nav-links { display: none; }
+    .nav-links.open {
+      display: flex; flex-direction: column; gap: 0;
+      position: fixed; top: 56px; left: 0; right: 0;
+      background: rgba(7,24,40,0.98);
+      border-bottom: 1px solid var(--border);
+      padding: 1rem 1.5rem;
+    }
+    .nav-links.open a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); border-radius: 0; }
+    .nav-hamburger { display: flex; }
+    .hero-stats { gap: 1.5rem; }
+    .timeline { padding-left: 1.25rem; }
+    .assignment-header { padding: 1.25rem; }
+    .assignment-body { padding: 0 1.25rem; }
+    .assignment-body.open { padding-bottom: 1.25rem; }
+    .certs-grid { grid-template-columns: 1fr; }
+    .lang-switcher { gap: 0.15rem; }
+    .lang-btn { padding: 0.25rem 0.4rem; font-size: 0.72rem; }
+  }
+
+  /* ── SECTION FADE-IN ── */
+  .fade-in {
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* full-width section backgrounds */
+  .full-bg {
+    width: 100vw; margin-left: calc(-50vw + 50%);
+    padding-left: calc(50vw - 50%); padding-right: calc(50vw - 50%);
+  }
+  .inner { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem, 5vw, 4rem); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="mainNav">
+  <a href="#" class="nav-logo">T<span>.</span>Svoboda</a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" data-i18n="nav_about">Om mig</a></li>
+    <li><a href="#skills" data-i18n="nav_skills">Kompetenser</a></li>
+    <li><a href="#assignments" data-i18n="nav_assignments">Uppdrag</a></li>
+    <li><a href="#certs" data-i18n="nav_certs">Certifieringar</a></li>
+    <li><a href="#contact" data-i18n="nav_contact">Kontakt</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem;">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('sv')">SV</button>
+      <button class="lang-btn" onclick="setLang('en')">EN</button>
+      <button class="lang-btn" onclick="setLang('es')">ES</button>
+      <button class="lang-btn" onclick="setLang('cs')">CS</button>
+    </div>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-eyebrow" data-i18n="hero_eyebrow">Stockholm, Sverige</div>
+    <h1>Tomas<br><em>Svoboda</em></h1>
+    <div class="hero-subtitle" data-i18n="hero_subtitle">Senior Teknisk Testare &amp; Testautomatiserare</div>
+    <p class="hero-desc" data-i18n="hero_desc">
+      20+ år av erfarenhet inom IT med djup expertis i testautomatisering, CI/CD-pipelines och kvalitetssäkring av affärskritiska system. Certifierad av ISTQB och Oracle Java.
+    </p>
+    <div class="hero-cta">
+      <a href="#assignments" class="btn-primary" data-i18n="hero_cta1">Se mina uppdrag →</a>
+      <a href="https://linkedin.com/in/seniortestare" target="_blank" class="btn-secondary" data-i18n="hero_cta2">LinkedIn-profil</a>
+    </div>
+    <div class="hero-stats">
+      <div class="stat">
+        <span class="stat-num">20<span>+</span></span>
+        <span class="stat-label" data-i18n="stat1">Års erfarenhet</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">17<span>+</span></span>
+        <span class="stat-label" data-i18n="stat2">År som konsult</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">10<span>+</span></span>
+        <span class="stat-label" data-i18n="stat3">Stora uppdrag</span>
+      </div>
+      <div class="stat">
+        <span class="stat-num">5</span>
+        <span class="stat-label" data-i18n="stat4">Språk</span>
+      </div>
+    </div>
+  </div>
+  <button class="hero-scroll" onclick="document.getElementById('about').scrollIntoView()">
+    <div class="hero-scroll-line"></div>
+  </button>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="about-grid">
+    <div class="about-left fade-in">
+      <div class="section-tag" data-i18n="about_tag">Profil</div>
+      <h2 class="section-title" data-i18n="about_title">Passionerad om<br>kvalitet &amp; kod</h2>
+      <div class="cert-badges">
+        <span class="cert-badge">✦ ISTQB CTFL</span>
+        <span class="cert-badge">✦ ISTQB CTAL-TTA</span>
+        <span class="cert-badge">✦ Oracle Java SE 7</span>
+      </div>
+      <div class="contact-links" id="contact">
+        <a href="https://linkedin.com/in/seniortestare" target="_blank" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:tomas@example.com" class="contact-link">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          Email
+        </a>
+      </div>
+    </div>
+    <div class="about-right fade-in">
+      <p class="about-body" data-i18n="about_p1">
+        Tomas är en testspecialist med 20+ års erfarenhet inom IT, varav de senaste 17 åren som konsult med fokus på teknisk test och testautomatisering. Han har djup erfarenhet från försäkringsbranschen (bl.a. SPP, Folksam och Generali) samt offentlig sektor (Skatteverket, Kronofogden) och telekomindustrin (Ericsson).
+      </p>
+      <p class="about-body" data-i18n="about_p2">
+        Inom testautomatisering har Tomas arbetat med Java, Python och JavaScript/TypeScript och är Oracle Java-certifierad. Han har bred erfarenhet av verktyg som Selenium WebDriver, Playwright, Postman, JUnit, TestNG och JBehave — samt API-testning med SoapUI, REST och Swagger.
+      </p>
+      <p class="about-body" data-i18n="about_p3">
+        Tomas tar ett helhetsgrepp om kvalitet: han har i flera uppdrag haft rollen som testmiljöansvarig och drivit teststrategier från ax till limpa. Han är van att arbeta nära både utvecklingsteam och verksamhet i agila miljöer med SAFe, Scrum och Kanban.
+      </p>
+    </div>
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- SKILLS -->
+<div class="full-bg" id="skills" style="background:var(--navy2);padding-top:clamp(4rem,8vw,6rem);padding-bottom:clamp(4rem,8vw,6rem);">
+<div class="inner">
+  <div class="fade-in">
+    <div class="section-tag" data-i18n="skills_tag">Kompetenser</div>
+    <h2 class="section-title" data-i18n="skills_title">Verktyg &amp; tekniker</h2>
+    <p class="section-lead" data-i18n="skills_lead">Ett brett men djupt kompetensregister byggt över två decennier av praktisk erfarenhet från komplexa IT-projekt.</p>
+  </div>
+  <div class="skills-grid">
+    <div class="skill-card fade-in">
+      <div class="skill-card-title"><div class="skill-card-icon">🤖</div> <span data-i18n="sk1">Testautomatisering</span></div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Selenium WebDriver</span>
+        <span class="skill-tag highlight">Playwright</span>
+        <span class="skill-tag highlight">TestNG</span>
+        <span class="skill-tag">JUnit</span>
+        <span class="skill-tag">JBehave</span>
+        <span class="skill-tag">Robot Framework</span>
+        <span class="skill-tag">Cypress</span>
+        <span class="skill-tag">NUnit</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-title"><div class="skill-card-icon">💻</div> <span data-i18n="sk2">Programmeringsspråk</span></div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Java</span>
+        <span class="skill-tag highlight">Python</span>
+        <span class="skill-tag highlight">JavaScript</span>
+        <span class="skill-tag highlight">TypeScript</span>
+        <span class="skill-tag">C#</span>
+        <span class="skill-tag">Groovy</span>
+        <span class="skill-tag">VBScript</span>
+        <span class="skill-tag">SQL</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-title"><div class="skill-card-icon">🔌</div> <span data-i18n="sk3">API &amp; Integration</span></div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Postman</span>
+        <span class="skill-tag highlight">REST API</span>
+        <span class="skill-tag">SoapUI Pro</span>
+        <span class="skill-tag">Swagger</span>
+        <span class="skill-tag">JMeter</span>
+        <span class="skill-tag">JSON</span>
+        <span class="skill-tag">XML / XSD</span>
+        <span class="skill-tag">YAML</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-title"><div class="skill-card-icon">☁️</div> <span data-i18n="sk4">CI/CD &amp; Moln</span></div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Azure DevOps</span>
+        <span class="skill-tag highlight">Microsoft Azure</span>
+        <span class="skill-tag">Jenkins CI/CD</span>
+        <span class="skill-tag">Git / GitLab</span>
+        <span class="skill-tag">Maven</span>
+        <span class="skill-tag">Octopus Deploy</span>
+        <span class="skill-tag">.NET / ASP.NET</span>
+        <span class="skill-tag">Docker</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-title"><div class="skill-card-icon">🗂️</div> <span data-i18n="sk5">Test &amp; Projektverktyg</span></div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">Jira / Jira Cloud</span>
+        <span class="skill-tag highlight">Zephyr Scale</span>
+        <span class="skill-tag">Confluence</span>
+        <span class="skill-tag">Azure DevOps</span>
+        <span class="skill-tag">HP ALM / QC</span>
+        <span class="skill-tag">Miro</span>
+        <span class="skill-tag">IntelliJ IDEA</span>
+        <span class="skill-tag">Eclipse IDE</span>
+      </div>
+    </div>
+    <div class="skill-card fade-in">
+      <div class="skill-card-title"><div class="skill-card-icon">⚙️</div> <span data-i18n="sk6">Metodik &amp; Processer</span></div>
+      <div class="skill-tags">
+        <span class="skill-tag highlight">SAFe</span>
+        <span class="skill-tag highlight">Scrum</span>
+        <span class="skill-tag">Kanban</span>
+        <span class="skill-tag">BDD</span>
+        <span class="skill-tag">DevOps</span>
+        <span class="skill-tag">Mikrotjänster</span>
+        <span class="skill-tag">Linux / Unix</span>
+        <span class="skill-tag">SQL Server</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- COMPANIES -->
+<div class="full-bg" style="background:var(--navy);padding-top:clamp(4rem,8vw,6rem);padding-bottom:clamp(4rem,8vw,6rem);">
+<div class="inner">
+  <div class="fade-in">
+    <div class="section-tag" data-i18n="comp_tag">Konsulterfarenhet</div>
+    <h2 class="section-title" data-i18n="comp_title">Konsultbolag</h2>
+  </div>
+  <div class="companies-grid fade-in">
+    <div class="company-card">
+      <div class="company-card-top">
+        <div class="flag-icon flag-se"></div>
+        <span class="company-name">Consid</span>
+      </div>
+      <div class="company-period">Jan. 2025 — <span data-i18n="present">pågående</span></div>
+      <div class="company-loc">📍 Stockholm, Sverige</div>
+    </div>
+    <div class="company-card">
+      <div class="company-card-top">
+        <div class="flag-icon flag-se"></div>
+        <span class="company-name">Qestit Sweden</span>
+      </div>
+      <div class="company-period">Jan. 2021 — Jan. 2025</div>
+      <div class="company-loc">📍 Stockholm, Sverige</div>
+    </div>
+    <div class="company-card">
+      <div class="company-card-top">
+        <div class="flag-icon flag-se"></div>
+        <span class="company-name">HiQ Stockholm</span>
+      </div>
+      <div class="company-period">Sep. 2015 — Jan. 2021</div>
+      <div class="company-loc">📍 Stockholm, Sverige</div>
+    </div>
+    <div class="company-card">
+      <div class="company-card-top">
+        <div class="flag-icon flag-cz"></div>
+        <span class="company-name">Qinshift</span>
+      </div>
+      <div class="company-period">Maj 2009 — Sep. 2015</div>
+      <div class="company-loc">📍 Prag, Tjeckien</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="section-divider"></div>
+
+<!-- ASSIGNMENTS -->
+<section id="assignments">
+  <div class="fade-in">
+    <div class="section-tag" data-i18n="asgn_tag">Konsultuppdrag</div>
+    <h2 class="section-title" data-i18n="asgn_title">Uppdragshistorik</h2>
+    <p class="section-lead" data-i18n="asgn_lead">Klicka på ett uppdrag för att läsa mer om arbetsuppgifter, ansvarsområden och teknikstack.</p>
+  </div>
+
+  <div class="timeline">
+
+    <!-- Bliwa -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="assignment-card">
+        <div class="assignment-header" onclick="toggleAssignment(this)">
+          <div class="assignment-header-left">
+            <div class="assignment-company">
+              <div class="flag-icon flag-se"></div>
+              <span class="assignment-company-name">Bliwa Livförsäkring</span>
+            </div>
+            <div class="assignment-role" data-i18n="bliwa_role">Testare &amp; kvalitetsansvarig — Försäkringssystemet Oliv</div>
+            <div class="assignment-meta">
+              <span class="meta-chip date">📅 Mar 2024 — <span data-i18n="present">pågående</span></span>
+              <span class="meta-chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="assignment-toggle">+</button>
+        </div>
+        <div class="assignment-body">
+          <p class="assignment-desc" data-i18n="bliwa_desc">
+            Hos Bliwa Livförsäkring, ett bolag specialiserat på gruppförsäkringar, ansvarar Tomas som ensam testare och kvalitetsansvarig för det egenutvecklade försäkringssystemet Oliv — som hanterar hela livscykeln för försäkringar, från kunddata och premieberäkning till skadehantering och kommunikation via Kivra. Uppdraget innefattar teststrategi, testplanering, system- och integrationstester, acceptanstester, avancerad timetravel-testning av datumberoende logik samt verifiering av batchjobb och utskriftsdata till externa leverantörer.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-chip">Azure DevOps</span><span class="tech-chip">Scrum</span><span class="tech-chip">Kanban</span><span class="tech-chip">WinSCP</span><span class="tech-chip">PuTTY</span><span class="tech-chip">CSV</span><span class="tech-chip">XML</span><span class="tech-chip">PowerShell</span><span class="tech-chip">SharePoint</span><span class="tech-chip">Notepad++</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SPP -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="assignment-card">
+        <div class="assignment-header" onclick="toggleAssignment(this)">
+          <div class="assignment-header-left">
+            <div class="assignment-company">
+              <div class="flag-icon flag-se"></div>
+              <span class="assignment-company-name">SPP</span>
+            </div>
+            <div class="assignment-role" data-i18n="spp_role">Teknisk testare — Flytt till mikrotjänster i Azure</div>
+            <div class="assignment-meta">
+              <span class="meta-chip date">📅 Juni 2024 — Mars 2025</span>
+              <span class="meta-chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="assignment-toggle">+</button>
+        </div>
+        <div class="assignment-body">
+          <p class="assignment-desc" data-i18n="spp_desc">
+            På försäkringsbolaget SPP drev Tomas testarbetet i ett stort migrationsprojekt där applikationer flyttades från en domän till mikrotjänster i Azure. I ett DevOps-team enligt SAFe-ramverket utförde han detaljerade tester, API-testning med Swagger och Postman, och designade testfall för kritiska systemfunktioner. Han testade även uppgraderingen till .NET 8.0 och Cyber Resilience-programmet.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-chip">Jira Cloud</span><span class="tech-chip">SAFe</span><span class="tech-chip">Zephyr Scale</span><span class="tech-chip">Microsoft Azure</span><span class="tech-chip">Postman</span><span class="tech-chip">Swagger</span><span class="tech-chip">SQL Server</span><span class="tech-chip">Selenium</span><span class="tech-chip">C#</span><span class="tech-chip">NUnit</span><span class="tech-chip">.NET</span><span class="tech-chip">Octopus Deploy</span><span class="tech-chip">Miro</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BTH -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="assignment-card">
+        <div class="assignment-header" onclick="toggleAssignment(this)">
+          <div class="assignment-header-left">
+            <div class="assignment-company">
+              <div class="flag-icon flag-se"></div>
+              <span class="assignment-company-name">Blekinge Tekniska Högskola</span>
+            </div>
+            <div class="assignment-role" data-i18n="bth_role">Testare i AI-forskningsprojekt — T.A.R.G.E.T.</div>
+            <div class="assignment-meta">
+              <span class="meta-chip date">📅 Dec 2023 — Maj 2024</span>
+              <span class="meta-chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="assignment-toggle">+</button>
+        </div>
+        <div class="assignment-body">
+          <p class="assignment-desc" data-i18n="bth_desc">
+            Samarbete med Blekinge Tekniska Högskola i forskningsprojektet T.A.R.G.E.T. (Testning med AI Responsiv GUI Effektiviserande Teknologi). Tomas bidrog med analytisk feedback på ett innovativt AI-drivet testautomatiseringsverktyg, utvärderade installation, skalbarhet, assertions, buggrapportering och underhåll — i nära samarbete med forskare och Synteda Group.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-chip">AI / ML</span><span class="tech-chip">Testautomatisering</span><span class="tech-chip">Atlassian Jira</span><span class="tech-chip">Exploratory Testing</span><span class="tech-chip">Slack</span><span class="tech-chip">Teams</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Netigate -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="assignment-card">
+        <div class="assignment-header" onclick="toggleAssignment(this)">
+          <div class="assignment-header-left">
+            <div class="assignment-company">
+              <div class="flag-icon flag-se"></div>
+              <span class="assignment-company-name">Netigate</span>
+            </div>
+            <div class="assignment-role" data-i18n="netigate_role">Test &amp; QA av webbapplikation — Microservice-arkitektur</div>
+            <div class="assignment-meta">
+              <span class="meta-chip date">📅 Maj 2023 — Juni 2023</span>
+              <span class="meta-chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="assignment-toggle">+</button>
+        </div>
+        <div class="assignment-body">
+          <p class="assignment-desc" data-i18n="netigate_desc">
+            Tomas testade och verifierade en WebApp för automatisering av feedbackprocesser i en domänorienterad microservice-arkitektur. Han säkerställde funktionalitet för admin- och användarroller på mobil, surfplatta och desktop, och rapporterade buggar med konkreta förbättringsförslag.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-chip">Android</span><span class="tech-chip">iOS</span><span class="tech-chip">Chrome DevTools</span><span class="tech-chip">Jira</span><span class="tech-chip">Confluence</span><span class="tech-chip">Exploratory Testing</span><span class="tech-chip">Usability Testing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Folksam -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="assignment-card">
+        <div class="assignment-header" onclick="toggleAssignment(this)">
+          <div class="assignment-header-left">
+            <div class="assignment-company">
+              <div class="flag-icon flag-se"></div>
+              <span class="assignment-company-name">Folksam</span>
+            </div>
+            <div class="assignment-role" data-i18n="folksam_role">Testautomatisering i Java — Selenium, TestNG, SQL &amp; API</div>
+            <div class="assignment-meta">
+              <span class="meta-chip date">📅 Maj 2021 — Apr 2023</span>
+              <span class="meta-chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="assignment-toggle">+</button>
+        </div>
+        <div class="assignment-body">
+          <p class="assignment-desc" data-i18n="folksam_desc">
+            Tomas arbetade som Java-utvecklare i ett agilt SAFe-team dedikerat åt testautomatisering med Selenium WebDriver, TestNG och API-testning. Han initierade en ny standard för återanvändbara kodmoduler som drastiskt snabbade upp utvecklingen av nya automatiserade tester och förenklade underhållet av hela testsviten — ett paradigmskifte för teamets testarbete.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-chip">Java</span><span class="tech-chip">Selenium WebDriver</span><span class="tech-chip">TestNG</span><span class="tech-chip">IntelliJ IDEA</span><span class="tech-chip">Maven</span><span class="tech-chip">Git / GitLab</span><span class="tech-chip">Jenkins</span><span class="tech-chip">REST API</span><span class="tech-chip">SQL</span><span class="tech-chip">SAFe</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Kronofogden -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="assignment-card">
+        <div class="assignment-header" onclick="toggleAssignment(this)">
+          <div class="assignment-header-left">
+            <div class="assignment-company">
+              <div class="flag-icon flag-se"></div>
+              <span class="assignment-company-name">Kronofogden</span>
+            </div>
+            <div class="assignment-role" data-i18n="krono_role">Teknisk testare &amp; testautomatiserare i Java — IST-projektet</div>
+            <div class="assignment-meta">
+              <span class="meta-chip date">📅 Sep 2018 — Sep 2020</span>
+              <span class="meta-chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="assignment-toggle">+</button>
+        </div>
+        <div class="assignment-body">
+          <p class="assignment-desc" data-i18n="krono_desc">
+            I IST-projektet hos Kronofogden fokuserade Tomas på InfoService (data) och Distribution (kundkommunikation). Han skapade automatiserade testfall i IntelliJ med JUnit, ansvarade för Oracle SQL-databastestning, integrerings- och systemtester, samt felsökte och analyserade loggar i Linux. Arbetet var tekniskt krävande och innefattade XML, XSD och batchjobb-verifiering.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-chip">Java</span><span class="tech-chip">JUnit</span><span class="tech-chip">IntelliJ IDEA</span><span class="tech-chip">Jenkins CI/CD</span><span class="tech-chip">Oracle SQL</span><span class="tech-chip">Linux</span><span class="tech-chip">XML</span><span class="tech-chip">XSD</span><span class="tech-chip">WinSCP</span><span class="tech-chip">Git</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Skatteverket -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="assignment-card">
+        <div class="assignment-header" onclick="toggleAssignment(this)">
+          <div class="assignment-header-left">
+            <div class="assignment-company">
+              <div class="flag-icon flag-se"></div>
+              <span class="assignment-company-name">Skatteverket</span>
+            </div>
+            <div class="assignment-role" data-i18n="skv_role">Teknisk testare &amp; testautomatiserare — Projekt ÄRA (Unix→Linux-migrering)</div>
+            <div class="assignment-meta">
+              <span class="meta-chip date">📅 Feb 2017 — Sep 2018</span>
+              <span class="meta-chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="assignment-toggle">+</button>
+        </div>
+        <div class="assignment-body">
+          <p class="assignment-desc" data-i18n="skv_desc">
+            Tomas ansvarade för att verifiera migreringen från Unix till Linux i projekt ÄRA hos Skatteverket. Han körde integrations- och systemtester med SoapUI och Groovy mot HP-UX och Linux-miljöer, genomförde BDD-tester med JBehave och JUnit, och förberedde tekniska testmiljöer för både manuella och automatiserade tester.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-chip">Java</span><span class="tech-chip">JBehave</span><span class="tech-chip">JUnit</span><span class="tech-chip">SoapUI Pro</span><span class="tech-chip">Groovy</span><span class="tech-chip">Eclipse IDE</span><span class="tech-chip">Jenkins</span><span class="tech-chip">Oracle SQL</span><span class="tech-chip">SAFe</span><span class="tech-chip">Linux / Unix</span><span class="tech-chip">BDD</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ericsson -->
+    <div class="timeline-item">
+      <div class="timeline-dot"></div>
+      <div class="assignment-card">
+        <div class="assignment-header" onclick="toggleAssignment(this)">
+          <div class="assignment-header-left">
+            <div class="assignment-company">
+              <div class="flag-icon flag-se"></div>
+              <span class="assignment-company-name">Ericsson</span>
+            </div>
+            <div class="assignment-role" data-i18n="ericsson_role">Teknisk testare — Molnplattform &amp; SDN (Cloud &amp; IP)</div>
+            <div class="assignment-meta">
+              <span class="meta-chip date">📅 Jan 2016 — Feb 2017</span>
+              <span class="meta-chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="assignment-toggle">+</button>
+        </div>
+        <div class="assignment-body">
+          <p class="assignment-desc" data-i18n="ericsson_desc">
+            I ett tvärfunktionellt team på Ericsson Cloud &amp; IP integrerade och testade Tomas molnbaserade SDN-produkter inför varje release. Han ansvarade för testanalys, testdesign, testexekvering och end-to-end testmiljöer i samarbete med team i Spanien och Indien. Han jobbade också med REST API-integrationer och skapade schematiska anslutningsdiagram.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-chip">Python</span><span class="tech-chip">REST API</span><span class="tech-chip">Robot Framework</span><span class="tech-chip">Linux</span><span class="tech-chip">OpenStack</span><span class="tech-chip">OpenFlow</span><span class="tech-chip">SDN</span><span class="tech-chip">YAML</span><span class="tech-chip">Virtualization</span><span class="tech-chip">TestLink</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Generali -->
+    <div class="timeline-item">
+      <div class="timeline-dot cz"></div>
+      <div class="assignment-card">
+        <div class="assignment-header" onclick="toggleAssignment(this)">
+          <div class="assignment-header-left">
+            <div class="assignment-company">
+              <div class="flag-icon flag-cz"></div>
+              <span class="assignment-company-name">Generali Česká pojišťovna</span>
+            </div>
+            <div class="assignment-role" data-i18n="generali_role">Teknisk testare, testmiljöansvarig &amp; testautomatiserare — Integrationsprojekt</div>
+            <div class="assignment-meta">
+              <span class="meta-chip date">📅 Jan 2012 — Aug 2015</span>
+              <span class="meta-chip loc">📍 Prag, Tjeckien</span>
+            </div>
+          </div>
+          <button class="assignment-toggle">+</button>
+        </div>
+        <div class="assignment-body">
+          <p class="assignment-desc" data-i18n="generali_desc">
+            I integrationsprojekten mellan Generali och Česká pojišťovna ansvarade Tomas för alla nya kodleveranser och entwicklade automatiserade testskript med HP UFT/QTP och VBScript med återanvändbara åtgärder och subrutiner. Han hade det övergripande ansvaret för funktionella kopplingar efter builds och releaser, release-planering och testmiljöuppsättning, samt mentorerade nyrekryterade testare.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-chip">HP UFT / QTP</span><span class="tech-chip">VBScript</span><span class="tech-chip">HP ALM</span><span class="tech-chip">SoapUI</span><span class="tech-chip">Oracle SQL</span><span class="tech-chip">XML</span><span class="tech-chip">Atlassian Jira</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Ceska pojistovna -->
+    <div class="timeline-item">
+      <div class="timeline-dot cz"></div>
+      <div class="assignment-card">
+        <div class="assignment-header" onclick="toggleAssignment(this)">
+          <div class="assignment-header-left">
+            <div class="assignment-company">
+              <div class="flag-icon flag-cz"></div>
+              <span class="assignment-company-name">Česká pojišťovna</span>
+            </div>
+            <div class="assignment-role" data-i18n="cp_role">Testare, testmiljöhantering &amp; release-planering</div>
+            <div class="assignment-meta">
+              <span class="meta-chip date">📅 Mars 2005 — Dec 2011</span>
+              <span class="meta-chip loc">📍 Prag, Tjeckien</span>
+            </div>
+          </div>
+          <button class="assignment-toggle">+</button>
+        </div>
+        <div class="assignment-body">
+          <p class="assignment-desc" data-i18n="cp_desc">
+            Hos Tjeckiens största försäkringsbolag ansvarade Tomas för godkännande och samordning av buggfixar i HP QC, verifierade testmiljöernas korrekthet och versionering, och fungerade som databasstöd för icke-tekniska testare. Han utförde integrations-, system- och regressionstester med fokus på finansiella transaktioner, databastestning och XML-baserade utskriftsmallar.
+          </p>
+          <div class="tech-stack">
+            <span class="tech-chip">HP QC</span><span class="tech-chip">Oracle SQL</span><span class="tech-chip">XML</span><span class="tech-chip">Toad</span><span class="tech-chip">SharePoint</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="section-divider"></div>
+
+<!-- CERTIFICATIONS -->
+<div class="full-bg" id="certs" style="background:var(--navy2);padding-top:clamp(4rem,8vw,6rem);padding-bottom:clamp(4rem,8vw,6rem);">
+<div class="inner">
+  <div class="fade-in">
+    <div class="section-tag" data-i18n="certs_tag">Certifieringar &amp; Kurser</div>
+    <h2 class="section-title" data-i18n="certs_title">Kontinuerligt lärande</h2>
+    <p class="section-lead" data-i18n="certs_lead">Tomas investerar konsekvent i sin kompetensutveckling med kurser från Harvard, Cisco, Oracle och ledande branschplattformar.</p>
+  </div>
+  <div class="certs-grid fade-in">
+    <div class="cert-card cert-highlight">
+      <div class="cert-year">2015</div>
+      <div class="cert-info">
+        <div class="cert-name">ISTQB Certified Tester Advanced Level — Technical Test Analyst</div>
+        <div class="cert-issuer">ISTQB</div>
+      </div>
+    </div>
+    <div class="cert-card cert-highlight">
+      <div class="cert-year">2015</div>
+      <div class="cert-info">
+        <div class="cert-name">Oracle Certified Java SE 7 Programmer</div>
+        <div class="cert-issuer">Oracle University</div>
+      </div>
+    </div>
+    <div class="cert-card cert-highlight">
+      <div class="cert-year">2014</div>
+      <div class="cert-info">
+        <div class="cert-name">ISTQB Certified Tester Foundation Level</div>
+        <div class="cert-issuer">ISTQB</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2024</div>
+      <div class="cert-info">
+        <div class="cert-name">Introduction to Python Programming</div>
+        <div class="cert-issuer">Harvard University</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2024</div>
+      <div class="cert-info">
+        <div class="cert-name">Advanced Course in Python Programming</div>
+        <div class="cert-issuer">University of Helsinki</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2024</div>
+      <div class="cert-info">
+        <div class="cert-name">Postman API Test Automation</div>
+        <div class="cert-issuer">Postman</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2024</div>
+      <div class="cert-info">
+        <div class="cert-name">API Master Class &amp; Testing in Detail Using Postman</div>
+        <div class="cert-issuer">Udemy</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2024</div>
+      <div class="cert-info">
+        <div class="cert-name">Python Essentials 1 &amp; 2</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2024</div>
+      <div class="cert-info">
+        <div class="cert-name">JavaScript Essentials 1 &amp; 2</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2023</div>
+      <div class="cert-info">
+        <div class="cert-name">Automated Web Testing with JavaScript and Playwright</div>
+        <div class="cert-issuer">Udemy</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2023</div>
+      <div class="cert-info">
+        <div class="cert-name">Introduction to Databases with SQL</div>
+        <div class="cert-issuer">Harvard University</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2023</div>
+      <div class="cert-info">
+        <div class="cert-name">NDG Linux Essentials</div>
+        <div class="cert-issuer">Cisco Networking Academy</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2023</div>
+      <div class="cert-info">
+        <div class="cert-name">Playwright 101 &amp; Cypress 101</div>
+        <div class="cert-issuer">LambdaTest</div>
+      </div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-year">2018</div>
+      <div class="cert-info">
+        <div class="cert-name">Java Programmering 1 &amp; 2</div>
+        <div class="cert-issuer">Jensen Education</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- EDUCATION & LANGUAGES -->
+<div class="full-bg" style="background:var(--navy);padding-top:clamp(4rem,8vw,6rem);padding-bottom:clamp(4rem,8vw,6rem);">
+<div class="inner">
+  <div class="edu-lang-grid fade-in">
+    <div>
+      <div class="section-tag" data-i18n="edu_tag">Utbildning</div>
+      <h2 class="section-title" style="font-size:clamp(1.4rem,3vw,2rem);margin-bottom:1.5rem;" data-i18n="edu_title">Akademisk bakgrund</h2>
+      <div class="edu-card">
+        <div class="edu-degree" data-i18n="edu_degree">Informatik &amp; Statistik — Ekonomi &amp; Management</div>
+        <div class="edu-school">University of Economics, Prag</div>
+        <div class="edu-period">Sep 1996 — Mar 2002</div>
+      </div>
+    </div>
+    <div>
+      <div class="section-tag" data-i18n="lang_tag">Språk</div>
+      <h2 class="section-title" style="font-size:clamp(1.4rem,3vw,2rem);margin-bottom:1.5rem;" data-i18n="lang_title">Språkkunskaper</h2>
+      <div class="lang-list">
+        <div class="lang-item">
+          <div class="lang-name">
+            <span title="Svenska">🇸🇪</span> Svenska
+          </div>
+          <div class="lang-bar-wrap"><div class="lang-bar" style="width:95%"></div></div>
+          <div class="lang-level" data-i18n="lang_sv">Flytande</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">
+            <span title="Engelska">🇬🇧</span> Engelska
+          </div>
+          <div class="lang-bar-wrap"><div class="lang-bar" style="width:95%"></div></div>
+          <div class="lang-level" data-i18n="lang_en">Flytande</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">
+            <span title="Tjeckiska">🇨🇿</span> Tjeckiska
+          </div>
+          <div class="lang-bar-wrap"><div class="lang-bar" style="width:100%"></div></div>
+          <div class="lang-level" data-i18n="lang_cs">Modersmål</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">
+            <span title="Spanska">🇪🇸</span> Spanska
+          </div>
+          <div class="lang-bar-wrap"><div class="lang-bar" style="width:70%"></div></div>
+          <div class="lang-level" data-i18n="lang_es">Goda kunskaper</div>
+        </div>
+        <div class="lang-item">
+          <div class="lang-name">
+            <span title="Tyska">🇩🇪</span> Tyska
+          </div>
+          <div class="lang-bar-wrap"><div class="lang-bar" style="width:30%"></div></div>
+          <div class="lang-level" data-i18n="lang_de">Grundläggande</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-name">Tomas <span>Svoboda</span></div>
+  <div class="footer-tagline" data-i18n="footer_tag">Senior Teknisk Testare &amp; Testautomatiserare — Stockholm</div>
+  <div class="footer-links">
+    <a href="https://linkedin.com/in/seniortestare" target="_blank" class="footer-link">LinkedIn</a>
+    <a href="#about" class="footer-link" data-i18n="nav_about">Om mig</a>
+    <a href="#skills" class="footer-link" data-i18n="nav_skills">Kompetenser</a>
+    <a href="#assignments" class="footer-link" data-i18n="nav_assignments">Uppdrag</a>
+    <a href="#certs" class="footer-link" data-i18n="nav_certs">Certifieringar</a>
+  </div>
+  <div class="footer-copy">© 2025 Tomas Svoboda. Byggd med precision.</div>
+</footer>
+
+<script>
+// ── TRANSLATIONS ──
+const i18n = {
+  sv: {
+    nav_about: "Om mig", nav_skills: "Kompetenser", nav_assignments: "Uppdrag",
+    nav_certs: "Certifieringar", nav_contact: "Kontakt",
+    hero_eyebrow: "Stockholm, Sverige",
+    hero_subtitle: "Senior Teknisk Testare & Testautomatiserare",
+    hero_desc: "20+ år av erfarenhet inom IT med djup expertis i testautomatisering, CI/CD-pipelines och kvalitetssäkring av affärskritiska system. Certifierad av ISTQB och Oracle Java.",
+    hero_cta1: "Se mina uppdrag →", hero_cta2: "LinkedIn-profil",
+    stat1: "Års erfarenhet", stat2: "År som konsult", stat3: "Stora uppdrag", stat4: "Språk",
+    about_tag: "Profil", about_title: "Passionerad om<br>kvalitet & kod",
+    about_p1: "Tomas är en testspecialist med 20+ års erfarenhet inom IT, varav de senaste 17 åren som konsult med fokus på teknisk test och testautomatisering. Han har djup erfarenhet från försäkringsbranschen (bl.a. SPP, Folksam och Generali) samt offentlig sektor (Skatteverket, Kronofogden) och telekomindustrin (Ericsson).",
+    about_p2: "Inom testautomatisering har Tomas arbetat med Java, Python och JavaScript/TypeScript och är Oracle Java-certifierad. Han har bred erfarenhet av verktyg som Selenium WebDriver, Playwright, Postman, JUnit, TestNG och JBehave — samt API-testning med SoapUI, REST och Swagger.",
+    about_p3: "Tomas tar ett helhetsgrepp om kvalitet: han har i flera uppdrag haft rollen som testmiljöansvarig och drivit teststrategier från ax till limpa. Han är van att arbeta nära både utvecklingsteam och verksamhet i agila miljöer med SAFe, Scrum och Kanban.",
+    skills_tag: "Kompetenser", skills_title: "Verktyg & tekniker",
+    skills_lead: "Ett brett men djupt kompetensregister byggt över två decennier av praktisk erfarenhet från komplexa IT-projekt.",
+    sk1: "Testautomatisering", sk2: "Programmeringsspråk", sk3: "API & Integration",
+    sk4: "CI/CD & Moln", sk5: "Test & Projektverktyg", sk6: "Metodik & Processer",
+    comp_tag: "Konsulterfarenhet", comp_title: "Konsultbolag",
+    present: "pågående",
+    asgn_tag: "Konsultuppdrag", asgn_title: "Uppdragshistorik",
+    asgn_lead: "Klicka på ett uppdrag för att läsa mer om arbetsuppgifter, ansvarsområden och teknikstack.",
+    bliwa_role: "Testare & kvalitetsansvarig — Försäkringssystemet Oliv",
+    bliwa_desc: "Hos Bliwa Livförsäkring, ett bolag specialiserat på gruppförsäkringar, ansvarar Tomas som ensam testare och kvalitetsansvarig för det egenutvecklade försäkringssystemet Oliv — som hanterar hela livscykeln för försäkringar, från kunddata och premieberäkning till skadehantering och kommunikation via Kivra. Uppdraget innefattar teststrategi, testplanering, system- och integrationstester, acceptanstester, avancerad timetravel-testning av datumberoende logik samt verifiering av batchjobb och utskriftsdata till externa leverantörer.",
+    spp_role: "Teknisk testare — Flytt till mikrotjänster i Azure",
+    spp_desc: "På försäkringsbolaget SPP drev Tomas testarbetet i ett stort migrationsprojekt där applikationer flyttades från en domän till mikrotjänster i Azure. I ett DevOps-team enligt SAFe-ramverket utförde han detaljerade tester, API-testning med Swagger och Postman, och designade testfall för kritiska systemfunktioner. Han testade även uppgraderingen till .NET 8.0 och Cyber Resilience-programmet.",
+    bth_role: "Testare i AI-forskningsprojekt — T.A.R.G.E.T.",
+    bth_desc: "Samarbete med Blekinge Tekniska Högskola i forskningsprojektet T.A.R.G.E.T. (Testning med AI Responsiv GUI Effektiviserande Teknologi). Tomas bidrog med analytisk feedback på ett innovativt AI-drivet testautomatiseringsverktyg, utvärderade installation, skalbarhet, assertions, buggrapportering och underhåll — i nära samarbete med forskare och Synteda Group.",
+    netigate_role: "Test & QA av webbapplikation — Microservice-arkitektur",
+    netigate_desc: "Tomas testade och verifierade en WebApp för automatisering av feedbackprocesser i en domänorienterad microservice-arkitektur. Han säkerställde funktionalitet för admin- och användarroller på mobil, surfplatta och desktop, och rapporterade buggar med konkreta förbättringsförslag.",
+    folksam_role: "Testautomatisering i Java — Selenium, TestNG, SQL & API",
+    folksam_desc: "Tomas arbetade som Java-utvecklare i ett agilt SAFe-team dedikerat åt testautomatisering med Selenium WebDriver, TestNG och API-testning. Han initierade en ny standard för återanvändbara kodmoduler som drastiskt snabbade upp utvecklingen av nya automatiserade tester och förenklade underhållet av hela testsviten.",
+    krono_role: "Teknisk testare & testautomatiserare i Java — IST-projektet",
+    krono_desc: "I IST-projektet hos Kronofogden fokuserade Tomas på InfoService (data) och Distribution (kundkommunikation). Han skapade automatiserade testfall i IntelliJ med JUnit, ansvarade för Oracle SQL-databastestning, integrerings- och systemtester, samt felsökte och analyserade loggar i Linux.",
+    skv_role: "Teknisk testare & testautomatiserare — Projekt ÄRA (Unix→Linux-migrering)",
+    skv_desc: "Tomas ansvarade för att verifiera migreringen från Unix till Linux i projekt ÄRA hos Skatteverket. Han körde integrations- och systemtester med SoapUI och Groovy mot HP-UX och Linux-miljöer, genomförde BDD-tester med JBehave och JUnit, och förberedde tekniska testmiljöer.",
+    ericsson_role: "Teknisk testare — Molnplattform & SDN (Cloud & IP)",
+    ericsson_desc: "I ett tvärfunktionellt team på Ericsson Cloud & IP integrerade och testade Tomas molnbaserade SDN-produkter inför varje release. Han ansvarade för testanalys, testdesign, testexekvering och end-to-end testmiljöer i samarbete med team i Spanien och Indien.",
+    generali_role: "Teknisk testare, testmiljöansvarig & testautomatiserare — Integrationsprojekt",
+    generali_desc: "I integrationsprojekten mellan Generali och Česká pojišťovna ansvarade Tomas för alla nya kodleveranser och utvecklade automatiserade testskript med HP UFT/QTP och VBScript med återanvändbara åtgärder. Han hade det övergripande ansvaret för funktionella kopplingar efter builds och releaser, och mentorerade nyrekryterade testare.",
+    cp_role: "Testare, testmiljöhantering & release-planering",
+    cp_desc: "Hos Tjeckiens största försäkringsbolag ansvarade Tomas för godkännande och samordning av buggfixar i HP QC, verifierade testmiljöernas korrekthet, och fungerade som databasstöd för icke-tekniska testare. Han utförde integrations-, system- och regressionstester med fokus på finansiella transaktioner och XML-baserade utskriftsmallar.",
+    certs_tag: "Certifieringar & Kurser", certs_title: "Kontinuerligt lärande",
+    certs_lead: "Tomas investerar konsekvent i sin kompetensutveckling med kurser från Harvard, Cisco, Oracle och ledande branschplattformar.",
+    edu_tag: "Utbildning", edu_title: "Akademisk bakgrund",
+    edu_degree: "Informatik & Statistik — Ekonomi & Management",
+    lang_tag: "Språk", lang_title: "Språkkunskaper",
+    lang_sv: "Flytande", lang_en: "Flytande", lang_cs: "Modersmål", lang_es: "Goda kunskaper", lang_de: "Grundläggande",
+    footer_tag: "Senior Teknisk Testare & Testautomatiserare — Stockholm"
+  },
+
+  en: {
+    nav_about: "About", nav_skills: "Skills", nav_assignments: "Assignments",
+    nav_certs: "Certifications", nav_contact: "Contact",
+    hero_eyebrow: "Stockholm, Sweden",
+    hero_subtitle: "Senior Technical Tester & Test Automation Engineer",
+    hero_desc: "20+ years of IT experience with deep expertise in test automation, CI/CD pipelines, and quality assurance of business-critical systems. ISTQB and Oracle Java certified.",
+    hero_cta1: "View my work →", hero_cta2: "LinkedIn profile",
+    stat1: "Years experience", stat2: "Years as consultant", stat3: "Major assignments", stat4: "Languages",
+    about_tag: "Profile", about_title: "Passionate about<br>quality & code",
+    about_p1: "Tomas is a test specialist with 20+ years of IT experience, of which the last 17 years as a consultant focused on technical testing and test automation. He has deep experience from the insurance sector (including SPP, Folksam and Generali) as well as the public sector (Swedish Tax Agency, Enforcement Authority) and telecoms (Ericsson).",
+    about_p2: "In test automation, Tomas has worked with Java, Python and JavaScript/TypeScript and holds Oracle Java certification. He has broad experience with tools like Selenium WebDriver, Playwright, Postman, JUnit, TestNG and JBehave — as well as API testing with SoapUI, REST and Swagger.",
+    about_p3: "Tomas takes a holistic approach to quality: in several assignments he has held the role of test environment manager and driven test strategies end-to-end. He is experienced in working closely with both development teams and business stakeholders in agile environments using SAFe, Scrum and Kanban.",
+    skills_tag: "Skills", skills_title: "Tools & technologies",
+    skills_lead: "A broad yet deep skill set built over two decades of hands-on experience in complex IT projects.",
+    sk1: "Test Automation", sk2: "Programming Languages", sk3: "API & Integration",
+    sk4: "CI/CD & Cloud", sk5: "Test & Project Tools", sk6: "Methodologies & Processes",
+    comp_tag: "Consulting Experience", comp_title: "Consulting companies",
+    present: "present",
+    asgn_tag: "Consulting Assignments", asgn_title: "Assignment history",
+    asgn_lead: "Click on an assignment to read more about tasks, responsibilities and tech stack.",
+    bliwa_role: "Tester & Quality Manager — Insurance system Oliv",
+    bliwa_desc: "At Bliwa Livförsäkring, a company specialising in group insurance, Tomas serves as the sole tester and quality manager for the proprietary insurance system Oliv — which handles the full lifecycle of insurance policies, from customer data and premium calculation to claims processing and communication via Kivra. The role covers test strategy, test planning, system and integration testing, acceptance testing, advanced time-travel testing of date-dependent logic, and verification of batch jobs and print data for external suppliers.",
+    spp_role: "Technical Tester — Migration to microservices in Azure",
+    spp_desc: "At insurance company SPP, Tomas led the testing in a major migration project moving applications to microservices in Azure. Within a DevOps team following the SAFe framework, he performed detailed tests, API testing with Swagger and Postman, and designed test cases for critical system functions. He also tested the upgrade to .NET 8.0 and the Cyber Resilience program.",
+    bth_role: "Tester in AI research project — T.A.R.G.E.T.",
+    bth_desc: "Collaboration with Blekinge Institute of Technology in the research project T.A.R.G.E.T. (Testing with AI Responsive GUI Efficiency Technology). Tomas contributed analytical feedback on an innovative AI-driven test automation tool, evaluating installation, scalability, assertions, bug reporting and maintainability — in close collaboration with researchers and Synteda Group.",
+    netigate_role: "Testing & QA of web application — Microservice architecture",
+    netigate_desc: "Tomas tested and verified a WebApp for automating feedback processes in a domain-oriented microservice architecture. He ensured functionality for admin and user roles across mobile, tablet and desktop, and reported bugs with concrete improvement proposals.",
+    folksam_role: "Test Automation in Java — Selenium, TestNG, SQL & API",
+    folksam_desc: "Tomas worked as a Java developer in an agile SAFe team dedicated to test automation with Selenium WebDriver, TestNG and API testing. He initiated a new standard for reusable code modules that drastically accelerated the development of new automated tests and simplified maintenance of the entire test suite.",
+    krono_role: "Technical Tester & Test Automation — Java (IST project)",
+    krono_desc: "In the IST project at the Swedish Enforcement Authority, Tomas focused on InfoService (data) and Distribution (customer communication). He created automated test cases in IntelliJ with JUnit, managed Oracle SQL database testing, integration and system tests, and debugged and analysed logs in Linux.",
+    skv_role: "Technical Tester — Project ÄRA (Unix→Linux migration)",
+    skv_desc: "Tomas was responsible for verifying the Unix-to-Linux migration in project ÄRA at the Swedish Tax Agency. He ran integration and system tests with SoapUI and Groovy against HP-UX and Linux environments, performed BDD tests with JBehave and JUnit, and prepared technical test environments.",
+    ericsson_role: "Technical Tester — Cloud Platform & SDN (Cloud & IP)",
+    ericsson_desc: "In a cross-functional team at Ericsson Cloud & IP, Tomas integrated and tested cloud-based SDN products ahead of each release. He was responsible for test analysis, test design, test execution and end-to-end test environments in collaboration with teams in Spain and India.",
+    generali_role: "Technical Tester, Test Environment Manager & Automation — Integration project",
+    generali_desc: "In the integration projects between Generali and Česká pojišťovna, Tomas was responsible for all new code deliveries and developed automated test scripts using HP UFT/QTP and VBScript with reusable actions and subroutines. He held overall responsibility for functional connections after builds and releases, and mentored newly recruited testers.",
+    cp_role: "Tester, Test Environment Management & Release Planning",
+    cp_desc: "At the Czech Republic's largest insurance company, Tomas was responsible for approving and coordinating bug fixes in HP QC, verified test environments' correctness and versioning, and served as database support for non-technical testers. He performed integration, system and regression tests focusing on financial transactions and XML-based print templates.",
+    certs_tag: "Certifications & Courses", certs_title: "Continuous learning",
+    certs_lead: "Tomas consistently invests in his professional development with courses from Harvard, Cisco, Oracle and leading industry platforms.",
+    edu_tag: "Education", edu_title: "Academic background",
+    edu_degree: "Informatics & Statistics — Economics & Management",
+    lang_tag: "Languages", lang_title: "Language skills",
+    lang_sv: "Fluent", lang_en: "Fluent", lang_cs: "Native", lang_es: "Good", lang_de: "Basic",
+    footer_tag: "Senior Technical Tester & Test Automation Engineer — Stockholm"
+  },
+
+  es: {
+    nav_about: "Sobre mí", nav_skills: "Habilidades", nav_assignments: "Proyectos",
+    nav_certs: "Certificaciones", nav_contact: "Contacto",
+    hero_eyebrow: "Estocolmo, Suecia",
+    hero_subtitle: "Tester Técnico Senior y Automatizador de Pruebas",
+    hero_desc: "Más de 20 años de experiencia en TI con profunda especialización en automatización de pruebas, pipelines CI/CD y aseguramiento de calidad en sistemas críticos. Certificado por ISTQB y Oracle Java.",
+    hero_cta1: "Ver mis proyectos →", hero_cta2: "Perfil de LinkedIn",
+    stat1: "Años de experiencia", stat2: "Años como consultor", stat3: "Proyectos importantes", stat4: "Idiomas",
+    about_tag: "Perfil", about_title: "Apasionado por la<br>calidad y el código",
+    about_p1: "Tomas es un especialista en pruebas con más de 20 años de experiencia en TI, de los cuales los últimos 17 como consultor enfocado en pruebas técnicas y automatización. Cuenta con amplia experiencia en el sector asegurador (SPP, Folksam, Generali), el sector público sueco y telecomunicaciones (Ericsson).",
+    about_p2: "En automatización de pruebas, Tomas ha trabajado con Java, Python y JavaScript/TypeScript, y posee la certificación Oracle Java. Tiene experiencia con herramientas como Selenium WebDriver, Playwright, Postman, JUnit, TestNG y JBehave, así como pruebas de API con SoapUI, REST y Swagger.",
+    about_p3: "Tomas adopta un enfoque holístico de la calidad: en varios proyectos ha ejercido el rol de responsable de entornos de prueba y ha liderado estrategias de testing de principio a fin. Tiene experiencia trabajando junto a equipos de desarrollo y negocio en entornos ágiles con SAFe, Scrum y Kanban.",
+    skills_tag: "Habilidades", skills_title: "Herramientas y tecnologías",
+    skills_lead: "Un conjunto de competencias amplio y profundo, construido a lo largo de dos décadas de experiencia práctica en proyectos TI complejos.",
+    sk1: "Automatización de pruebas", sk2: "Lenguajes de programación", sk3: "API e Integración",
+    sk4: "CI/CD y Nube", sk5: "Herramientas de prueba y proyecto", sk6: "Metodologías y procesos",
+    comp_tag: "Experiencia consultora", comp_title: "Empresas de consultoría",
+    present: "presente",
+    asgn_tag: "Proyectos de consultoría", asgn_title: "Historial de proyectos",
+    asgn_lead: "Haz clic en un proyecto para conocer tareas, responsabilidades y tecnologías utilizadas.",
+    bliwa_role: "Tester y responsable de calidad — Sistema de seguros Oliv",
+    bliwa_desc: "En Bliwa Livförsäkring, especializada en seguros de grupo, Tomas actúa como único tester y responsable de calidad del sistema propio Oliv — que gestiona el ciclo completo de las pólizas, desde datos de clientes y cálculo de primas hasta la gestión de siniestros y comunicación vía Kivra. El rol abarca estrategia de pruebas, planificación, pruebas de sistema e integración, pruebas de aceptación, time-travel testing avanzado y verificación de procesos batch.",
+    spp_role: "Tester técnico — Migración a microservicios en Azure",
+    spp_desc: "En la aseguradora SPP, Tomas lideró las pruebas en un gran proyecto de migración de aplicaciones a microservicios en Azure. En un equipo DevOps bajo el marco SAFe, realizó pruebas detalladas, pruebas de API con Swagger y Postman, y diseñó casos de prueba para funciones críticas. También probó la actualización a .NET 8.0 y el programa de Cyber Resilience.",
+    bth_role: "Tester en proyecto de investigación IA — T.A.R.G.E.T.",
+    bth_desc: "Colaboración con el Instituto Tecnológico de Blekinge en el proyecto de investigación T.A.R.G.E.T. Tomas aportó feedback analítico sobre una herramienta innovadora de automatización basada en IA, evaluando instalación, escalabilidad, aserciones, reporte de errores y mantenibilidad.",
+    netigate_role: "Testing y QA de aplicación web — Arquitectura de microservicios",
+    netigate_desc: "Tomas probó y verificó una WebApp para automatización de procesos de feedback en una arquitectura de microservicios orientada a dominio. Aseguró la funcionalidad para roles de administrador y usuario en móvil, tablet y escritorio, y reportó errores con propuestas de mejora.",
+    folksam_role: "Automatización de pruebas en Java — Selenium, TestNG, SQL y API",
+    folksam_desc: "Tomas trabajó como desarrollador Java en un equipo ágil SAFe dedicado a la automatización de pruebas con Selenium WebDriver y TestNG. Inició un nuevo estándar de módulos de código reutilizables que aceleró drásticamente el desarrollo de nuevas pruebas automatizadas y simplificó el mantenimiento de toda la suite.",
+    krono_role: "Tester técnico y automatizador — Java (proyecto IST)",
+    krono_desc: "En el proyecto IST de la Agencia de Ejecución Sueca, Tomas se centró en InfoService (datos) y Distribution (comunicación con clientes). Creó casos de prueba automatizados con JUnit en IntelliJ, gestionó pruebas de base de datos Oracle SQL, y analizó logs en Linux.",
+    skv_role: "Tester técnico — Proyecto ÄRA (migración Unix→Linux)",
+    skv_desc: "Tomas fue responsable de verificar la migración de Unix a Linux en el proyecto ÄRA de la Agencia Tributaria sueca. Ejecutó pruebas de integración y sistema con SoapUI y Groovy contra entornos HP-UX y Linux, y realizó pruebas BDD con JBehave y JUnit.",
+    ericsson_role: "Tester técnico — Plataforma cloud y SDN (Cloud & IP)",
+    ericsson_desc: "En un equipo multifuncional de Ericsson Cloud & IP, Tomas integró y probó productos SDN en la nube antes de cada release. Fue responsable del análisis, diseño y ejecución de pruebas, así como de los entornos de prueba end-to-end en colaboración con equipos en España e India.",
+    generali_role: "Tester técnico, responsable de entornos y automatización — Proyecto de integración",
+    generali_desc: "En los proyectos de integración entre Generali y Česká pojišťovna, Tomas fue responsable de todas las entregas de código nuevo y desarrolló scripts de prueba automatizados con HP UFT/QTP y VBScript con acciones reutilizables. También mentorizó a nuevos testers.",
+    cp_role: "Tester, gestión de entornos y planificación de releases",
+    cp_desc: "En la mayor aseguradora de República Checa, Tomas fue responsable de aprobar y coordinar correcciones de errores en HP QC, verificó la coherencia de los entornos de prueba y actuó como soporte de base de datos para testers no técnicos.",
+    certs_tag: "Certificaciones y cursos", certs_title: "Aprendizaje continuo",
+    certs_lead: "Tomas invierte de manera consistente en su desarrollo profesional con cursos de Harvard, Cisco, Oracle y plataformas líderes del sector.",
+    edu_tag: "Educación", edu_title: "Formación académica",
+    edu_degree: "Informática y Estadística — Economía y Gestión",
+    lang_tag: "Idiomas", lang_title: "Competencias lingüísticas",
+    lang_sv: "Fluido", lang_en: "Fluido", lang_cs: "Nativo", lang_es: "Bueno", lang_de: "Básico",
+    footer_tag: "Tester Técnico Senior y Automatizador de Pruebas — Estocolmo"
+  },
+
+  cs: {
+    nav_about: "O mně", nav_skills: "Dovednosti", nav_assignments: "Projekty",
+    nav_certs: "Certifikace", nav_contact: "Kontakt",
+    hero_eyebrow: "Stockholm, Švédsko",
+    hero_subtitle: "Senior technický tester a automatizátor testů",
+    hero_desc: "20+ let zkušeností v IT s hlubokou expertizou v automatizaci testů, CI/CD pipeline a zajišťování kvality business-kritických systémů. Certifikovaný ISTQB a Oracle Java.",
+    hero_cta1: "Zobrazit projekty →", hero_cta2: "LinkedIn profil",
+    stat1: "Let zkušeností", stat2: "Let jako konzultant", stat3: "Velké projekty", stat4: "Jazyky",
+    about_tag: "Profil", about_title: "Vášnivý pro<br>kvalitu a kód",
+    about_p1: "Tomas je specialista na testování s 20+ lety zkušeností v IT, z nichž posledních 17 let jako konzultant zaměřený na technické testování a automatizaci. Má hluboké zkušenosti z pojišťovnictví (SPP, Folksam, Generali), veřejného sektoru (Švédský daňový úřad, Exekuční úřad) a telekomunikací (Ericsson).",
+    about_p2: "V oblasti automatizace testů pracoval Tomas s Javou, Pythonem a JavaScriptem/TypeScriptem a je certifikován Oracle Java. Má rozsáhlé zkušenosti s nástroji jako Selenium WebDriver, Playwright, Postman, JUnit, TestNG a JBehave — a také s API testováním pomocí SoapUI, REST a Swagger.",
+    about_p3: "Tomas přistupuje ke kvalitě holisticky: v několika projektech zastával roli správce testovacích prostředí a vedl testovací strategie od začátku do konce. Je zvyklý úzce spolupracovat s vývojovými týmy i businessem v agilním prostředí SAFe, Scrum a Kanban.",
+    skills_tag: "Dovednosti", skills_title: "Nástroje a technologie",
+    skills_lead: "Rozsáhlý, ale hluboký soubor kompetencí budovaný po dvě dekády praktických zkušeností ze složitých IT projektů.",
+    sk1: "Automatizace testů", sk2: "Programovací jazyky", sk3: "API a integrace",
+    sk4: "CI/CD a cloud", sk5: "Testovací a projektové nástroje", sk6: "Metodiky a procesy",
+    comp_tag: "Konzultantské zkušenosti", comp_title: "Konzultantské firmy",
+    present: "současnost",
+    asgn_tag: "Konzultantské projekty", asgn_title: "Historie projektů",
+    asgn_lead: "Klikněte na projekt pro zobrazení úkolů, odpovědností a technologií.",
+    bliwa_role: "Tester a manažer kvality — pojišťovací systém Oliv",
+    bliwa_desc: "V Bliwa Livförsäkring, společnosti specializující se na skupinové pojištění, Tomas působí jako jediný tester a manažer kvality vlastního pojišťovacího systému Oliv — který spravuje celý životní cyklus pojistek, od zákaznických dat a výpočtu prémií po správu škod a komunikaci přes Kivra. Zahrnuje testovací strategii, plánování, systémové a integrační testy, akceptační testy a pokročilé time-travel testování.",
+    spp_role: "Technický tester — migrace na mikroservisy v Azure",
+    spp_desc: "V pojišťovně SPP Tomas vedl testování v rozsáhlém migračním projektu přesunu aplikací na mikroservisy v Azure. V DevOps týmu pod SAFe frameworkem prováděl detailní testy, API testování se Swaggerem a Postmanem a navrhoval testové případy pro kritické funkce.",
+    bth_role: "Tester v AI výzkumném projektu — T.A.R.G.E.T.",
+    bth_desc: "Spolupráce s Blekinge Institute of Technology na výzkumném projektu T.A.R.G.E.T. Tomas přispíval analytickou zpětnou vazbou k inovativnímu AI nástroji pro automatizaci testů, hodnotil instalaci, škálovatelnost, aserce, hlášení chyb a udržovatelnost.",
+    netigate_role: "Testování a QA webové aplikace — architektura mikroservisů",
+    netigate_desc: "Tomas testoval a ověřoval WebApp pro automatizaci procesů zpětné vazby v doménově orientované architektuře mikroservisů. Zajišťoval funkčnost pro role správce a uživatele na mobilu, tabletu i počítači.",
+    folksam_role: "Automatizace testů v Javě — Selenium, TestNG, SQL a API",
+    folksam_desc: "Tomas pracoval jako Java vývojář v agilním SAFe týmu zaměřeném na automatizaci testů se Selenium WebDriverem a TestNG. Inicioval nový standard znovupoužitelných kódových modulů, který dramaticky urychlil vývoj nových automatizovaných testů.",
+    krono_role: "Technický tester a automatizátor — Java (IST projekt)",
+    krono_desc: "V IST projektu švédského Exekučního úřadu se Tomas zaměřil na InfoService (data) a Distribution (komunikace se zákazníky). Vytvářel automatizované testové případy s JUnit v IntelliJ, spravoval Oracle SQL databázové testování a analyzoval logy v Linuxu.",
+    skv_role: "Technický tester — Projekt ÄRA (migrace Unix→Linux)",
+    skv_desc: "Tomas byl zodpovědný za ověření migrace Unix na Linux v projektu ÄRA švédského Daňového úřadu. Prováděl integrační a systémové testy se SoapUI a Groovy, BDD testy s JBehave a JUnit.",
+    ericsson_role: "Technický tester — cloudová platforma a SDN (Cloud & IP)",
+    ericsson_desc: "V cross-funkčním týmu Ericsson Cloud & IP Tomas integroval a testoval cloudové SDN produkty před každým releasem. Zodpovídal za testovací analýzu, design, exekuci a end-to-end testovací prostředí ve spolupráci s týmy ve Španělsku a Indii.",
+    generali_role: "Technický tester, správce testovacích prostředí a automatizátor — integrační projekt",
+    generali_desc: "V integračních projektech mezi Generali a Českou pojišťovnou byl Tomas zodpovědný za všechny nové dodávky kódu a vyvíjel automatizované testovací skripty s HP UFT/QTP a VBScriptem se znovupoužitelnými akcemi. Mentoroval také nově přijaté testery.",
+    cp_role: "Tester, správa testovacích prostředí a plánování releasů",
+    cp_desc: "V největší pojišťovně v České republice byl Tomas zodpovědný za schvalování a koordinaci oprav chyb v HP QC, ověřoval správnost testovacích prostředí a působil jako databázová podpora pro netechnické testery.",
+    certs_tag: "Certifikace a kurzy", certs_title: "Kontinuální vzdělávání",
+    certs_lead: "Tomas konzistentně investuje do svého profesního rozvoje s kurzy od Harvarda, Cisca, Oraclu a předních oborových platforem.",
+    edu_tag: "Vzdělání", edu_title: "Akademické zázemí",
+    edu_degree: "Informatika a statistika — Ekonomie a management",
+    lang_tag: "Jazyky", lang_title: "Jazykové znalosti",
+    lang_sv: "Plynně", lang_en: "Plynně", lang_cs: "Rodný jazyk", lang_es: "Pokročilý", lang_de: "Základy",
+    footer_tag: "Senior technický tester a automatizátor testů — Stockholm"
+  }
+};
+
+let currentLang = 'sv';
+
+function setLang(lang) {
+  currentLang = lang;
+  const t = i18n[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) {
+      el.innerHTML = t[key];
+    }
+  });
+  document.querySelectorAll('.lang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.textContent.toLowerCase() === lang);
+  });
+  document.documentElement.lang = lang;
+}
+
+// ── ACCORDION ──
+function toggleAssignment(header) {
+  const body = header.nextElementSibling;
+  const btn = header.querySelector('.assignment-toggle');
+  const isOpen = body.classList.contains('open');
+  // Close all
+  document.querySelectorAll('.assignment-body.open').forEach(b => b.classList.remove('open'));
+  document.querySelectorAll('.assignment-toggle.open').forEach(b => b.classList.remove('open'));
+  if (!isOpen) {
+    body.classList.add('open');
+    btn.classList.add('open');
+  }
+}
+
+// ── NAV SCROLL ──
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 50);
+});
+
+// ── HAMBURGER ──
+document.getElementById('hamburger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+// ── INTERSECTION OBSERVER ──
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.fade-in, .timeline-item').forEach(el => observer.observe(el));
+
+// ── SMOOTH NAV CLOSE ON LINK CLICK ──
+document.querySelectorAll('.nav-links a').forEach(a => {
+  a.addEventListener('click', () => {
+    document.getElementById('navLinks').classList.remove('open');
+  });
+});
+</script>
+</body>
+</html>
