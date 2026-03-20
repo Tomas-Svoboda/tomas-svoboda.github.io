@@ -1,0 +1,1222 @@
+<!DOCTYPE html>
+<html lang="sv">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jitka Nadenikova — Testledare & Scrum Master</title>
+<meta name="description" content="Jitka Nadenikova – Senior testledare och Scrum Master med 12+ år inom bank, finans och offentlig sektor. Stockholm.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --ink:    #1a1410;
+  --ink2:   #221c16;
+  --bark:   #2e241c;
+  --cedar:  #3d3028;
+  --gold:   #c9a84c;
+  --gold2:  #e2c27a;
+  --cream:  #f2ead8;
+  --fog:    #9c8e7a;
+  --mist:   rgba(242,234,216,0.55);
+  --glass:  rgba(30,22,14,0.72);
+  --border: rgba(201,168,76,0.18);
+  --se-blue: #006AA7;
+  --se-yel:  #FECC02;
+  --cz-red:  #D7141A;
+  --cz-blue: #11457E;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+
+body {
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  background: var(--ink);
+  color: var(--cream);
+  line-height: 1.65;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--ink); }
+::-webkit-scrollbar-thumb { background: var(--cedar); border-radius: 3px; }
+
+/* ─── NAV ─── */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 999;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0 clamp(1.25rem, 4vw, 3rem);
+  height: 62px;
+  background: rgba(26,20,16,0.82);
+  backdrop-filter: blur(14px);
+  border-bottom: 1px solid var(--border);
+  transition: height 0.3s, background 0.3s;
+}
+nav.scrolled { height: 54px; background: rgba(26,20,16,0.96); }
+
+.nav-brand {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600; font-size: 1.2rem;
+  letter-spacing: 0.03em; color: var(--cream);
+  text-decoration: none;
+}
+.nav-brand em { font-style: italic; color: var(--gold); }
+
+.nav-links { display: flex; gap: 0.15rem; list-style: none; align-items: center; }
+.nav-links a {
+  color: var(--fog); text-decoration: none;
+  font-size: 0.82rem; font-weight: 500; letter-spacing: 0.04em;
+  padding: 0.4rem 0.7rem; border-radius: 5px;
+  transition: color 0.2s, background 0.2s;
+}
+.nav-links a:hover { color: var(--cream); background: rgba(201,168,76,0.08); }
+
+.lang-row { display: flex; gap: 0.2rem; align-items: center; }
+.lang-btn {
+  background: none; border: 1px solid transparent;
+  color: var(--fog); font-family: 'Plus Jakarta Sans', sans-serif;
+  font-size: 0.75rem; font-weight: 700; letter-spacing: 0.06em;
+  padding: 0.28rem 0.5rem; border-radius: 4px;
+  cursor: pointer; transition: all 0.2s;
+}
+.lang-btn:hover { color: var(--cream); border-color: var(--border); }
+.lang-btn.active { color: var(--gold); border-color: rgba(201,168,76,0.4); background: rgba(201,168,76,0.07); }
+
+.hamburger {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.hamburger span { display: block; width: 20px; height: 1.5px; background: var(--fog); border-radius: 2px; transition: all 0.3s; }
+
+/* ─── HERO ─── */
+.hero {
+  position: relative; min-height: 100vh;
+  display: flex; align-items: flex-end;
+  overflow: hidden;
+}
+.hero-bg {
+  position: absolute; inset: 0;
+  background:
+    linear-gradient(160deg, rgba(26,20,16,0.25) 0%, rgba(26,20,16,0.5) 45%, rgba(26,20,16,0.92) 85%, var(--ink) 100%),
+    url('https://images.unsplash.com/photo-1508193638397-1c4234db14d8?w=1920&q=80&auto=format&fit=crop&sat=-20') center 60% / cover no-repeat;
+}
+.hero-bg::after {
+  content: ''; position: absolute; inset: 0;
+  background: radial-gradient(ellipse at 20% 60%, rgba(201,168,76,0.06) 0%, transparent 55%);
+}
+
+.hero-content {
+  position: relative; z-index: 1;
+  max-width: 1200px; width: 100%;
+  margin: 0 auto;
+  padding: clamp(7rem,14vw,10rem) clamp(1.5rem,5vw,4rem) clamp(5rem,9vw,7rem);
+}
+
+.hero-kicker {
+  display: inline-flex; align-items: center; gap: 0.6rem;
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.18em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: 1.5rem;
+  opacity: 0; animation: riseUp 0.7s 0.15s forwards;
+}
+.hero-kicker::before { content: ''; width: 32px; height: 1px; background: var(--gold); }
+
+.hero h1 {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 300; font-size: clamp(3rem, 8vw, 6.5rem);
+  line-height: 0.97; letter-spacing: -0.01em;
+  margin-bottom: 0.75rem;
+  opacity: 0; animation: riseUp 0.8s 0.3s forwards;
+}
+.hero h1 strong {
+  font-weight: 700; font-style: italic;
+  background: linear-gradient(135deg, var(--gold), var(--gold2));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.hero-tagline {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: clamp(1.15rem,2.5vw,1.7rem);
+  font-weight: 300; font-style: italic;
+  color: var(--fog); margin-bottom: 1.75rem;
+  opacity: 0; animation: riseUp 0.8s 0.45s forwards;
+}
+
+.hero-desc {
+  max-width: 500px;
+  font-size: clamp(0.9rem,1.6vw,1rem);
+  color: rgba(242,234,216,0.72);
+  line-height: 1.75; margin-bottom: 2.5rem;
+  opacity: 0; animation: riseUp 0.8s 0.6s forwards;
+}
+
+.hero-actions {
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  opacity: 0; animation: riseUp 0.8s 0.75s forwards;
+}
+.btn-gold {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.78rem 1.8rem;
+  background: var(--gold); color: var(--ink);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700; font-size: 0.85rem; letter-spacing: 0.04em;
+  border-radius: 6px; text-decoration: none;
+  transition: all 0.25s; border: none; cursor: pointer;
+}
+.btn-gold:hover { background: var(--gold2); transform: translateY(-2px); box-shadow: 0 10px 28px rgba(201,168,76,0.28); }
+.btn-ghost {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.78rem 1.8rem;
+  background: transparent; color: var(--cream);
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 500; font-size: 0.85rem;
+  border: 1px solid rgba(242,234,216,0.22);
+  border-radius: 6px; text-decoration: none;
+  transition: all 0.25s; cursor: pointer;
+}
+.btn-ghost:hover { border-color: var(--gold); color: var(--gold); transform: translateY(-2px); }
+
+.hero-metrics {
+  display: flex; flex-wrap: wrap; gap: 2.5rem;
+  margin-top: 4.5rem; padding-top: 2.5rem;
+  border-top: 1px solid rgba(201,168,76,0.14);
+  opacity: 0; animation: riseUp 0.8s 0.95s forwards;
+}
+.metric { display: flex; flex-direction: column; }
+.metric-val {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700; font-size: 2.6rem; line-height: 1;
+  color: var(--cream);
+}
+.metric-val sup { font-size: 1.4rem; color: var(--gold); vertical-align: super; }
+.metric-label { font-size: 0.73rem; letter-spacing: 0.08em; text-transform: uppercase; color: var(--fog); margin-top: 0.35rem; }
+
+/* ─── LAYOUT HELPERS ─── */
+.divider { width: 100%; height: 1px; background: linear-gradient(90deg, transparent, var(--border), transparent); }
+
+.full-w {
+  width: 100vw; margin-left: calc(-50vw + 50%);
+}
+.inner-pad { max-width: 1200px; margin: 0 auto; padding: 0 clamp(1.5rem,5vw,4rem); }
+
+section { max-width: 1200px; margin: 0 auto; padding: clamp(4rem,8vw,6.5rem) clamp(1.5rem,5vw,4rem); }
+
+/* ─── SECTION LABELS ─── */
+.label {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.18em; text-transform: uppercase;
+  color: var(--gold); margin-bottom: 0.9rem;
+}
+.label::before { content: ''; width: 18px; height: 1px; background: var(--gold); }
+
+.heading {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600;
+  font-size: clamp(1.9rem,4.5vw,3rem);
+  line-height: 1.12; letter-spacing: -0.01em;
+  margin-bottom: 0.8rem;
+}
+.heading em { font-style: italic; color: var(--gold); }
+.lead { font-size: 1rem; color: var(--fog); max-width: 560px; line-height: 1.75; margin-bottom: 3rem; }
+
+/* ─── ABOUT ─── */
+.about-wrap { display: grid; grid-template-columns: 1fr 1.25fr; gap: 5rem; align-items: start; }
+
+.about-body { font-size: 0.97rem; color: rgba(242,234,216,0.8); line-height: 1.8; margin-bottom: 1.25rem; }
+
+.cert-strip {
+  display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 1.75rem;
+}
+.cert-pill {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  padding: 0.38rem 0.9rem;
+  border: 1px solid rgba(201,168,76,0.3);
+  background: rgba(201,168,76,0.06);
+  border-radius: 100px;
+  font-size: 0.76rem; font-weight: 600; color: var(--gold2);
+  letter-spacing: 0.02em;
+}
+
+.contact-strip { display: flex; flex-wrap: wrap; gap: 0.65rem; margin-top: 2rem; }
+.c-link {
+  display: inline-flex; align-items: center; gap: 0.45rem;
+  color: var(--fog); font-size: 0.85rem;
+  padding: 0.42rem 0.88rem;
+  border: 1px solid var(--border); border-radius: 6px;
+  text-decoration: none; transition: all 0.2s;
+}
+.c-link:hover { color: var(--gold); border-color: rgba(201,168,76,0.35); }
+
+/* ─── SKILLS ─── */
+.sk-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(275px,1fr)); gap: 1.15rem; }
+.sk-card {
+  background: rgba(46,36,28,0.55);
+  border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.5rem;
+  transition: all 0.3s;
+}
+.sk-card:hover { border-color: rgba(201,168,76,0.3); transform: translateY(-3px); box-shadow: 0 14px 36px rgba(0,0,0,0.3); }
+.sk-card-head {
+  display: flex; align-items: center; gap: 0.65rem;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  font-weight: 700; font-size: 0.88rem;
+  color: var(--gold2); margin-bottom: 1rem;
+}
+.sk-icon {
+  width: 30px; height: 30px; border-radius: 7px;
+  background: rgba(201,168,76,0.1);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.9rem;
+}
+.sk-tags { display: flex; flex-wrap: wrap; gap: 0.38rem; }
+.sk-tag {
+  font-size: 0.76rem; font-weight: 500;
+  padding: 0.24rem 0.6rem; border-radius: 4px;
+  background: rgba(242,234,216,0.06);
+  color: rgba(242,234,216,0.72);
+  transition: all 0.2s;
+}
+.sk-tag:hover { background: rgba(201,168,76,0.1); color: var(--gold2); }
+.sk-tag.hl { background: rgba(201,168,76,0.1); color: var(--gold2); }
+
+/* ─── CONSULTING COMPANIES ─── */
+.co-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px,1fr)); gap: 1rem; }
+.co-card {
+  background: rgba(46,36,28,0.55);
+  border: 1px solid var(--border);
+  border-radius: 11px; padding: 1.4rem;
+  display: flex; flex-direction: column; gap: 0.6rem;
+}
+.co-top { display: flex; align-items: center; gap: 0.65rem; }
+.co-name { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.1rem; }
+.co-period { font-size: 0.78rem; color: var(--gold); font-weight: 600; }
+.co-loc { font-size: 0.78rem; color: var(--fog); }
+
+/* ─── FLAG ICONS ─── */
+.flag {
+  width: 22px; height: 15px; border-radius: 2px;
+  overflow: hidden; flex-shrink: 0; position: relative;
+  box-shadow: 0 1px 4px rgba(0,0,0,0.35);
+}
+.flag-se { background: var(--se-blue); }
+.flag-se::before, .flag-se::after { content: ''; position: absolute; background: var(--se-yel); }
+.flag-se::before { left: 30%; top: 0; bottom: 0; width: 20%; }
+.flag-se::after  { top: 37%; left: 0; right: 0; height: 27%; }
+.flag-cz { background: white; position: relative; }
+.flag-cz::before { content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 50%; background: var(--cz-red); }
+.flag-cz::after  { content: ''; position: absolute; top: 0; left: 0; width: 0; height: 0; border-style: solid; border-width: 7.5px 0 7.5px 11px; border-color: transparent transparent transparent var(--cz-blue); }
+.flag-de { background: #000; }
+.flag-de::after { content: ''; position: absolute; top: 33%; left: 0; right: 0; height: 34%; background: #D00; box-shadow: 0 5px 0 #FFCE00; }
+
+/* ─── TIMELINE / ASSIGNMENTS ─── */
+.tl { position: relative; padding-left: 1.75rem; }
+.tl::before {
+  content: ''; position: absolute; left: 0; top: 10px; bottom: 0;
+  width: 1px; background: linear-gradient(to bottom, var(--gold), transparent);
+}
+.tl-item { position: relative; padding-bottom: 2.5rem; opacity: 0; transform: translateY(18px); transition: opacity 0.55s, transform 0.55s; }
+.tl-item.vis { opacity: 1; transform: translateY(0); }
+
+.tl-dot {
+  position: absolute; left: -1.75rem; top: 8px;
+  width: 9px; height: 9px; border-radius: 50%;
+  background: var(--gold); margin-left: 0.35rem;
+  box-shadow: 0 0 0 3px rgba(201,168,76,0.2);
+}
+.tl-dot.cz { background: var(--cz-red); box-shadow: 0 0 0 3px rgba(215,20,26,0.2); }
+.tl-dot.de { background: #bbb; box-shadow: 0 0 0 3px rgba(255,255,255,0.12); }
+
+.a-card {
+  background: rgba(46,36,28,0.5);
+  border: 1px solid var(--border); border-radius: 14px;
+  overflow: hidden; transition: all 0.3s;
+}
+.a-card:hover { border-color: rgba(201,168,76,0.28); box-shadow: 0 12px 38px rgba(0,0,0,0.28); }
+
+.a-head {
+  display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem;
+  padding: 1.5rem 1.75rem 1rem; cursor: pointer;
+}
+.a-head-l { flex: 1; }
+.a-company { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.3rem; }
+.a-name { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.15rem; }
+.a-role { font-size: 0.85rem; color: var(--fog); line-height: 1.35; }
+.a-chips { display: flex; flex-wrap: wrap; gap: 0.45rem; margin-top: 0.6rem; }
+.chip {
+  font-size: 0.73rem; font-weight: 600; padding: 0.2rem 0.58rem; border-radius: 4px;
+  display: flex; align-items: center; gap: 0.28rem;
+}
+.chip.date { background: rgba(201,168,76,0.1); color: var(--gold2); }
+.chip.loc  { background: rgba(242,234,216,0.05); color: var(--fog); }
+
+.a-toggle {
+  background: rgba(201,168,76,0.08); border: none;
+  color: var(--gold); width: 30px; height: 30px; border-radius: 7px;
+  display: flex; align-items: center; justify-content: center;
+  cursor: pointer; flex-shrink: 0; margin-top: 3px;
+  font-size: 1.05rem; transition: transform 0.3s;
+}
+.a-toggle.open { transform: rotate(45deg); }
+
+.a-body {
+  max-height: 0; overflow: hidden; padding: 0 1.75rem;
+  transition: max-height 0.4s ease;
+}
+.a-body.open { max-height: 2000px; padding-bottom: 1.5rem; }
+
+.a-desc {
+  font-size: 0.9rem; line-height: 1.78; color: rgba(242,234,216,0.78);
+  padding-top: 1rem; margin-bottom: 1rem;
+  border-top: 1px solid var(--border);
+}
+.tech { display: flex; flex-wrap: wrap; gap: 0.32rem; }
+.tech-t {
+  font-size: 0.72rem; font-weight: 500; padding: 0.2rem 0.52rem;
+  background: rgba(201,168,76,0.07); border: 1px solid rgba(201,168,76,0.14);
+  color: var(--gold2); border-radius: 4px;
+}
+
+/* ─── CERTIFICATIONS ─── */
+.cert-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(295px,1fr)); gap: 1rem; }
+.cert-card {
+  display: flex; align-items: flex-start; gap: 1rem;
+  padding: 1.2rem 1.4rem;
+  background: rgba(46,36,28,0.5); border: 1px solid var(--border);
+  border-radius: 11px; transition: all 0.25s;
+}
+.cert-card:hover { transform: translateX(4px); border-color: rgba(201,168,76,0.28); }
+.cert-yr {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 700; font-size: 1.15rem; color: var(--gold);
+  flex-shrink: 0; min-width: 42px; line-height: 1.2;
+}
+.cert-name { font-weight: 600; font-size: 0.87rem; line-height: 1.35; margin-bottom: 0.22rem; }
+.cert-by { font-size: 0.75rem; color: var(--fog); }
+.cert-card.star { border-color: rgba(201,168,76,0.32); background: rgba(201,168,76,0.04); }
+.cert-card.star .cert-yr { color: var(--gold2); }
+
+/* ─── EDU + LANGUAGES ─── */
+.el-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; }
+.edu-card {
+  background: rgba(46,36,28,0.5); border: 1px solid var(--border);
+  border-radius: 12px; padding: 1.75rem; margin-bottom: 1rem;
+}
+.edu-degree { font-family: 'Cormorant Garamond', serif; font-weight: 700; font-size: 1.05rem; margin-bottom: 0.3rem; }
+.edu-school { color: var(--gold2); font-size: 0.88rem; margin-bottom: 0.2rem; }
+.edu-period { font-size: 0.78rem; color: var(--fog); }
+
+.lang-rows { display: flex; flex-direction: column; gap: 0.85rem; }
+.lang-row { display: flex; align-items: center; gap: 1rem; }
+.lang-n { font-weight: 600; font-size: 0.88rem; min-width: 88px; }
+.bar-wrap { flex: 1; height: 3px; background: rgba(255,255,255,0.08); border-radius: 2px; overflow: hidden; }
+.bar-fill { height: 100%; background: linear-gradient(90deg, var(--gold), var(--gold2)); border-radius: 2px; }
+.lang-lv { font-size: 0.73rem; color: var(--fog); min-width: 80px; text-align: right; }
+
+/* ─── FOOTER ─── */
+footer {
+  background: var(--ink2); border-top: 1px solid var(--border);
+  padding: 3rem clamp(1.5rem,5vw,4rem); text-align: center;
+}
+.footer-name {
+  font-family: 'Cormorant Garamond', serif;
+  font-weight: 600; font-size: 1.6rem;
+  font-style: italic; margin-bottom: 0.4rem;
+}
+.footer-name em { font-style: normal; color: var(--gold); }
+.footer-sub { color: var(--fog); font-size: 0.82rem; margin-bottom: 1.4rem; }
+.footer-links { display: flex; justify-content: center; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 2rem; }
+.footer-link { color: var(--fog); text-decoration: none; font-size: 0.82rem; transition: color 0.2s; }
+.footer-link:hover { color: var(--gold); }
+.footer-copy { font-size: 0.72rem; color: rgba(156,142,122,0.4); }
+
+/* ─── ANIMATIONS ─── */
+@keyframes riseUp {
+  from { opacity: 0; transform: translateY(26px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.fade-in { opacity: 0; transform: translateY(24px); transition: opacity 0.6s, transform 0.6s; }
+.fade-in.vis { opacity: 1; transform: translateY(0); }
+
+/* ─── RESPONSIVE ─── */
+@media (max-width: 900px) {
+  .about-wrap { grid-template-columns: 1fr; gap: 2.5rem; }
+  .el-grid { grid-template-columns: 1fr; gap: 2.5rem; }
+}
+@media (max-width: 680px) {
+  .nav-links { display: none; }
+  .nav-links.open {
+    display: flex; flex-direction: column;
+    position: fixed; top: 54px; left: 0; right: 0;
+    background: rgba(26,20,16,0.98);
+    border-bottom: 1px solid var(--border);
+    padding: 1rem 1.5rem;
+    gap: 0;
+  }
+  .nav-links.open a { padding: 0.75rem 0; border-bottom: 1px solid var(--border); border-radius: 0; }
+  .hamburger { display: flex; }
+  .tl { padding-left: 1.25rem; }
+  .a-head { padding: 1.25rem; }
+  .a-body { padding: 0 1.25rem; }
+  .a-body.open { padding-bottom: 1.25rem; }
+  .cert-grid { grid-template-columns: 1fr; }
+  .hero-metrics { gap: 2rem; }
+}
+</style>
+</head>
+<body>
+
+<!-- ─── NAV ─── -->
+<nav id="nav">
+  <a class="nav-brand" href="#">Jitka <em>Nadenikova</em></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about"   data-i18n="n_about">Om mig</a></li>
+    <li><a href="#skills"  data-i18n="n_skills">Kompetenser</a></li>
+    <li><a href="#work"    data-i18n="n_work">Uppdrag</a></li>
+    <li><a href="#certs"   data-i18n="n_certs">Certifieringar</a></li>
+    <li><a href="#contact" data-i18n="n_contact">Kontakt</a></li>
+  </ul>
+  <div style="display:flex;align-items:center;gap:0.75rem">
+    <div class="lang-row">
+      <button class="lang-btn active" onclick="setLang('sv')">SV</button>
+      <button class="lang-btn"        onclick="setLang('en')">EN</button>
+      <button class="lang-btn"        onclick="setLang('cs')">CS</button>
+    </div>
+    <button class="hamburger" id="hbg">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- ─── HERO ─── -->
+<div class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-content">
+    <div class="hero-kicker" data-i18n="h_kicker">Stockholm, Sverige</div>
+    <h1>Jitka<br><strong>Nadenikova</strong></h1>
+    <div class="hero-tagline" data-i18n="h_tagline">Testledare · Scrum Master · Senior QA-konsult</div>
+    <p class="hero-desc" data-i18n="h_desc">12+ år av erfarenhet i ledande QA-roller inom bank, finans och offentlig sektor. Certifierad ISTQB, Certified ScrumMaster och SAFe Agilist.</p>
+    <div class="hero-actions">
+      <a href="#work"    class="btn-gold" data-i18n="h_cta1">Visa uppdrag →</a>
+      <a href="https://www.linkedin.com/in/nadenikova" target="_blank" class="btn-ghost" data-i18n="h_cta2">LinkedIn</a>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric">
+        <span class="metric-val">12<sup>+</sup></span>
+        <span class="metric-label" data-i18n="m1">År som konsult</span>
+      </div>
+      <div class="metric">
+        <span class="metric-val">9</span>
+        <span class="metric-label" data-i18n="m2">Stora uppdrag</span>
+      </div>
+      <div class="metric">
+        <span class="metric-val">5</span>
+        <span class="metric-label" data-i18n="m3">Länder &amp; branscher</span>
+      </div>
+      <div class="metric">
+        <span class="metric-val">4</span>
+        <span class="metric-label" data-i18n="m4">Certifieringar</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ─── ABOUT ─── -->
+<section id="about">
+  <div class="about-wrap">
+    <div class="fade-in">
+      <div class="label" data-i18n="ab_label">Profil</div>
+      <h2 class="heading" data-i18n="ab_title">Kvalitet är<br>inte ett steg —<br><em>det är ett mindset</em></h2>
+      <div class="cert-strip">
+        <span class="cert-pill">✦ ISTQB CTFL</span>
+        <span class="cert-pill">✦ ISTQB Agile</span>
+        <span class="cert-pill">✦ Certified ScrumMaster</span>
+        <span class="cert-pill">✦ SAFe Agilist</span>
+      </div>
+      <div class="contact-strip" id="contact">
+        <a href="https://www.linkedin.com/in/nadenikova" target="_blank" class="c-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="currentColor"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 01-2.063-2.065 2.064 2.064 0 112.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
+          LinkedIn
+        </a>
+        <a href="mailto:jitka.nadenikova@gmail.com" class="c-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,12 2,6"/></svg>
+          jitka.nadenikova@gmail.com
+        </a>
+        <a href="tel:+46761498425" class="c-link">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07A19.5 19.5 0 013.07 9.82a19.79 19.79 0 01-3.07-8.63A2 2 0 012 0h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L6.09 7.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+          +46 76 149 84 25
+        </a>
+      </div>
+    </div>
+    <div class="fade-in">
+      <p class="about-body" data-i18n="ab_p1">Jitka är en senior QA-konsult med 12+ år i roller som testledare och Scrum Master hos internationella företag. Hennes kärnkompetens ligger i komplex integrationstestning, teststrategi och att leda tvärfunktionella team — framför allt inom bankbranschen där precisionen och regulatoriska kraven är som högst.</p>
+      <p class="about-body" data-i18n="ab_p2">Bland hennes uppdragsgivare finns Swedbank, Bankgirot, Deutsche Bank, Raiffeisenbank, Erste Bank samt offentliga aktörer som Kronofogden och Trafikverket. Hon har jobbat i Sverige, Tjeckien och med distribuerade team i hela Europa.</p>
+      <p class="about-body" data-i18n="ab_p3">Som Scrum Master coachar Jitka leveransteam, leder sprintplanering, retrospektiv och tar aktivt bort hinder. Hon är lika hemma i teknisk API-testning med SQL och Swagger som i strategisk testplanering och Change Control Board-processer.</p>
+    </div>
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── SKILLS ─── -->
+<div class="full-w" id="skills" style="background:var(--ink2);padding:clamp(4rem,8vw,6.5rem) 0">
+<div class="inner-pad">
+  <div class="fade-in">
+    <div class="label" data-i18n="sk_label">Kompetenser</div>
+    <h2 class="heading" data-i18n="sk_title">Verktyg &amp; <em>expertis</em></h2>
+    <p class="lead" data-i18n="sk_lead">Bred kompetens inom testledning, agila metoder och teknisk testning — skarpslipat under mer än ett decennium av komplexa banksystemprojekt.</p>
+  </div>
+  <div class="sk-grid">
+    <div class="sk-card fade-in">
+      <div class="sk-card-head"><div class="sk-icon">🎯</div><span data-i18n="sk1">Testledning</span></div>
+      <div class="sk-tags">
+        <span class="sk-tag hl">Teststrategi</span><span class="sk-tag hl">Testplanering</span>
+        <span class="sk-tag hl">Testfallsdesign</span><span class="sk-tag">Testestimering</span>
+        <span class="sk-tag">Testrapport</span><span class="sk-tag">Kravgranskning</span>
+        <span class="sk-tag">Acceptanstester</span><span class="sk-tag">Logganalys</span>
+      </div>
+    </div>
+    <div class="sk-card fade-in">
+      <div class="sk-card-head"><div class="sk-icon">⚡</div><span data-i18n="sk2">Agila metoder &amp; Scrum</span></div>
+      <div class="sk-tags">
+        <span class="sk-tag hl">Certified ScrumMaster</span><span class="sk-tag hl">SAFe</span>
+        <span class="sk-tag">Scrum</span><span class="sk-tag">Kanban</span>
+        <span class="sk-tag">Sprintplanering</span><span class="sk-tag">Retrospektiv</span>
+        <span class="sk-tag">CCB</span><span class="sk-tag">Coaching</span>
+      </div>
+    </div>
+    <div class="sk-card fade-in">
+      <div class="sk-card-head"><div class="sk-icon">🗄️</div><span data-i18n="sk3">Databaser &amp; Backend</span></div>
+      <div class="sk-tags">
+        <span class="sk-tag hl">SQL</span><span class="sk-tag hl">SQL Server Mgmt Studio</span>
+        <span class="sk-tag">SQuirreL SQL</span><span class="sk-tag">Oracle SQL Developer</span>
+        <span class="sk-tag">TSO/ISPF</span><span class="sk-tag">Stordator</span>
+        <span class="sk-tag">PowerShell</span><span class="sk-tag">Linux</span>
+      </div>
+    </div>
+    <div class="sk-card fade-in">
+      <div class="sk-card-head"><div class="sk-icon">🔌</div><span data-i18n="sk4">API &amp; Integrationstestning</span></div>
+      <div class="sk-tags">
+        <span class="sk-tag hl">API Testing</span><span class="sk-tag hl">Swagger UI</span>
+        <span class="sk-tag">SoapUI</span><span class="sk-tag">REST</span>
+        <span class="sk-tag">Integration testing</span><span class="sk-tag">Systemintegrationstestning</span>
+        <span class="sk-tag">Web Accessibility</span><span class="sk-tag">NVDA</span>
+      </div>
+    </div>
+    <div class="sk-card fade-in">
+      <div class="sk-card-head"><div class="sk-icon">🤖</div><span data-i18n="sk5">Testautomation</span></div>
+      <div class="sk-tags">
+        <span class="sk-tag hl">Playwright</span><span class="sk-tag hl">Tosca</span>
+        <span class="sk-tag">Testim</span><span class="sk-tag">Cypress</span>
+        <span class="sk-tag">NeoLoad</span><span class="sk-tag">Java</span>
+        <span class="sk-tag">JavaScript</span><span class="sk-tag">TypeScript</span>
+      </div>
+    </div>
+    <div class="sk-card fade-in">
+      <div class="sk-card-head"><div class="sk-icon">🛠️</div><span data-i18n="sk6">Verktyg &amp; Plattformar</span></div>
+      <div class="sk-tags">
+        <span class="sk-tag hl">Atlassian Jira</span><span class="sk-tag hl">Azure DevOps</span>
+        <span class="sk-tag">Confluence</span><span class="sk-tag">ServiceNow</span>
+        <span class="sk-tag">Figma</span><span class="sk-tag">Splunk</span>
+        <span class="sk-tag">Jenkins CI/CD</span><span class="sk-tag">qTest</span>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ─── CONSULTING COMPANIES ─── -->
+<div class="full-w" style="background:var(--ink);padding:clamp(4rem,8vw,6.5rem) 0">
+<div class="inner-pad">
+  <div class="fade-in">
+    <div class="label" data-i18n="co_label">Konsulterfarenhet</div>
+    <h2 class="heading" data-i18n="co_title">Konsultbolag</h2>
+  </div>
+  <div class="co-grid fade-in">
+    <div class="co-card">
+      <div class="co-top"><div class="flag flag-se"></div><span class="co-name">QESTIT Sweden</span></div>
+      <div class="co-period">2022 — <span data-i18n="now">pågående</span></div>
+      <div class="co-loc">📍 Stockholm, Sverige</div>
+    </div>
+    <div class="co-card">
+      <div class="co-top"><div class="flag flag-se"></div><span class="co-name">CGI Sverige</span></div>
+      <div class="co-period">2017 — 2022</div>
+      <div class="co-loc">📍 Stockholm, Sverige</div>
+    </div>
+    <div class="co-card">
+      <div class="co-top"><div class="flag flag-cz"></div><span class="co-name">CGI Czech Republic</span></div>
+      <div class="co-period">2013 — 2017</div>
+      <div class="co-loc">📍 Prag, Tjeckien</div>
+    </div>
+    <div class="co-card">
+      <div class="co-top"><div class="flag flag-cz"></div><span class="co-name">Qinshift</span></div>
+      <div class="co-period">2012 — 2013</div>
+      <div class="co-loc">📍 Prag, Tjeckien</div>
+    </div>
+    <div class="co-card">
+      <div class="co-top"><div class="flag flag-cz"></div><span class="co-name">Unicorn</span></div>
+      <div class="co-period">2005 — 2008</div>
+      <div class="co-loc">📍 Prag, Tjeckien</div>
+    </div>
+  </div>
+</div>
+</div>
+
+<div class="divider"></div>
+
+<!-- ─── ASSIGNMENTS ─── -->
+<section id="work">
+  <div class="fade-in">
+    <div class="label" data-i18n="wk_label">Konsultuppdrag</div>
+    <h2 class="heading" data-i18n="wk_title">Uppdragshistorik</h2>
+    <p class="lead" data-i18n="wk_lead">Klicka på ett uppdrag för att läsa mer om arbetsuppgifter, ansvarsområden och teknikstack.</p>
+  </div>
+  <div class="tl">
+
+    <!-- SWEDBANK -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="a-card">
+        <div class="a-head" onclick="toggle(this)">
+          <div class="a-head-l">
+            <div class="a-company"><div class="flag flag-se"></div><span class="a-name">Swedbank</span></div>
+            <div class="a-role" data-i18n="sw_role">Testledare inom internetbank</div>
+            <div class="a-chips">
+              <span class="chip date">📅 Feb 2024 — <span data-i18n="now">pågående</span></span>
+              <span class="chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="a-toggle">+</button>
+        </div>
+        <div class="a-body">
+          <p class="a-desc" data-i18n="sw_desc">Som testledare har Jitka huvudansvaret för att leda och koordinera integrationstester inom bankens storskaliga IT-projekt. Hon har framgångsrikt utformat detaljerade testplaner och strategier, skapat omfattande testfall och säkerställt att alla krav uppfylls. Genom nära samarbete med ett tvärfunktionellt team bidrar Jitka till att effektivisera testprocesserna och leverera högkvalitativa lösningar. Som teknisk testare ansvarar hon för API:er, SQL-databaser samt desktop- och mobilapplikationer — inklusive tillgänglighetstestning med skärmläsare.</p>
+          <div class="tech">
+            <span class="tech-t">SQL</span><span class="tech-t">SQuirreL SQL</span><span class="tech-t">SAFe</span><span class="tech-t">Cloud</span><span class="tech-t">Integration testing</span><span class="tech-t">Acceptanstester</span><span class="tech-t">Web Accessibility</span><span class="tech-t">Jira</span><span class="tech-t">Figma</span><span class="tech-t">Swagger UI</span><span class="tech-t">Synk</span><span class="tech-t">NVDA</span><span class="tech-t">Test Data Management</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- KRONOFOGDEN -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="a-card">
+        <div class="a-head" onclick="toggle(this)">
+          <div class="a-head-l">
+            <div class="a-company"><div class="flag flag-se"></div><span class="a-name">Kronofogden</span></div>
+            <div class="a-role" data-i18n="kf_role">Testledare och Scrum Master</div>
+            <div class="a-chips">
+              <span class="chip date">📅 Mar 2022 — Okt 2023</span>
+              <span class="chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="a-toggle">+</button>
+        </div>
+        <div class="a-body">
+          <p class="a-desc" data-i18n="kf_desc">Som testledare ledde Jitka testarbetet i enlighet med agil arbetsmetodik, utarbetade teststrategi och planering, och var ansvarig för Change Control Board (CCB). I rollen som Scrum Master coachade hon leveransteamet, säkerställde att teamet höll sig inom tids- och budgetramar, eskalerade hinder och ledde sprintplanering samt retrospektiv. I det dagliga arbetet analyserade och skapade hon testfall, genomförde system- och integrationstester, ansvarade för testmiljöer och logganalys, och demonstrerade systemet för slutanvändare och ledningsgrupp.</p>
+          <div class="tech">
+            <span class="tech-t">Scrum Master</span><span class="tech-t">SQL</span><span class="tech-t">SQL Server Mgmt Studio</span><span class="tech-t">XMind</span><span class="tech-t">Azure DevOps</span><span class="tech-t">ServiceNow</span><span class="tech-t">API</span><span class="tech-t">Swagger UI</span><span class="tech-t">Jira Test Mgmt</span><span class="tech-t">Confluence</span><span class="tech-t">Splunk</span><span class="tech-t">Conceptboard</span><span class="tech-t">Sparx Prolaborate</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- BANKGIROT -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="a-card">
+        <div class="a-head" onclick="toggle(this)">
+          <div class="a-head-l">
+            <div class="a-company"><div class="flag flag-se"></div><span class="a-name">Bankgirot</span></div>
+            <div class="a-role" data-i18n="bg_role">Testledare med testansvar för banksystem</div>
+            <div class="a-chips">
+              <span class="chip date">📅 Feb 2019 — Mar 2022</span>
+              <span class="chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="a-toggle">+</button>
+        </div>
+        <div class="a-body">
+          <p class="a-desc" data-i18n="bg_desc">I ett agilt team designade Jitka testfall baserade på krav och tekniska specifikationer, förberedde testdata och genomförde system- och systemintegrationstester. Hon körde batchprogram och SQL i stordator, ansvarade för felrapportering, felanalyser och testrapporter inför varje release. Hon granskade krav ur testperspektiv, estimerade testarbete, lyfte byggen till olika miljöer och stöttade acceptanstestning. Jitka bidrog dessutom med en förbättrad testfallsstruktur för hela projektet.</p>
+          <div class="tech">
+            <span class="tech-t">SQL</span><span class="tech-t">Stordator / TSO/ISPF</span><span class="tech-t">PowerShell</span><span class="tech-t">Jira</span><span class="tech-t">Test Mgmt for Jira</span><span class="tech-t">Confluence</span><span class="tech-t">Jenkins CI/CD</span><span class="tech-t">Acceptanstester</span><span class="tech-t">Teststrategi</span><span class="tech-t">Testestimering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- TRAFIKVERKET -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="a-card">
+        <div class="a-head" onclick="toggle(this)">
+          <div class="a-head-l">
+            <div class="a-company"><div class="flag flag-se"></div><span class="a-name">Trafikverket</span></div>
+            <div class="a-role" data-i18n="tv_role">Testledare — e-tjänstportal &amp; ärendehanteringssystem</div>
+            <div class="a-chips">
+              <span class="chip date">📅 Jun 2017 — Feb 2019</span>
+              <span class="chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="a-toggle">+</button>
+        </div>
+        <div class="a-body">
+          <p class="a-desc" data-i18n="tv_desc">Jitka ledde testarbetet i flera parallella IT-projekt hos Trafikverket. I ett projekt ansvarade hon för uppgradering av den tekniska plattformen — hon ledde testarbetet, samordnade med utvecklare och projektledare och tolkade tekniska kravspecifikationer. Parallellt stöttade hon ett team med datamigration från SharePoint, körde migreringsscript och rapporterade fel. Projekten var geografiskt spridda vilket krävde stark kommunikation i distribuerade team.</p>
+          <div class="tech">
+            <span class="tech-t">SQL</span><span class="tech-t">TFS</span><span class="tech-t">Jira</span><span class="tech-t">Linux</span><span class="tech-t">PowerShell</span><span class="tech-t">SharePoint</span><span class="tech-t">Integration testing</span><span class="tech-t">Systemtestning</span><span class="tech-t">Testfallsdesign</span><span class="tech-t">Felhantering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- IVO -->
+    <div class="tl-item">
+      <div class="tl-dot"></div>
+      <div class="a-card">
+        <div class="a-head" onclick="toggle(this)">
+          <div class="a-head-l">
+            <div class="a-company"><div class="flag flag-se"></div><span class="a-name">IVO — Inspektionen för vård och omsorg</span></div>
+            <div class="a-role" data-i18n="ivo_role">Acceptanstestledare — Windows-uppgradering</div>
+            <div class="a-chips">
+              <span class="chip date">📅 Apr 2017 — Maj 2017</span>
+              <span class="chip loc">📍 Stockholm</span>
+            </div>
+          </div>
+          <button class="a-toggle">+</button>
+        </div>
+        <div class="a-body">
+          <p class="a-desc" data-i18n="ivo_desc">Jitka ledde och koordinerade acceptanstester för IVOs uppgradering av Windows, Office och Internet Explorer. Hon ledde och stöttade verksamhetsanvändare i testprocessen, samlade in och analyserade felrapporter och sammanställde detaljerade testrapporter till kunden — vilket möjliggjorde en säker utrullning till hela organisationen.</p>
+          <div class="tech">
+            <span class="tech-t">Acceptanstestledning</span><span class="tech-t">Microsoft Office</span><span class="tech-t">Testkoordinering</span><span class="tech-t">Rapportskrivning</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- DEUTSCHE BANK -->
+    <div class="tl-item">
+      <div class="tl-dot de"></div>
+      <div class="a-card">
+        <div class="a-head" onclick="toggle(this)">
+          <div class="a-head-l">
+            <div class="a-company"><div class="flag flag-de"></div><span class="a-name">Deutsche Bank</span></div>
+            <div class="a-role" data-i18n="db_role">Testare av kärnbankssystemet — Corebank för storföretag</div>
+            <div class="a-chips">
+              <span class="chip date">📅 Nov 2013 — Jun 2014</span>
+              <span class="chip loc">📍 Prag, Tjeckien</span>
+            </div>
+          </div>
+          <button class="a-toggle">+</button>
+        </div>
+        <div class="a-body">
+          <p class="a-desc" data-i18n="db_desc">I ett SCRUM-team ansvarade Jitka för hela testcykeln i utvecklingen av Corebank-systemet för storföretag — från att skapa testplaner och designa testfall till att utföra tester, analysera resultat och rapportera till intressenter i London. Hennes tydliga testrapporter höll produktägare och ledningsgruppen kontinuerligt informerade om projektets framsteg.</p>
+          <div class="tech">
+            <span class="tech-t">HP ALM / Quality Center</span><span class="tech-t">SQL</span><span class="tech-t">Jira</span><span class="tech-t">Scrum</span><span class="tech-t">Systemtestning</span><span class="tech-t">Testexekvering</span><span class="tech-t">Bank &amp; Finans</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- VODAFONE -->
+    <div class="tl-item">
+      <div class="tl-dot cz"></div>
+      <div class="a-card">
+        <div class="a-head" onclick="toggle(this)">
+          <div class="a-head-l">
+            <div class="a-company"><div class="flag flag-cz"></div><span class="a-name">Vodafone</span></div>
+            <div class="a-role" data-i18n="vf_role">Mjukvarutestare — Oracle Siebel CRM</div>
+            <div class="a-chips">
+              <span class="chip date">📅 Feb 2013 — Okt 2013</span>
+              <span class="chip loc">📍 Prag, Tjeckien</span>
+            </div>
+          </div>
+          <button class="a-toggle">+</button>
+        </div>
+        <div class="a-body">
+          <p class="a-desc" data-i18n="vf_desc">Jitka specialiserade sig på Oracle Siebel CRM och ansvarade för end-to-end-testning av komplexa avtalsprocesser för privatpersoner och småföretag samt migrering av alla kundkontrakt. Hon utformade testplaner, skapade testdata, exekverade tester och rapporterade defekter — och bidrog till att Vodafone kunde erbjuda sina kunder en sömlös övergång till nya system.</p>
+          <div class="tech">
+            <span class="tech-t">Oracle Siebel CRM</span><span class="tech-t">SoapUI</span><span class="tech-t">SQL / SQL Developer</span><span class="tech-t">TestLink</span><span class="tech-t">Tibco</span><span class="tech-t">PuTTY</span><span class="tech-t">Telecom</span><span class="tech-t">SharePoint</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ERSTE BANK / CESKA SPORITELNA -->
+    <div class="tl-item">
+      <div class="tl-dot cz"></div>
+      <div class="a-card">
+        <div class="a-head" onclick="toggle(this)">
+          <div class="a-head-l">
+            <div class="a-company"><div class="flag flag-cz"></div><span class="a-name">Česká spořitelna / Erste Bank</span></div>
+            <div class="a-role" data-i18n="eb_role">Testare och felkoordinator — Nytt pensionssystem</div>
+            <div class="a-chips">
+              <span class="chip date">📅 Jul 2012 — Jan 2013</span>
+              <span class="chip loc">📍 Prag, Tjeckien</span>
+            </div>
+          </div>
+          <button class="a-toggle">+</button>
+        </div>
+        <div class="a-body">
+          <p class="a-desc" data-i18n="eb_desc">Jitka testade kärnmodulerna för betalningar, administration och korrespondens i det nya pensionssystemet — både manuellt och automatiserat. Hon skapade komplexa testdata, analyserade testresultat och samarbetade nära med utvecklare för att lösa problem. Som felkoordinator stöttade hon dessutom slutanvändarna i deras acceptanstestning och bidrog till en smidig systemövergång.</p>
+          <div class="tech">
+            <span class="tech-t">SQL / SQL Developer</span><span class="tech-t">TestLink</span><span class="tech-t">Jira</span><span class="tech-t">Utforskande testning</span><span class="tech-t">Acceptanstester</span><span class="tech-t">Bank &amp; Försäkring</span><span class="tech-t">Felhantering</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- RAIFFEISEN BANK -->
+    <div class="tl-item">
+      <div class="tl-dot cz"></div>
+      <div class="a-card">
+        <div class="a-head" onclick="toggle(this)">
+          <div class="a-head-l">
+            <div class="a-company"><div class="flag flag-cz"></div><span class="a-name">Raiffeisen Bank</span></div>
+            <div class="a-role" data-i18n="rb_role">Mjukvarutestare och dokumentatör — Kärnbankssystemet</div>
+            <div class="a-chips">
+              <span class="chip date">📅 Mar 2012 — Jun 2012</span>
+              <span class="chip loc">📍 Prag, Tjeckien</span>
+            </div>
+          </div>
+          <button class="a-toggle">+</button>
+        </div>
+        <div class="a-body">
+          <p class="a-desc" data-i18n="rb_desc">Jitka testade JLauncher-integrationen och skapade en detaljerad manual för det nya kärnbankssystemet. Hennes arbete säkerställde att systemet fungerade sömlöst och att användarna hade tillgång till korrekt och lättförståelig dokumentation — avgörande för ett stabilt och skalbart leveransresultat.</p>
+          <div class="tech">
+            <span class="tech-t">JLauncher</span><span class="tech-t">Bugzilla</span><span class="tech-t">Testexekvering</span><span class="tech-t">Dokumentation</span><span class="tech-t">Dataöverföring</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<div class="divider"></div>
+
+<!-- ─── CERTIFICATIONS ─── -->
+<div class="full-w" id="certs" style="background:var(--ink2);padding:clamp(4rem,8vw,6.5rem) 0">
+<div class="inner-pad">
+  <div class="fade-in">
+    <div class="label" data-i18n="ce_label">Certifieringar &amp; kurser</div>
+    <h2 class="heading" data-i18n="ce_title">Kontinuerligt <em>lärande</em></h2>
+    <p class="lead" data-i18n="ce_lead">Jitka investerar aktivt i sin kompetensutveckling med certifieringar och kurser från Harvard, Cisco, Tricentis Tosca och ledande branschorganisationer.</p>
+  </div>
+  <div class="cert-grid fade-in">
+    <div class="cert-card star">
+      <div class="cert-yr">2022</div>
+      <div><div class="cert-name">SAFe® Agilist — Leading SAFe 5.1</div><div class="cert-by">Scaled Agile</div></div>
+    </div>
+    <div class="cert-card star">
+      <div class="cert-yr">2018</div>
+      <div><div class="cert-name">Certified ScrumMaster® (CSM)</div><div class="cert-by">Scrum Alliance</div></div>
+    </div>
+    <div class="cert-card star">
+      <div class="cert-yr">2018</div>
+      <div><div class="cert-name">ISTQB® Agile Tester</div><div class="cert-by">ISTQB</div></div>
+    </div>
+    <div class="cert-card star">
+      <div class="cert-yr">2017</div>
+      <div><div class="cert-name">ISTQB® Certified Tester Foundation Level</div><div class="cert-by">ISTQB</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2024</div>
+      <div><div class="cert-name">Introduction to Databases with SQL</div><div class="cert-by">Harvard University</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2023</div>
+      <div><div class="cert-name">NeoLoad Fundamentals — Performance Testing</div><div class="cert-by">Tricentis</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2023</div>
+      <div><div class="cert-name">Tosca Deep Dive — API &amp; Database Test Automation</div><div class="cert-by">Tricentis Tosca</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2023</div>
+      <div><div class="cert-name">Tosca Fundamentals — Web App Automation (AS1 &amp; AS2)</div><div class="cert-by">Tricentis Tosca</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2023</div>
+      <div><div class="cert-name">Testim Fundamentals — Creating Automated Tests</div><div class="cert-by">Testim</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2023</div>
+      <div><div class="cert-name">qTest Fundamentals — Managing Test Projects</div><div class="cert-by">PractiTest</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2023</div>
+      <div><div class="cert-name">Playwright 101 &amp; Web Automation Testing (TypeScript)</div><div class="cert-by">LambdaTest / Udemy</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2023</div>
+      <div><div class="cert-name">NDG Linux Essentials &amp; Unhatched</div><div class="cert-by">Cisco Networking Academy</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2022</div>
+      <div><div class="cert-name">JavaScript Metoder och verktyg</div><div class="cert-by">NFI</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2022</div>
+      <div><div class="cert-name">2-Day Hands-On Cypress Course</div><div class="cert-by">NFI</div></div>
+    </div>
+    <div class="cert-card">
+      <div class="cert-yr">2018</div>
+      <div><div class="cert-name">Java Programmering 1 &amp; 2</div><div class="cert-by">Jensen Education</div></div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ─── EDUCATION & LANGUAGES ─── -->
+<div class="full-w" style="background:var(--ink);padding:clamp(4rem,8vw,6.5rem) 0">
+<div class="inner-pad">
+  <div class="el-grid fade-in">
+    <div>
+      <div class="label" data-i18n="ed_label">Utbildning</div>
+      <h2 class="heading" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1.5rem" data-i18n="ed_title">Akademisk bakgrund</h2>
+      <div class="edu-card">
+        <div class="edu-degree" data-i18n="ed_d1">Ekonomi och Management — Masterexamen</div>
+        <div class="edu-school">Czech University of Life Sciences Prague</div>
+        <div class="edu-period">2009 — 2012</div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-degree" data-i18n="ed_d2">Folkhälsovetenskap — Kandidatexamen</div>
+        <div class="edu-school">Charles University Prague — Faculty of Medicine</div>
+        <div class="edu-period">2002 — 2007</div>
+      </div>
+    </div>
+    <div>
+      <div class="label" data-i18n="la_label">Språk</div>
+      <h2 class="heading" style="font-size:clamp(1.5rem,3vw,2.2rem);margin-bottom:1.5rem" data-i18n="la_title">Språkkunskaper</h2>
+      <div class="lang-rows">
+        <div class="lang-row">
+          <div class="lang-n">🇸🇪 Svenska</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:90%"></div></div>
+          <div class="lang-lv" data-i18n="lv_sv">Flytande</div>
+        </div>
+        <div class="lang-row">
+          <div class="lang-n">🇬🇧 Engelska</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:90%"></div></div>
+          <div class="lang-lv" data-i18n="lv_en">Flytande</div>
+        </div>
+        <div class="lang-row">
+          <div class="lang-n">🇨🇿 Tjeckiska</div>
+          <div class="bar-wrap"><div class="bar-fill" style="width:100%"></div></div>
+          <div class="lang-lv" data-i18n="lv_cs">Modersmål</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+
+<!-- ─── FOOTER ─── -->
+<footer>
+  <div class="footer-name">Jitka <em>Nadenikova</em></div>
+  <div class="footer-sub" data-i18n="ft_sub">Testledare · Scrum Master · Senior QA-konsult — Stockholm</div>
+  <div class="footer-links">
+    <a href="https://www.linkedin.com/in/nadenikova" target="_blank" class="footer-link">LinkedIn</a>
+    <a href="mailto:jitka.nadenikova@gmail.com" class="footer-link">jitka.nadenikova@gmail.com</a>
+    <a href="tel:+46761498425" class="footer-link">+46 76 149 84 25</a>
+    <a href="#about"   class="footer-link" data-i18n="n_about">Om mig</a>
+    <a href="#work"    class="footer-link" data-i18n="n_work">Uppdrag</a>
+    <a href="#certs"   class="footer-link" data-i18n="n_certs">Certifieringar</a>
+  </div>
+  <div class="footer-copy">© 2025 Jitka Nadenikova</div>
+</footer>
+
+<script>
+/* ─── i18n ─── */
+const T = {
+  sv:{
+    n_about:"Om mig", n_skills:"Kompetenser", n_work:"Uppdrag", n_certs:"Certifieringar", n_contact:"Kontakt",
+    h_kicker:"Stockholm, Sverige",
+    h_tagline:"Testledare · Scrum Master · Senior QA-konsult",
+    h_desc:"12+ år av erfarenhet i ledande QA-roller inom bank, finans och offentlig sektor. Certifierad ISTQB, Certified ScrumMaster och SAFe Agilist.",
+    h_cta1:"Visa uppdrag →", h_cta2:"LinkedIn",
+    m1:"År som konsult", m2:"Stora uppdrag", m3:"Länder & branscher", m4:"Certifieringar",
+    ab_label:"Profil",
+    ab_title:"Kvalitet är<br>inte ett steg —<br><em>det är ett mindset</em>",
+    ab_p1:"Jitka är en senior QA-konsult med 12+ år i roller som testledare och Scrum Master hos internationella företag. Hennes kärnkompetens ligger i komplex integrationstestning, teststrategi och att leda tvärfunktionella team — framför allt inom bankbranschen där precisionen och regulatoriska kraven är som högst.",
+    ab_p2:"Bland hennes uppdragsgivare finns Swedbank, Bankgirot, Deutsche Bank, Raiffeisenbank, Erste Bank samt offentliga aktörer som Kronofogden och Trafikverket. Hon har jobbat i Sverige, Tjeckien och med distribuerade team i hela Europa.",
+    ab_p3:"Som Scrum Master coachar Jitka leveransteam, leder sprintplanering, retrospektiv och tar aktivt bort hinder. Hon är lika hemma i teknisk API-testning med SQL och Swagger som i strategisk testplanering och Change Control Board-processer.",
+    sk_label:"Kompetenser", sk_title:"Verktyg &amp; <em>expertis</em>",
+    sk_lead:"Bred kompetens inom testledning, agila metoder och teknisk testning — skarpslipat under mer än ett decennium av komplexa banksystemprojekt.",
+    sk1:"Testledning", sk2:"Agila metoder & Scrum", sk3:"Databaser & Backend",
+    sk4:"API & Integrationstestning", sk5:"Testautomation", sk6:"Verktyg & Plattformar",
+    co_label:"Konsulterfarenhet", co_title:"Konsultbolag",
+    now:"pågående",
+    wk_label:"Konsultuppdrag", wk_title:"Uppdragshistorik",
+    wk_lead:"Klicka på ett uppdrag för att läsa mer om arbetsuppgifter, ansvarsområden och teknikstack.",
+    sw_role:"Testledare inom internetbank",
+    sw_desc:"Som testledare har Jitka huvudansvaret för att leda och koordinera integrationstester inom bankens storskaliga IT-projekt. Hon har framgångsrikt utformat detaljerade testplaner och strategier, skapat omfattande testfall och säkerställt att alla krav uppfylls. Genom nära samarbete med ett tvärfunktionellt team bidrar Jitka till att effektivisera testprocesserna och leverera högkvalitativa lösningar. Som teknisk testare ansvarar hon för API:er, SQL-databaser samt desktop- och mobilapplikationer — inklusive tillgänglighetstestning med skärmläsare.",
+    kf_role:"Testledare och Scrum Master",
+    kf_desc:"Som testledare ledde Jitka testarbetet i enlighet med agil arbetsmetodik, utarbetade teststrategi och planering, och var ansvarig för Change Control Board (CCB). I rollen som Scrum Master coachade hon leveransteamet, säkerställde att teamet höll sig inom tids- och budgetramar, eskalerade hinder och ledde sprintplanering samt retrospektiv. I det dagliga arbetet analyserade och skapade hon testfall, genomförde system- och integrationstester, ansvarade för testmiljöer och logganalys, och demonstrerade systemet för slutanvändare och ledningsgrupp.",
+    bg_role:"Testledare med testansvar för banksystem",
+    bg_desc:"I ett agilt team designade Jitka testfall baserade på krav och tekniska specifikationer, förberedde testdata och genomförde system- och systemintegrationstester. Hon körde batchprogram och SQL i stordator, ansvarade för felrapportering, felanalyser och testrapporter inför varje release. Hon granskade krav ur testperspektiv, estimerade testarbete, lyfte byggen till olika miljöer och stöttade acceptanstestning. Jitka bidrog dessutom med en förbättrad testfallsstruktur för hela projektet.",
+    tv_role:"Testledare — e-tjänstportal &amp; ärendehanteringssystem",
+    tv_desc:"Jitka ledde testarbetet i flera parallella IT-projekt hos Trafikverket. I ett projekt ansvarade hon för uppgradering av den tekniska plattformen — hon ledde testarbetet, samordnade med utvecklare och projektledare och tolkade tekniska kravspecifikationer. Parallellt stöttade hon ett team med datamigration från SharePoint, körde migreringsscript och rapporterade fel. Projekten var geografiskt spridda vilket krävde stark kommunikation i distribuerade team.",
+    ivo_role:"Acceptanstestledare — Windows-uppgradering",
+    ivo_desc:"Jitka ledde och koordinerade acceptanstester för IVOs uppgradering av Windows, Office och Internet Explorer. Hon ledde och stöttade verksamhetsanvändare i testprocessen, samlade in och analyserade felrapporter och sammanställde detaljerade testrapporter till kunden — vilket möjliggjorde en säker utrullning till hela organisationen.",
+    db_role:"Testare av kärnbankssystemet — Corebank för storföretag",
+    db_desc:"I ett SCRUM-team ansvarade Jitka för hela testcykeln i utvecklingen av Corebank-systemet för storföretag — från att skapa testplaner och designa testfall till att utföra tester, analysera resultat och rapportera till intressenter i London. Hennes tydliga testrapporter höll produktägare och ledningsgruppen kontinuerligt informerade om projektets framsteg.",
+    vf_role:"Mjukvarutestare — Oracle Siebel CRM",
+    vf_desc:"Jitka specialiserade sig på Oracle Siebel CRM och ansvarade för end-to-end-testning av komplexa avtalsprocesser för privatpersoner och småföretag samt migrering av alla kundkontrakt. Hon utformade testplaner, skapade testdata, exekverade tester och rapporterade defekter — och bidrog till att Vodafone kunde erbjuda sina kunder en sömlös övergång till nya system.",
+    eb_role:"Testare och felkoordinator — Nytt pensionssystem",
+    eb_desc:"Jitka testade kärnmodulerna för betalningar, administration och korrespondens i det nya pensionssystemet — både manuellt och automatiserat. Hon skapade komplexa testdata, analyserade testresultat och samarbetade nära med utvecklare för att lösa problem. Som felkoordinator stöttade hon dessutom slutanvändarna i deras acceptanstestning och bidrog till en smidig systemövergång.",
+    rb_role:"Mjukvarutestare och dokumentatör — Kärnbankssystemet",
+    rb_desc:"Jitka testade JLauncher-integrationen och skapade en detaljerad manual för det nya kärnbankssystemet. Hennes arbete säkerställde att systemet fungerade sömlöst och att användarna hade tillgång till korrekt och lättförståelig dokumentation — avgörande för ett stabilt och skalbart leveransresultat.",
+    ce_label:"Certifieringar &amp; kurser", ce_title:"Kontinuerligt <em>lärande</em>",
+    ce_lead:"Jitka investerar aktivt i sin kompetensutveckling med certifieringar och kurser från Harvard, Cisco, Tricentis Tosca och ledande branschorganisationer.",
+    ed_label:"Utbildning", ed_title:"Akademisk bakgrund",
+    ed_d1:"Ekonomi och Management — Masterexamen",
+    ed_d2:"Folkhälsovetenskap — Kandidatexamen",
+    la_label:"Språk", la_title:"Språkkunskaper",
+    lv_sv:"Flytande", lv_en:"Flytande", lv_cs:"Modersmål",
+    ft_sub:"Testledare · Scrum Master · Senior QA-konsult — Stockholm"
+  },
+
+  en:{
+    n_about:"About", n_skills:"Skills", n_work:"Assignments", n_certs:"Certifications", n_contact:"Contact",
+    h_kicker:"Stockholm, Sweden",
+    h_tagline:"Test Manager · Scrum Master · Senior QA Consultant",
+    h_desc:"12+ years of experience in leading QA roles within banking, finance and the public sector. ISTQB, Certified ScrumMaster and SAFe Agilist certified.",
+    h_cta1:"View assignments →", h_cta2:"LinkedIn",
+    m1:"Years as consultant", m2:"Major assignments", m3:"Countries & industries", m4:"Certifications",
+    ab_label:"Profile",
+    ab_title:"Quality is not<br>a phase —<br><em>it's a mindset</em>",
+    ab_p1:"Jitka is a senior QA consultant with 12+ years in test management and Scrum Master roles at international companies. Her core expertise lies in complex integration testing, test strategy and leading cross-functional teams — particularly in the banking sector where precision and regulatory demands are at their highest.",
+    ab_p2:"Her clients include Swedbank, Bankgirot, Deutsche Bank, Raiffeisenbank, Erste Bank as well as public sector organisations such as the Swedish Enforcement Authority and the Swedish Transport Administration. She has worked in Sweden, Czech Republic and with distributed teams across Europe.",
+    ab_p3:"As Scrum Master, Jitka coaches delivery teams, leads sprint planning, retrospectives and proactively removes impediments. She is equally at home in technical API testing with SQL and Swagger as in strategic test planning and Change Control Board processes.",
+    sk_label:"Skills", sk_title:"Tools &amp; <em>expertise</em>",
+    sk_lead:"Broad competence in test management, agile methodologies and technical testing — honed over more than a decade of complex banking system projects.",
+    sk1:"Test Management", sk2:"Agile & Scrum", sk3:"Databases & Backend",
+    sk4:"API & Integration Testing", sk5:"Test Automation", sk6:"Tools & Platforms",
+    co_label:"Consulting Experience", co_title:"Consulting companies",
+    now:"present",
+    wk_label:"Consulting Assignments", wk_title:"Assignment history",
+    wk_lead:"Click on an assignment to read more about tasks, responsibilities and tech stack.",
+    sw_role:"Test Manager — Internet Banking",
+    sw_desc:"As test manager, Jitka has primary responsibility for leading and coordinating integration testing in the bank's large-scale IT projects. She has successfully designed detailed test plans and strategies, created comprehensive test cases and ensured all requirements are met. Through close collaboration with a cross-functional team, Jitka contributes to streamlining test processes and delivering high-quality solutions. As technical tester she is responsible for APIs, SQL databases and both desktop and mobile applications — including accessibility testing with screen readers.",
+    kf_role:"Test Manager and Scrum Master",
+    kf_desc:"As test manager, Jitka led the test work in accordance with agile testing guidelines, developed test strategy and planning, and was responsible for the Change Control Board (CCB). In the Scrum Master role she coached the delivery team, ensured it stayed within time and budget constraints, escalated impediments and led sprint planning and retrospectives. In daily test work she analysed requirements, created test cases, performed system and integration tests, managed test environments and log analysis, and demonstrated the system to end-users and management.",
+    bg_role:"Test Manager — Banking Systems",
+    bg_desc:"In an agile team, Jitka designed test cases based on requirements and technical specifications, prepared test data and performed system and system integration tests. She ran batch programs and SQL on mainframe, managed defect reporting, defect analysis and test reports for every release. She reviewed requirements from a test perspective, estimated test effort, deployed builds to various environments and supported acceptance testing. Jitka also contributed an improved test case structure and content for the entire project.",
+    tv_role:"Test Manager — e-Services Portal &amp; Case Management System",
+    tv_desc:"Jitka played a central role in several large IT projects at the Swedish Transport Administration. In one project she led platform upgrade testing, coordinating with developers and project managers to ensure all requirements were met. In parallel, she supported another team with SharePoint data migration, running migration scripts and reporting defects — all within geographically distributed teams.",
+    ivo_role:"Acceptance Test Manager — Windows Upgrade",
+    ivo_desc:"Jitka led and coordinated acceptance testing for IVO's upgrade of Windows, Office and Internet Explorer. She guided business users through the test process, collected and analysed defect reports and compiled detailed test reports for the client — enabling a safe rollout across the entire organisation.",
+    db_role:"Tester — Core Banking System (Corebank for corporates)",
+    db_desc:"In a SCRUM team, Jitka handled the full test cycle for the Corebank corporate banking system — from creating test plans and designing test cases to executing tests, analysing results and reporting to stakeholders in London. Her clear test reports kept the product owner and management informed about project progress.",
+    vf_role:"Software Tester — Oracle Siebel CRM",
+    vf_desc:"Jitka specialised in Oracle Siebel CRM and was responsible for end-to-end testing of complex contract processes for individuals and small businesses, as well as the migration of all customer contracts. She designed test plans, created test data, executed tests and reported defects — contributing to a seamless transition for Vodafone's customers.",
+    eb_role:"Tester and Bug Coordinator — New Pension System",
+    eb_desc:"Jitka tested the core modules for payments, administration and correspondence in the new pension system — both manually and with automated testing. She created complex test data, analysed test results and collaborated closely with developers to resolve issues. As bug coordinator she also supported end-users in their acceptance testing, contributing to a smooth system transition.",
+    rb_role:"Software Tester and Technical Writer — Core Banking System",
+    rb_desc:"Jitka tested the JLauncher integration and created a detailed user manual for the new core banking system. Her work ensured the system functioned seamlessly and that users had access to clear and accurate documentation — critical for a stable and scalable delivery.",
+    ce_label:"Certifications &amp; Courses", ce_title:"Continuous <em>learning</em>",
+    ce_lead:"Jitka actively invests in her professional development with certifications and courses from Harvard, Cisco, Tricentis Tosca and leading industry organisations.",
+    ed_label:"Education", ed_title:"Academic background",
+    ed_d1:"Economics and Management — Master's degree",
+    ed_d2:"Public Health — Bachelor's degree",
+    la_label:"Languages", la_title:"Language skills",
+    lv_sv:"Fluent", lv_en:"Fluent", lv_cs:"Native",
+    ft_sub:"Test Manager · Scrum Master · Senior QA Consultant — Stockholm"
+  },
+
+  cs:{
+    n_about:"O mně", n_skills:"Dovednosti", n_work:"Projekty", n_certs:"Certifikace", n_contact:"Kontakt",
+    h_kicker:"Stockholm, Švédsko",
+    h_tagline:"Test manažer · Scrum Master · Senior QA konzultant",
+    h_desc:"12+ let zkušeností v řídících QA rolích v oblasti bankovnictví, financí a veřejného sektoru. Certifikovaná ISTQB, Certified ScrumMaster a SAFe Agilist.",
+    h_cta1:"Zobrazit projekty →", h_cta2:"LinkedIn",
+    m1:"Let jako konzultant", m2:"Velké projekty", m3:"Země a odvětví", m4:"Certifikace",
+    ab_label:"Profil",
+    ab_title:"Kvalita není<br>krok —<br><em>je to způsob myšlení</em>",
+    ab_p1:"Jitka je senior QA konzultant s 12+ lety zkušeností v rolích test manažera a Scrum Mastera v mezinárodních společnostech. Její klíčová expertiza spočívá v komplexním integračním testování, testovací strategii a vedení týmů — zejména v bankovním sektoru, kde jsou nároky na přesnost a regulatorní požadavky nejvyšší.",
+    ab_p2:"Mezi jejími klienty jsou Swedbank, Bankgirot, Deutsche Bank, Raiffeisenbank, Erste Bank a veřejnoprávní subjekty jako švédský Exekuční úřad a Správa dopravní infrastruktury. Pracovala ve Švédsku, České republice a s distribuovanými týmy po celé Evropě.",
+    ab_p3:"Jako Scrum Master Jitka koučuje dodávkové týmy, vede sprint planning, retrospektivy a proaktivně odstraňuje překážky. Je stejně doma v technickém API testování s SQL a Swagger jako ve strategickém testovacím plánování a procesech Change Control Board.",
+    sk_label:"Dovednosti", sk_title:"Nástroje &amp; <em>expertiza</em>",
+    sk_lead:"Rozsáhlé kompetence v oblasti testovacího managementu, agilních metodik a technického testování — vybroušené za více než dekádu na komplexních bankovních projektech.",
+    sk1:"Testovací management", sk2:"Agilní metody a Scrum", sk3:"Databáze a backend",
+    sk4:"API a integrační testování", sk5:"Testovací automatizace", sk6:"Nástroje a platformy",
+    co_label:"Konzultantské zkušenosti", co_title:"Konzultantské firmy",
+    now:"současnost",
+    wk_label:"Konzultantské projekty", wk_title:"Historie projektů",
+    wk_lead:"Klikněte na projekt pro zobrazení úkolů, odpovědností a technologií.",
+    sw_role:"Test manažer — Internetové bankovnictví",
+    sw_desc:"Jako test manažer má Jitka hlavní odpovědnost za vedení a koordinaci integračního testování v rozsáhlých IT projektech banky. Úspěšně navrhuje detailní testovací plány a strategie, vytváří komplexní testovací případy a zajišťuje splnění všech požadavků. Prostřednictvím úzké spolupráce s týmem přispívá ke zefektivnění testovacích procesů. Jako technický tester zodpovídá za API, SQL databáze a desktopové i mobilní aplikace — včetně testování přístupnosti.",
+    kf_role:"Test manažer a Scrum Master",
+    kf_desc:"Jako test manažer vedla Jitka testovací práci v souladu s agilními metodikami, vypracovala testovací strategii a byla zodpovědná za Change Control Board. V roli Scrum Mastera koučovala tým, zajišťovala dodržení časových a rozpočtových rámců, eskalovala překážky a vedla sprint plánování a retrospektivy. V každodenní práci analyzovala požadavky, vytvářela testovací případy, prováděla systémové a integrační testy a prezentovala systém koncovým uživatelům.",
+    bg_role:"Test manažer — Bankovní systémy",
+    bg_desc:"V agilním týmu Jitka navrhovala testovací případy, připravovala testovací data a prováděla systémové a integrační testy. Spouštěla dávkové programy a SQL na sálových počítačích, zodpovídala za hlášení a analýzu chyb a testovací zprávy pro každé vydání. Přispěla zlepšenou strukturou testovacích případů pro celý projekt.",
+    tv_role:"Test manažer — e-servisní portál &amp; systém správy případů",
+    tv_desc:"Jitka hrála klíčovou roli v několika rozsáhlých IT projektech. V jednom projektu vedla testování upgradu platformy, koordinovala s vývojáři a projektovými manažery. Paralelně podporovala tým při migraci dat ze SharePointu, spouštěla migrační skripty a hlásila chyby — vše v geograficky distribuovaných týmech.",
+    ivo_role:"Manažer akceptačního testování — Upgrade Windows",
+    ivo_desc:"Jitka vedla a koordinovala akceptační testování upgradu Windows, Office a Internet Explorer. Vedla byznysové uživatele testovacím procesem, sbírala a analyzovala hlášení chyb a sestavovala detailní testovací zprávy — což umožnilo bezpečné nasazení v celé organizaci.",
+    db_role:"Tester — Jádrový bankovní systém (Corebank pro korporace)",
+    db_desc:"V SCRUM týmu Jitka zajišťovala celý testovací cyklus vývoje korporátního Corebank systému — od vytváření testovacích plánů po reportování výsledků zájemcům v Londýně. Její přehledné testovací zprávy průběžně informovaly product ownera a management o pokroku projektu.",
+    vf_role:"Softwarový tester — Oracle Siebel CRM",
+    vf_desc:"Jitka se specializovala na Oracle Siebel CRM a zodpovídala za end-to-end testování smluvních procesů pro fyzické osoby a malé firmy a za migraci všech zákaznických smluv. Navrhovala testovací plány, vytvářela testovací data a hlásila defekty.",
+    eb_role:"Tester a koordinátor chyb — Nový penzijní systém",
+    eb_desc:"Jitka testovala jádrové moduly pro platby, administraci a korespondenci v novém penzijním systému — manuálně i automatizovaně. Vytvářela komplexní testovací data, analyzovala výsledky a spolupracovala s vývojáři. Jako koordinátor chyb podporovala uživatele při akceptačním testování.",
+    rb_role:"Softwarový tester a technický pisatel — Jádrový bankovní systém",
+    rb_desc:"Jitka testovala JLauncher integraci a vytvořila podrobný uživatelský manuál pro nový jádrový bankovní systém. Její práce zajistila bezproblémové fungování systému a dostupnost přesné dokumentace pro uživatele.",
+    ce_label:"Certifikace a kurzy", ce_title:"Kontinuální <em>vzdělávání</em>",
+    ce_lead:"Jitka aktivně investuje do svého profesního rozvoje s certifikacemi a kurzy od Harvardu, Cisca, Tricentis Tosca a předních oborových organizací.",
+    ed_label:"Vzdělání", ed_title:"Akademické zázemí",
+    ed_d1:"Ekonomie a management — Magisterský titul",
+    ed_d2:"Veřejné zdravotnictví — Bakalářský titul",
+    la_label:"Jazyky", la_title:"Jazykové znalosti",
+    lv_sv:"Plynně", lv_en:"Plynně", lv_cs:"Rodný jazyk",
+    ft_sub:"Test manažer · Scrum Master · Senior QA konzultant — Stockholm"
+  }
+};
+
+function setLang(lang){
+  const t = T[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el=>{
+    const k = el.getAttribute('data-i18n');
+    if(t[k]!==undefined) el.innerHTML = t[k];
+  });
+  document.querySelectorAll('.lang-btn').forEach(b=>{
+    b.classList.toggle('active', b.textContent.toLowerCase()===lang);
+  });
+  document.documentElement.lang = lang;
+}
+
+/* ─── ACCORDION ─── */
+function toggle(header){
+  const body = header.nextElementSibling;
+  const btn  = header.querySelector('.a-toggle');
+  const open = body.classList.contains('open');
+  document.querySelectorAll('.a-body.open').forEach(b=>b.classList.remove('open'));
+  document.querySelectorAll('.a-toggle.open').forEach(b=>b.classList.remove('open'));
+  if(!open){ body.classList.add('open'); btn.classList.add('open'); }
+}
+
+/* ─── SCROLL NAV ─── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled', window.scrollY>50);
+});
+
+/* ─── HAMBURGER ─── */
+document.getElementById('hbg').addEventListener('click',()=>{
+  document.getElementById('navLinks').classList.toggle('open');
+});
+document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>{
+  document.getElementById('navLinks').classList.remove('open');
+}));
+
+/* ─── INTERSECTION OBSERVER ─── */
+const obs = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
+},{threshold:0.08});
+document.querySelectorAll('.fade-in, .tl-item').forEach(el=>obs.observe(el));
+</script>
+</body>
+</html>
